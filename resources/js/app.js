@@ -3,10 +3,25 @@
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
+import Vue from 'vue'
+import VueRouter from 'vue-router'
 
-require('./bootstrap');
+Vue.use(VueRouter)
 
-window.Vue = require('vue');
+import App from './views/App.vue'
+import Welcome from './views/Welcome.vue'
+import Home from './views/Home.vue'
+
+const router = new VueRouter({
+    mode: "history",
+    routes: [
+        { path: '/', component: Welcome },
+        { path: '/home', component: Home, name: "home" }
+    ]
+})
+
+
+//window.Vue = require('vue');
 
 
 /**
@@ -22,7 +37,6 @@ window.Vue = require('vue');
 
 // Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
-require('./router.js');
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -31,5 +45,7 @@ require('./router.js');
  */
 
 const app = new Vue({
-    router
-}).$mount('#app')
+    el: '#app',
+    components: { App },
+    router: router
+})
