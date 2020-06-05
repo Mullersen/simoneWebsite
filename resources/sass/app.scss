@@ -1,8 +1,4 @@
-// Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
-
-// Variables
-@import 'variables';
-
-// Bootstrap
-@import '~bootstrap/scss/bootstrap';
+@import "https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4./css/bulma.cssbulma/sass/utilities/initial-variables";
+$tech-blue: #2c3e50;
+$primary: $tech-blue;
+@import "https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.3/css/bulma.css";

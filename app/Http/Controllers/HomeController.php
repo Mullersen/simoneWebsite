@@ -11,10 +11,11 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+    //will force anyone to be logged in on the page - also just visitors- and redirect to login page. We don't want that.
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
 
     /**
      * Show the application dashboard.
@@ -23,6 +24,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        return view('welcome', ['authUser',  auth()->user()]);
     }
 }

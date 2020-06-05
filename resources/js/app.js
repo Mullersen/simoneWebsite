@@ -10,13 +10,13 @@ Vue.use(VueRouter)
 
 import App from './views/App.vue'
 import Welcome from './views/Welcome.vue'
-import Home from './views/Home.vue'
+import SubHome from './views/SubHome.vue'
 
 const router = new VueRouter({
     mode: "history",
     routes: [
-        { path: '/', component: Welcome },
-        { path: '/home', component: Home, name: "home" }
+        { path: '/', name: 'welcome', component: Welcome },
+        { path: '/subhome', name: 'subHome', component: SubHome }
     ]
 })
 
