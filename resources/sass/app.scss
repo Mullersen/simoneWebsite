@@ -1,4 +1,4 @@
-@import "https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4./css/bulma.cssbulma/sass/utilities/initial-variables";
-$tech-blue: #2c3e50;
-$primary: $tech-blue;
-@import "https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.3/css/bulma.css";
+@import "bulma/sass/utilities/_all.sass";
+@import "bulma/sass/base/_all.sass";
+@import "bulma/sass/components/navbar.sass";
+@import'variables';

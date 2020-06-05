@@ -12,31 +12,31 @@ import App from './views/App.vue'
 import Welcome from './views/Welcome.vue'
 import SubHome from './views/SubHome.vue'
 
+
 const router = new VueRouter({
     mode: "history",
     routes: [{
             path: '/',
             name: 'welcome',
-            component: () =>
-                import ( /* webpackChunkName: "welcome" */ '../views/Welcome.vue')
+            component: Welcome
         },
         {
             path: '/subhome/:subject',
             name: 'subHome',
             component: () =>
-                import ( /* webpackChunkName: "subhome" */ '../views/SubHome.vue')
+                import ( /* webpackChunkName: "subhome" */ './views/SubHome.vue')
         },
         {
             path: '/search',
             name: 'search',
             component: () =>
-                import ( /* webpackChunkName: "subhome" */ '../views/Search.vue')
+                import ( /* webpackChunkName: "search" */ './views/Search.vue')
         },
         {
             path: '/article/:header',
             name: 'article',
             component: () =>
-                import ( /* webpackChunkName: "subhome" */ '../views/Article.vue')
+                import ( /* webpackChunkName: "article" */ './views/Article.vue')
         }
     ]
 })

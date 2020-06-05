@@ -19,6 +19,7 @@
                         <router-link class="navbar-item" :to="{ name: 'subHome', params:{subject:'Stress'} }">Stress</router-link>
                         <router-link class="navbar-item" :to="{ name: 'subHome', params:{subject:'Balance'}}">Balance</router-link>
                         <router-link class="navbar-item" :to="{ name: 'subHome', params:{subject:'Selvudvikling'}}">Selvudvikling</router-link>
+                        <a class="navbar-item" target="_blank" href="https://www.instagram.com/simoneloekke/?hl=da"><img src="/images/glyph-logo_May2016.png" alt="Instagram logo"></a>
                         <!-- <router-link class="navbar-item" :to="{ name: 'subHome' }">Om</router-link> -->
                     </div>
                     <div v-if="authUser == !null" class="navbar-end">
@@ -36,7 +37,7 @@
             </div>
         </div>
     </nav>
-        
+
     </div>
 </template>
 
