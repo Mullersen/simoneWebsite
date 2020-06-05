@@ -134,6 +134,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Navigation",
   props: {
@@ -733,9 +736,39 @@ var render = function() {
                       "router-link",
                       {
                         staticClass: "navbar-item",
-                        attrs: { to: { name: "subHome" } }
+                        attrs: {
+                          to: { name: "subHome", params: { subject: "Stress" } }
+                        }
                       },
                       [_vm._v("Stress")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "router-link",
+                      {
+                        staticClass: "navbar-item",
+                        attrs: {
+                          to: {
+                            name: "subHome",
+                            params: { subject: "Balance" }
+                          }
+                        }
+                      },
+                      [_vm._v("Balance")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "router-link",
+                      {
+                        staticClass: "navbar-item",
+                        attrs: {
+                          to: {
+                            name: "subHome",
+                            params: { subject: "Selvudvikling" }
+                          }
+                        }
+                      },
+                      [_vm._v("Selvudvikling")]
                     )
                   ],
                   1
@@ -16046,11 +16079,27 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   routes: [{
     path: '/',
     name: 'welcome',
-    component: _views_Welcome_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
+    component: function component() {
+      return Promise.resolve().then(function webpackMissingModule() { var e = new Error("Cannot find module '../views/Welcome.vue'"); e.code = 'MODULE_NOT_FOUND'; throw e; });
+    }
   }, {
-    path: '/subhome',
+    path: '/subhome/:subject',
     name: 'subHome',
-    component: _views_SubHome_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
+    component: function component() {
+      return Promise.resolve().then(function webpackMissingModule() { var e = new Error("Cannot find module '../views/SubHome.vue'"); e.code = 'MODULE_NOT_FOUND'; throw e; });
+    }
+  }, {
+    path: '/search',
+    name: 'search',
+    component: function component() {
+      return Promise.resolve().then(function webpackMissingModule() { var e = new Error("Cannot find module '../views/Search.vue'"); e.code = 'MODULE_NOT_FOUND'; throw e; });
+    }
+  }, {
+    path: '/article/:header',
+    name: 'article',
+    component: function component() {
+      return Promise.resolve().then(function webpackMissingModule() { var e = new Error("Cannot find module '../views/Article.vue'"); e.code = 'MODULE_NOT_FOUND'; throw e; });
+    }
   }]
 }); //window.Vue = require('vue');
 

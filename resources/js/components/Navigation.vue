@@ -16,7 +16,10 @@
                     <div v-if="authUser == null" class="navbar-end">
                         <a class="navbar-item" href="login">Login</a>
                         <a class="navbar-item" href="register">Register</a>
-                        <router-link class="navbar-item" :to="{ name: 'subHome' }">Stress</router-link>
+                        <router-link class="navbar-item" :to="{ name: 'subHome', params:{subject:'Stress'} }">Stress</router-link>
+                        <router-link class="navbar-item" :to="{ name: 'subHome', params:{subject:'Balance'}}">Balance</router-link>
+                        <router-link class="navbar-item" :to="{ name: 'subHome', params:{subject:'Selvudvikling'}}">Selvudvikling</router-link>
+                        <!-- <router-link class="navbar-item" :to="{ name: 'subHome' }">Om</router-link> -->
                     </div>
                     <div v-if="authUser == !null" class="navbar-end">
                         <p>logout</p>

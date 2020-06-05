@@ -14,9 +14,30 @@ import SubHome from './views/SubHome.vue'
 
 const router = new VueRouter({
     mode: "history",
-    routes: [
-        { path: '/', name: 'welcome', component: Welcome },
-        { path: '/subhome', name: 'subHome', component: SubHome }
+    routes: [{
+            path: '/',
+            name: 'welcome',
+            component: () =>
+                import ( /* webpackChunkName: "welcome" */ '../views/Welcome.vue')
+        },
+        {
+            path: '/subhome/:subject',
+            name: 'subHome',
+            component: () =>
+                import ( /* webpackChunkName: "subhome" */ '../views/SubHome.vue')
+        },
+        {
+            path: '/search',
+            name: 'search',
+            component: () =>
+                import ( /* webpackChunkName: "subhome" */ '../views/Search.vue')
+        },
+        {
+            path: '/article/:header',
+            name: 'article',
+            component: () =>
+                import ( /* webpackChunkName: "subhome" */ '../views/Article.vue')
+        }
     ]
 })
 
