@@ -1,8 +1,8 @@
 <template>
-<div>
+    <div>
         <NavigationBar></NavigationBar>
-  <div>Hi there this is the subhome view!</div>
-</div>
+        <div>Hi there this is the subhome view!</div>
+    </div>
 </template>
 
 <script>

@@ -24,6 +24,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('welcome', ['authUser',  auth()->user()]);
+        return view('welcome');
+    }
+    public function getArticles(){
+        $articles = \App\Article::all();
+        return response()->json(['articles' => $articles]);
     }
 }

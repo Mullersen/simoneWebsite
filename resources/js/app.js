@@ -37,7 +37,7 @@ const router = new VueRouter({
             name: 'article',
             component: () =>
                 import ( /* webpackChunkName: "article" */ './views/Article.vue')
-        }
+        },
     ]
 })
 

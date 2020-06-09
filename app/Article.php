@@ -8,7 +8,7 @@ use Cartalyst\Tags\TaggableInterface;
 
 class Article extends Model implements TaggableInterface
 {
-    use App\TaggableInterface;
+    use TaggableTrait;
     protected $table = 'articles';
 
     function user(){

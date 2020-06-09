@@ -1,26 +1,30 @@
 <template>
-  <div class="hero is-large has-bg-img">
-      <div class="hero-head">
-        <NavigationBar></NavigationBar>
-      </div>
-      <div class="hero-body">
-          <div class="container has-text-centered">
-            <h2 class="myTitle">Velkommen til Essou</h2>
-          </div>
-      </div>
- </div>
+<div>
+    <div class="hero is-large has-bg-img">
+        <div class="hero-head">
+            <NavigationBar></NavigationBar>
+        </div>
+        <div class="hero-body">
+            <div class="container has-text-centered">
+                <h2 class="myTitle">Velkommen til Essou</h2>
+            </div>
+        </div>
+    </div>
+    <ArticleGrid/>
+</div>
 </template>
 
 <script>
+const axios = require('axios');
 import NavigationBar from '../components/Navigation.vue'
+import ArticleGrid from '../components/ArticleGrid.vue'
+
 export default {
     name:"welcome",
     components:{
-        NavigationBar
+        NavigationBar,
+        ArticleGrid
     },
-    methods:{
-
-    }
 
 }
 </script>
