@@ -2163,6 +2163,8 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Navigation_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/Navigation.vue */ "./resources/js/components/Navigation.vue");
+/* harmony import */ var _components_ArticleGrid_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/ArticleGrid.vue */ "./resources/js/components/ArticleGrid.vue");
+//
 //
 //
 //
@@ -2171,10 +2173,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   Name: "SubHome",
   components: {
-    NavigationBar: _components_Navigation_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+    NavigationBar: _components_Navigation_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
+    ArticleGrid: _components_ArticleGrid_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   }
 });
 
@@ -2233,7 +2237,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.tile[data-v-000b637e]{\n    word-break: break-all;\n}\n.tile.is-parent[data-v-000b637e]{\n    flex-wrap:wrap;\n    justify-content: space-evenly;\n    height: 150vh;\n}\n.articleGrid[data-v-000b637e]{\n    display:flex;\n    flex-direction:column;\n    flex-wrap:wrap;\n    justify-content: flex-start;\n    align-items: flex-start;\n    height: 150vh;\n}\n.articleTile[data-v-000b637e]{\n    width:50%;\n}\n", ""]);
+exports.push([module.i, "\n.tile[data-v-000b637e]{\n    word-break: break-all;\n    padding: 0.75rem;\n    /* flex-basis: auto; */\n    position: relative;\n}\n.tile.is-parent[data-v-000b637e]{\n    flex-wrap:wrap;\n    justify-content: flex-start;\n    /* size the tile after the size of the content */\n    flex-basis: content;\n    align-items: flex-start;\n    height:400vh;\n    width:100%;\n    overflow-x:hidden;\n}\n", ""]);
 
 // exports
 
@@ -3407,11 +3411,15 @@ var render = function() {
           _vm._l(this.articles, function(article) {
             return _c(
               "div",
-              { key: article.id, staticClass: "tile box is-6 is-child" },
+              { key: article.id, staticClass: "tile is-4 is-child" },
               [
-                _c("p", [_vm._v(_vm._s(article.id))]),
+                _c("img", {
+                  attrs: { src: "/images/" + article.image, alt: "" }
+                }),
                 _vm._v(" "),
-                _c("p", [_vm._v(_vm._s(article.header))]),
+                _c("p", { staticClass: "subtitle" }, [
+                  _vm._v(_vm._s(article.header))
+                ]),
                 _vm._v(" "),
                 _c("p", [_vm._v(_vm._s(article.content))])
               ]
@@ -3638,7 +3646,9 @@ var render = function() {
     [
       _c("NavigationBar"),
       _vm._v(" "),
-      _c("div", [_vm._v("Hi there this is the subhome view!")])
+      _c("div", [_vm._v("Hi there this is the subhome view!")]),
+      _vm._v(" "),
+      _c("ArticleGrid")
     ],
     1
   )
