@@ -1,64 +1,79 @@
 <template>
   <section class="section">
-        <div class="container">
-            <div class="tile is-ancestor">
-                <div class="tile is-12 is-vertical is-parent">
-                    <div class="tile is-4 is-child" v-for="article in this.articles" :key="article.id">
-                        <img :src="'/images/'+article.image" alt="">
-                        <p class="subtitle">{{article.header}}</p>
-                        <p>{{article.content}}</p>
-                    </div>
-                </div>
+        <div class="container" id="masonContainer">
+            <div class="card" v-for="article in articles" :key="article.id">
+                <img :src="'/images/'+article.image" alt="">
+                <p class="subtitle">{{article.header}}</p>
+                <p>{{article.content}}</p>
             </div>
         </div>
+        <button
+            @click="getArticles(this.paginationCollection.articles.current_page+1)">Flere Artikler</button>
     </section>
 </template>
 
 <script>
 const axios = require('axios');
+const Macy = require('macy');
 
 export default {
     name:"ArticleGrid",
     data: function(){
         return{
             articles: [],
+            paginationCollection: {}
         }
     },
     methods:{
-        getArticles: function(){
-            axios.get('/article/getarticles/')
+        getArticles: function(index){
+            axios.get("/article/getarticles/?page="+ index)
                 .then(response => {
-                    console.log(response.data.articles);
-                    this.articles = response.data.articles;
+                    console.log(response.data);
+                    this.paginationCollection = response.data;
+                    this.articles = response.data.articles.data;
+                    this.buildMasonry();
                 })
                 .catch(error => {
                     console.log(error.message); // change to error message on screen
                 });
+        },
+        buildMasonry: function(){
+            setTimeout(function(){
+                console.log("masonry is being built");
+                var macyInstance = Macy({
+                    container: '#masonContainer',
+                    columns: 3,
+                    waitForImages: true,
+                    trueOrder: true,
+                    margin: {
+                        x: 20,
+                        y: 30,
+                    },
+                    breakAt: {
+                        1040: 2,
+                        850: 1
+                    },
+
+                });
+            },1000)
+
+            // setTimeout(function(){
+            //     console.log("timeout called");
+            //     macyInstance.recalculate(true, true);
+            // }, 2000)
+
         }
     },
-    mounted(){
-        this.getArticles();
+    beforeMount(){
+        this.getArticles(1);
     }
 }
 </script>
 
 <style scoped>
 
-.tile{
+.card{
     word-break: break-all;
     padding: 0.75rem;
-    /* flex-basis: auto; */
-    position: relative;
-}
-.tile.is-parent{
-    flex-wrap:wrap;
-    justify-content: flex-start;
-    /* size the tile after the size of the content */
-    flex-basis: content;
-    align-items: flex-start;
-    height:400vh;
-    width:100%;
-    overflow-x:hidden;
-
 }
 </style>

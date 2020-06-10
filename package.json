@@ -26,6 +26,7 @@
     },
     "dependencies": {
         "bulma": "^0.8.2",
+        "macy": "^2.5.1",
         "vue-router": "^3.3.2",
         "yargs-parser": "^18.1.3"
     }
