@@ -13,26 +13,17 @@
                 </a>
             </div>
             <div id="navMenu" class="navbar-menu">
-                    <div v-if="authUser == null" class="navbar-end">
-                        <a class="navbar-item" href="/login">Login</a>
-                        <a class="navbar-item" href="/register">Register</a>
+                    <div class="navbar-end">
                         <router-link class="navbar-item" :to="{ name: 'subHome', params:{subject:'Stress'} }">Stress</router-link>
                         <router-link class="navbar-item" :to="{ name: 'subHome', params:{subject:'Balance'}}">Balance</router-link>
                         <router-link class="navbar-item" :to="{ name: 'subHome', params:{subject:'Selvudvikling'}}">Selvudvikling</router-link>
+                        <a v-if="user.length > 1" class="navbar-item" href="/logout">Log ud</a>
+                        <div v-else class="navbar-item">
+                            <a class="navbar-item" href="/login" >Log ind</a>
+                            <a class="navbar-item" href="/register">Tilmeld</a>
+                        </div>
                         <a class="navbar-item" target="_blank" href="https://www.instagram.com/simoneloekke/?hl=da"><img src="/images/glyph-logo_May2016.png" alt="Instagram logo"></a>
                         <!-- <router-link class="navbar-item" :to="{ name: 'subHome' }">Om</router-link> -->
-                    </div>
-                    <div v-if="authUser == !null" class="navbar-end">
-                        <p>logout</p>
-                        <!-- <a class="navbar-item" href="logout"
-                            onclick="event.preventDefault();
-                            document.getElementById('logout-form').submit();">
-                            {{ __('Logout') }}
-                        </a>
-
-                        <form id="logout-form" action="logout" method="POST" style="display: none;">
-                            @csrf
-                        </form> -->
                     </div>
             </div>
         </div>
@@ -45,7 +36,32 @@
     export default {
         name: "Navigation",
         props: {
-            authUser: String,
+            user: ""
+        },
+        mounted(){
+        console.log("navigation component mounted");
+        // Get all "navbar-burger" elements
+        const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+        console.log($navbarBurgers);
+
+            // Check if there are any navbar burgers
+            if ($navbarBurgers.length > 0) {
+
+                // Add a click event on each of them
+                $navbarBurgers.forEach( el => {
+                el.addEventListener('click', () => {
+
+                    // Get the target from the "data-target" attribute
+                    const target = el.dataset.target;
+                    const $target = document.getElementById(target);
+
+                    // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+                    el.classList.toggle('is-active');
+                    $target.classList.toggle('is-active');
+
+                    });
+                });
+            }
         }
     }
 </script>

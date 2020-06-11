@@ -17,10 +17,11 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
+Route::get('/admin', 'AdminController@index')->middleware('auth');
 Route::get('/article/getarticles/', 'HomeController@getArticles');
+Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
-
-//any routes registered before this catch all for vue-router will still function.
+//any routes registered before this catch-all for vue-router will still function.
 Route::get('/{any}', 'HomeController@index')->where('any', '.*');
 
 

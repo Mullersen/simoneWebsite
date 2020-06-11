@@ -2037,6 +2037,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
 var Macy = __webpack_require__(/*! macy */ "./node_modules/macy/dist/macy.js");
@@ -2054,9 +2058,11 @@ var Macy = __webpack_require__(/*! macy */ "./node_modules/macy/dist/macy.js");
       var _this = this;
 
       axios.get("/article/getarticles/?page=" + index).then(function (response) {
-        console.log(response.data);
+        console.log(response.data.articles.data);
         _this.paginationCollection = response.data;
-        _this.articles = response.data.articles.data;
+        response.data.articles.data.forEach(function (element) {
+          _this.articles.push(element);
+        });
 
         _this.buildMasonry();
       })["catch"](function (error) {
@@ -2065,19 +2071,18 @@ var Macy = __webpack_require__(/*! macy */ "./node_modules/macy/dist/macy.js");
     },
     buildMasonry: function buildMasonry() {
       setTimeout(function () {
-        console.log("masonry is being built");
+        //console.log("masonry is being built");
         var macyInstance = Macy({
           container: '#masonContainer',
-          columns: 3,
+          columns: 2,
           waitForImages: true,
           trueOrder: true,
           margin: {
-            x: 20,
-            y: 30
+            x: 40,
+            y: 60
           },
           breakAt: {
-            1040: 2,
-            850: 1
+            1040: 1
           }
         });
       }, 1000); // setTimeout(function(){
@@ -2136,19 +2141,30 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Navigation",
   props: {
-    authUser: String
+    user: ""
+  },
+  mounted: function mounted() {
+    console.log("navigation component mounted"); // Get all "navbar-burger" elements
+
+    var $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+    console.log($navbarBurgers); // Check if there are any navbar burgers
+
+    if ($navbarBurgers.length > 0) {
+      // Add a click event on each of them
+      $navbarBurgers.forEach(function (el) {
+        el.addEventListener('click', function () {
+          // Get the target from the "data-target" attribute
+          var target = el.dataset.target;
+          var $target = document.getElementById(target); // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+
+          el.classList.toggle('is-active');
+          $target.classList.toggle('is-active');
+        });
+      });
+    }
   }
 });
 
@@ -2170,8 +2186,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "app" //     props: ['authUser'],
-  //   created () {
+  name: "app",
+  props: {
+    user: ""
+  } //   created () {
   //     console.log(this.authUser)
   //   },
 
@@ -2202,6 +2220,9 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   Name: "SubHome",
+  props: {
+    user: ""
+  },
   components: {
     NavigationBar: _components_Navigation_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
     ArticleGrid: _components_ArticleGrid_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
@@ -2243,6 +2264,9 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "welcome",
+  props: {
+    user: ""
+  },
   components: {
     NavigationBar: _components_Navigation_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
     ArticleGrid: _components_ArticleGrid_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
@@ -2263,7 +2287,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.card[data-v-000b637e]{\n    word-break: break-all;\n    padding: 0.75rem;\n}\n", ""]);
+exports.push([module.i, "\n.card[data-v-000b637e]{\n    word-break: break-all;\n    padding: 1rem;\n    box-shadow: none !important;\n}\n", ""]);
 
 // exports
 
@@ -3441,30 +3465,40 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("section", { staticClass: "section" }, [
-    _c(
-      "div",
-      { staticClass: "container", attrs: { id: "masonContainer" } },
-      _vm._l(_vm.articles, function(article) {
-        return _c("div", { key: article.id, staticClass: "card" }, [
-          _c("img", { attrs: { src: "/images/" + article.image, alt: "" } }),
-          _vm._v(" "),
-          _c("p", { staticClass: "subtitle" }, [
-            _vm._v(_vm._s(article.header))
-          ]),
-          _vm._v(" "),
-          _c("p", [_vm._v(_vm._s(article.content))])
-        ])
-      }),
-      0
-    ),
+    _c("div", { staticClass: "container" }, [
+      _c("div", { staticClass: "columns is-centered" }, [
+        _c(
+          "div",
+          { staticClass: "column is-8", attrs: { id: "masonContainer" } },
+          _vm._l(_vm.articles, function(article) {
+            return _c("div", { key: article.id, staticClass: "card" }, [
+              _c("img", {
+                attrs: {
+                  src: "/images/" + article.image,
+                  alt: "artikel billede"
+                }
+              }),
+              _vm._v(" "),
+              _c("p", { staticClass: "subtitle" }, [
+                _vm._v(_vm._s(article.header))
+              ]),
+              _vm._v(" "),
+              _c("p", [_vm._v(_vm._s(article.content))])
+            ])
+          }),
+          0
+        )
+      ])
+    ]),
     _vm._v(" "),
     _c(
       "button",
       {
+        staticClass: "button",
         on: {
           click: function($event) {
             return _vm.getArticles(
-              this.paginationCollection.articles.current_page + 1
+              _vm.paginationCollection.articles.current_page + 1
             )
           }
         }
@@ -3507,76 +3541,79 @@ var render = function() {
           _vm._m(0),
           _vm._v(" "),
           _c("div", { staticClass: "navbar-menu", attrs: { id: "navMenu" } }, [
-            _vm.authUser == null
-              ? _c(
-                  "div",
-                  { staticClass: "navbar-end" },
-                  [
-                    _c(
+            _c(
+              "div",
+              { staticClass: "navbar-end" },
+              [
+                _c(
+                  "router-link",
+                  {
+                    staticClass: "navbar-item",
+                    attrs: {
+                      to: { name: "subHome", params: { subject: "Stress" } }
+                    }
+                  },
+                  [_vm._v("Stress")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "router-link",
+                  {
+                    staticClass: "navbar-item",
+                    attrs: {
+                      to: { name: "subHome", params: { subject: "Balance" } }
+                    }
+                  },
+                  [_vm._v("Balance")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "router-link",
+                  {
+                    staticClass: "navbar-item",
+                    attrs: {
+                      to: {
+                        name: "subHome",
+                        params: { subject: "Selvudvikling" }
+                      }
+                    }
+                  },
+                  [_vm._v("Selvudvikling")]
+                ),
+                _vm._v(" "),
+                _vm.user.length > 1
+                  ? _c(
                       "a",
-                      { staticClass: "navbar-item", attrs: { href: "/login" } },
-                      [_vm._v("Login")]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "a",
                       {
                         staticClass: "navbar-item",
-                        attrs: { href: "/register" }
+                        attrs: { href: "/logout" }
                       },
-                      [_vm._v("Register")]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "router-link",
-                      {
-                        staticClass: "navbar-item",
-                        attrs: {
-                          to: { name: "subHome", params: { subject: "Stress" } }
-                        }
-                      },
-                      [_vm._v("Stress")]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "router-link",
-                      {
-                        staticClass: "navbar-item",
-                        attrs: {
-                          to: {
-                            name: "subHome",
-                            params: { subject: "Balance" }
-                          }
-                        }
-                      },
-                      [_vm._v("Balance")]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "router-link",
-                      {
-                        staticClass: "navbar-item",
-                        attrs: {
-                          to: {
-                            name: "subHome",
-                            params: { subject: "Selvudvikling" }
-                          }
-                        }
-                      },
-                      [_vm._v("Selvudvikling")]
-                    ),
-                    _vm._v(" "),
-                    _vm._m(1)
-                  ],
-                  1
-                )
-              : _vm._e(),
-            _vm._v(" "),
-            _vm.authUser == !null
-              ? _c("div", { staticClass: "navbar-end" }, [
-                  _c("p", [_vm._v("logout")])
-                ])
-              : _vm._e()
+                      [_vm._v("Log ud")]
+                    )
+                  : _c("div", { staticClass: "navbar-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "navbar-item",
+                          attrs: { href: "/login" }
+                        },
+                        [_vm._v("Log ind")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "a",
+                        {
+                          staticClass: "navbar-item",
+                          attrs: { href: "/register" }
+                        },
+                        [_vm._v("Tilmeld")]
+                      )
+                    ]),
+                _vm._v(" "),
+                _vm._m(1)
+              ],
+              1
+            )
           ])
         ])
       ]
@@ -3659,7 +3696,11 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_c("router-view")], 1)
+  return _c(
+    "div",
+    [_c("router-view", { key: _vm.$route.path, attrs: { user: this.user } })],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -3686,7 +3727,7 @@ var render = function() {
   return _c(
     "div",
     [
-      _c("NavigationBar"),
+      _c("NavigationBar", { attrs: { user: this.user } }),
       _vm._v(" "),
       _c("div", [_vm._v("Hi there this is the subhome view!")]),
       _vm._v(" "),
@@ -3720,8 +3761,13 @@ var render = function() {
   return _c(
     "div",
     [
-      _c("div", { staticClass: "hero is-large has-bg-img" }, [
-        _c("div", { staticClass: "hero-head" }, [_c("NavigationBar")], 1),
+      _c("div", { staticClass: "hero is-fullheight has-bg-img" }, [
+        _c(
+          "div",
+          { staticClass: "hero-head" },
+          [_c("NavigationBar", { attrs: { user: this.user } })],
+          1
+        ),
         _vm._v(" "),
         _vm._m(0)
       ]),

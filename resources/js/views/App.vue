@@ -1,7 +1,7 @@
 <template>
-<div>
-    <router-view></router-view>
-</div>
+  <div>
+    <router-view :key="$route.path" v-bind:user="this.user"></router-view>
+  </div>
 </template>
 
 <script>
@@ -9,7 +9,9 @@
 
 export default {
     name: "app",
-//     props: ['authUser'],
+    props: {
+        user: "",
+    }
 
 //   created () {
 //     console.log(this.authUser)

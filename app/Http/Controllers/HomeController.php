@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
 
 class HomeController extends Controller
 {
@@ -12,10 +13,10 @@ class HomeController extends Controller
      * @return void
      */
     //will force anyone to be logged in on the page - also just visitors- and redirect to login page. We don't want that.
-    // public function __construct()
-    // {
+    public function __construct()
+    {
     //     $this->middleware('auth');
-    // }
+    }
 
     /**
      * Show the application dashboard.

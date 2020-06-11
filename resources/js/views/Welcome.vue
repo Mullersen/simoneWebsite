@@ -1,8 +1,8 @@
 <template>
 <div>
-    <div class="hero is-large has-bg-img">
+    <div class="hero is-fullheight has-bg-img">
         <div class="hero-head">
-            <NavigationBar></NavigationBar>
+            <NavigationBar v-bind:user="this.user"></NavigationBar>
         </div>
         <div class="hero-body">
             <div class="container has-text-centered">
@@ -21,6 +21,9 @@ import ArticleGrid from '../components/ArticleGrid.vue'
 
 export default {
     name:"welcome",
+    props: {
+        user: "",
+    },
     components:{
         NavigationBar,
         ArticleGrid

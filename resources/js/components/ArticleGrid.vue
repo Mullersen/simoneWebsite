@@ -1,14 +1,18 @@
 <template>
   <section class="section">
-        <div class="container" id="masonContainer">
-            <div class="card" v-for="article in articles" :key="article.id">
-                <img :src="'/images/'+article.image" alt="">
-                <p class="subtitle">{{article.header}}</p>
-                <p>{{article.content}}</p>
+        <div class="container" >
+            <div class="columns is-centered">
+                <div class="column is-8" id="masonContainer">
+                    <div class="card" v-for="article in articles" :key="article.id">
+                        <img :src="'/images/'+article.image" alt="artikel billede">
+                        <p class="subtitle">{{article.header}}</p>
+                        <p>{{article.content}}</p>
+                    </div>
+                </div>
             </div>
         </div>
-        <button
-            @click="getArticles(this.paginationCollection.articles.current_page+1)">Flere Artikler</button>
+        <button class="button"
+            @click="getArticles(paginationCollection.articles.current_page+1)">Flere Artikler</button>
     </section>
 </template>
 
@@ -28,9 +32,11 @@ export default {
         getArticles: function(index){
             axios.get("/article/getarticles/?page="+ index)
                 .then(response => {
-                    console.log(response.data);
+                    console.log(response.data.articles.data);
                     this.paginationCollection = response.data;
-                    this.articles = response.data.articles.data;
+                    response.data.articles.data.forEach(element => {
+                        this.articles.push(element);
+                    });
                     this.buildMasonry();
                 })
                 .catch(error => {
@@ -39,19 +45,18 @@ export default {
         },
         buildMasonry: function(){
             setTimeout(function(){
-                console.log("masonry is being built");
+                //console.log("masonry is being built");
                 var macyInstance = Macy({
                     container: '#masonContainer',
-                    columns: 3,
+                    columns: 2,
                     waitForImages: true,
                     trueOrder: true,
                     margin: {
-                        x: 20,
-                        y: 30,
+                        x: 40,
+                        y: 60,
                     },
                     breakAt: {
-                        1040: 2,
-                        850: 1
+                        1040: 1,
                     },
 
                 });
@@ -71,9 +76,9 @@ export default {
 </script>
 
 <style scoped>
-
 .card{
     word-break: break-all;
-    padding: 0.75rem;
+    padding: 1rem;
+    box-shadow: none !important;
 }
 </style>
