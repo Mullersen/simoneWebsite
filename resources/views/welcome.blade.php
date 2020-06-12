@@ -11,7 +11,7 @@ if(Auth::check()){
 @section('content')
     <div class="content">
         <div id="app">
-            <app user={{$user}}></app>
+            <app user="{{$user}}" csrf={{ csrf_token() }}></app>
         </div>
     </div>
 @endsection

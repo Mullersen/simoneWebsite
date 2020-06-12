@@ -10,30 +10,29 @@ Vue.use(VueRouter)
 
 import App from './views/App.vue'
 import Welcome from './views/Welcome.vue'
-import SubHome from './views/SubHome.vue'
 
 
 const router = new VueRouter({
     mode: "history",
     routes: [{
-            path: '/',
+            path: '/home/home',
             name: 'welcome',
             component: Welcome
         },
         {
-            path: '/subhome/:subject',
+            path: '/home/subhome/:subject',
             name: 'subHome',
             component: () =>
                 import ( /* webpackChunkName: "subhome" */ './views/SubHome.vue')
         },
         {
-            path: '/search',
+            path: '/home/search',
             name: 'search',
             component: () =>
                 import ( /* webpackChunkName: "search" */ './views/Search.vue')
         },
         {
-            path: '/article/:header',
+            path: '/home/article/:header',
             name: 'article',
             component: () =>
                 import ( /* webpackChunkName: "article" */ './views/Article.vue')

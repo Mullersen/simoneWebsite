@@ -13,15 +13,27 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', 'HomeController@index');
+Route::get('/', function(){
+return redirect('/home/home');
+});
+
+// $proxy_url    = getenv('PROXY_URL');
+// $proxy_schema = getenv('PROXY_SCHEMA');
+
+// if (!empty($proxy_url)) {
+//    URL::forceRootUrl($proxy_url);
+// }
+
+// if (!empty($proxy_schema)) {
+//    URL::forceScheme($proxy_schema);
+// }
 
 Auth::routes();
 
 Route::get('/admin', 'AdminController@index')->middleware('auth');
 Route::get('/article/getarticles/', 'HomeController@getArticles');
-Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
 //any routes registered before this catch-all for vue-router will still function.
-Route::get('/{any}', 'HomeController@index')->where('any', '.*');
+Route::get('/home/{any}', 'HomeController@index')->where('any', '.*');
 
 

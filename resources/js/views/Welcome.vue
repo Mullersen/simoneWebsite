@@ -2,7 +2,7 @@
 <div>
     <div class="hero is-fullheight has-bg-img">
         <div class="hero-head">
-            <NavigationBar v-bind:user="this.user"></NavigationBar>
+            <NavigationBar v-bind:user="this.user" v-bind:csrf="this.csrf"></NavigationBar>
         </div>
         <div class="hero-body">
             <div class="container has-text-centered">
@@ -23,6 +23,7 @@ export default {
     name:"welcome",
     props: {
         user: "",
+        csrf: ""
     },
     components:{
         NavigationBar,

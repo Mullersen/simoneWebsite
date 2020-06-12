@@ -1,6 +1,6 @@
 <template>
     <div>
-        <NavigationBar v-bind:user="this.user"></NavigationBar>
+        <NavigationBar v-bind:user="this.user" v-bind:csrf="this.csrf"></NavigationBar>
         <div>Hi there this is the subhome view!</div>
         <ArticleGrid/>
     </div>
@@ -14,6 +14,7 @@ export default {
     Name: "SubHome",
     props: {
         user: "",
+        csrf: ""
     },
     components:{
         NavigationBar,

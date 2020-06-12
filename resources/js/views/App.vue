@@ -1,6 +1,6 @@
 <template>
   <div>
-    <router-view :key="$route.path" v-bind:user="this.user"></router-view>
+    <router-view :key="$route.path" v-bind:user="this.user" v-bind:csrf="this.csrf"></router-view>
   </div>
 </template>
 
@@ -11,6 +11,7 @@ export default {
     name: "app",
     props: {
         user: "",
+        csrf: ""
     }
 
 //   created () {

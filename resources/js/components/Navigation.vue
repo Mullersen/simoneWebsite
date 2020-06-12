@@ -17,7 +17,7 @@
                         <router-link class="navbar-item" :to="{ name: 'subHome', params:{subject:'Stress'} }">Stress</router-link>
                         <router-link class="navbar-item" :to="{ name: 'subHome', params:{subject:'Balance'}}">Balance</router-link>
                         <router-link class="navbar-item" :to="{ name: 'subHome', params:{subject:'Selvudvikling'}}">Selvudvikling</router-link>
-                        <a v-if="user.length > 1" class="navbar-item" href="/logout">Log ud</a>
+                        <a v-if="user.length > 1" class="navbar-item" href="logout" @click.prevent="submitLogoutForm">Log ud</a>
                         <div v-else class="navbar-item">
                             <a class="navbar-item" href="/login" >Log ind</a>
                             <a class="navbar-item" href="/register">Tilmeld</a>
@@ -25,6 +25,9 @@
                         <a class="navbar-item" target="_blank" href="https://www.instagram.com/simoneloekke/?hl=da"><img src="/images/glyph-logo_May2016.png" alt="Instagram logo"></a>
                         <!-- <router-link class="navbar-item" :to="{ name: 'subHome' }">Om</router-link> -->
                     </div>
+                    <form id="logout-form" action="/logout" method="POST" style="display: none;">
+                        <input type="hidden" name="_token" :value="csrf">
+                    </form>
             </div>
         </div>
     </nav>
@@ -36,7 +39,18 @@
     export default {
         name: "Navigation",
         props: {
-            user: ""
+            user: "",
+            csrf:"",
+        },
+        data: function(){
+            return{
+            }
+        },
+        methods: {
+            submitLogoutForm: function(){
+                console.log("submitLogoutForm entered with" + this.csrf);
+                document.getElementById('logout-form').submit();
+            }
         },
         mounted(){
         console.log("navigation component mounted");
