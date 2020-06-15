@@ -22,6 +22,12 @@ const Macy = require('macy');
 
 export default {
     name:"ArticleGrid",
+    props: {
+        tag: {
+            required: true,
+            type: String,
+        }
+    },
     data: function(){
         return{
             articles: [],
@@ -30,7 +36,9 @@ export default {
     },
     methods:{
         getArticles: function(index){
-            axios.get("/article/getarticles/?page="+ index)
+            axios.post("/article/getarticles/?page="+ index, {
+                    tag: this.tag,
+            })
                 .then(response => {
                     console.log(response.data.articles.data);
                     this.paginationCollection = response.data;

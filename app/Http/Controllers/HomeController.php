@@ -29,7 +29,7 @@ class HomeController extends Controller
         return view('welcome');
     }
 
-    public function getArticles(){
+    public function getArticles(Request $request){
         $articles = \App\Article::orderBy('created_at', 'DESC')->paginate(10);
         return response()->json(['articles' => $articles]);
     }

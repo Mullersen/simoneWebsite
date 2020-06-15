@@ -1,5 +1,15 @@
 @extends('layouts.app')
 
+@php
+if(Auth::check()){
+    $user=Auth::user()->name;
+} else{
+    $user=null;
+}
+@endphp
+
 @section('content')
-    <h2>Hello there admin!!</h2>
+    <div id="app">
+        <Admin user="{{$user}}"/>
+    </div>
 @endsection

@@ -14,9 +14,7 @@
             </div>
             <div id="navMenu" class="navbar-menu">
                     <div class="navbar-end">
-                        <router-link class="navbar-item" :to="{ name: 'subHome', params:{subject:'Stress'} }">Stress</router-link>
-                        <router-link class="navbar-item" :to="{ name: 'subHome', params:{subject:'Balance'}}">Balance</router-link>
-                        <router-link class="navbar-item" :to="{ name: 'subHome', params:{subject:'Selvudvikling'}}">Selvudvikling</router-link>
+                        <router-link class="navbar-item" v-for="subhome in subhomes" :key="subhome.name" :to="{ name: 'subHome', params:{subject:subhome.name} }">{{subhome.name}}</router-link>
                         <a v-if="user.length > 1" class="navbar-item" href="logout" @click.prevent="submitLogoutForm">Log ud</a>
                         <div v-else class="navbar-item">
                             <a class="navbar-item" href="/login" >Log ind</a>
@@ -36,6 +34,7 @@
 </template>
 
 <script>
+import subhomeDoc from '../subhome.js';
     export default {
         name: "Navigation",
         props: {
@@ -44,6 +43,7 @@
         },
         data: function(){
             return{
+                subhomes: subhomeDoc.pages,
             }
         },
         methods: {

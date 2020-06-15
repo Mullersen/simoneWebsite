@@ -1,8 +1,8 @@
 <template>
     <div>
         <NavigationBar v-bind:user="this.user" v-bind:csrf="this.csrf"></NavigationBar>
-        <div>Hi there this is the subhome view!</div>
-        <ArticleGrid/>
+        <div>Hi there this is the subhome view for {{subject}}</div>
+        <ArticleGrid v-bind:tag="subject"/>
     </div>
 </template>
 
@@ -10,11 +10,16 @@
 import NavigationBar from '../components/Navigation.vue'
 import ArticleGrid from '../components/ArticleGrid.vue'
 
+
 export default {
     Name: "SubHome",
     props: {
         user: "",
-        csrf: ""
+        csrf: "",
+        subject:{
+            required: true,
+            type: String
+        }
     },
     components:{
         NavigationBar,

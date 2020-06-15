@@ -22,6 +22,7 @@ const router = new VueRouter({
         {
             path: '/home/subhome/:subject',
             name: 'subHome',
+            props: true,
             component: () =>
                 import ( /* webpackChunkName: "subhome" */ './views/SubHome.vue')
         },
@@ -55,7 +56,7 @@ const router = new VueRouter({
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-// Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('admin', require('./components/Admin.vue').default);
 
 
 /**

@@ -25,7 +25,11 @@ __webpack_require__.r(__webpack_exports__);
   Name: "SubHome",
   props: {
     user: "",
-    csrf: ""
+    csrf: "",
+    subject: {
+      required: true,
+      type: String
+    }
   },
   components: {
     NavigationBar: _components_Navigation_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
@@ -55,9 +59,11 @@ var render = function() {
     [
       _c("NavigationBar", { attrs: { user: this.user, csrf: this.csrf } }),
       _vm._v(" "),
-      _c("div", [_vm._v("Hi there this is the subhome view!")]),
+      _c("div", [
+        _vm._v("Hi there this is the subhome view for " + _vm._s(_vm.subject))
+      ]),
       _vm._v(" "),
-      _c("ArticleGrid")
+      _c("ArticleGrid", { attrs: { tag: _vm.subject } })
     ],
     1
   )
