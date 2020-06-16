@@ -2144,6 +2144,31 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2153,7 +2178,10 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
       NewArticleTitle: "",
       NewArticleDescription: "",
       NewArticleTags: "",
-      file: ""
+      selectedTags: [],
+      file: "",
+      existingTags: [],
+      articleTags: []
     };
   },
   methods: {
@@ -2161,12 +2189,33 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
       this.file = this.$refs.file.files[0];
       console.log(this.file);
     },
+    getTags: function getTags() {
+      var _this = this;
+
+      axios.get("/article/getTags").then(function (response) {
+        console.log(response.data.tags);
+        _this.existingTags = response.data.tags;
+      })["catch"](function (error) {
+        console.log(error.message);
+      });
+    },
+    addExistingTag: function addExistingTag() {
+      this.articleTags.push(this.selectedTags);
+      console.log(this.articleTags);
+    },
+    addNewTag: function addNewTag() {
+      var str = this.NewArticleTags.replace(/\s+/g, "");
+      var tagsArray = str.split(",");
+      var finalTags = this.articleTags.concat(tagsArray);
+      this.articleTags = finalTags;
+      console.log(this.articleTags);
+    },
     uploadArticle: function uploadArticle() {
       var formData = new FormData();
       formData.append("image", this.file);
       formData.append("title", this.NewArticleTitle);
       formData.append("description", this.NewArticleDescription);
-      formData.append("tags", this.NewArticleTags);
+      formData.append("tags", this.articleTags);
       axios.post("/article/uploadArticle", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
@@ -2178,6 +2227,9 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
         console.log(error.message); // change to error message on screen
       });
     }
+  },
+  mounted: function mounted() {
+    this.getTags();
   }
 });
 
@@ -2238,7 +2290,7 @@ var Macy = __webpack_require__(/*! macy */ "./node_modules/macy/dist/macy.js");
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "ArticleGrid",
   props: {
-    tag: {
+    tagSelection: {
       required: true,
       type: String
     }
@@ -2254,7 +2306,7 @@ var Macy = __webpack_require__(/*! macy */ "./node_modules/macy/dist/macy.js");
       var _this = this;
 
       axios.post("/article/getarticles/?page=" + index, {
-        tag: this.tag
+        tagselection: this.tagSelection
       }).then(function (response) {
         console.log(response.data.articles.data);
         _this.paginationCollection = response.data;
@@ -3732,8 +3784,6 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("h2", [_vm._v("This is the article component")]),
-    _vm._v(" "),
     _c("div", { staticClass: "box" }, [
       _c("p", { staticClass: "subtitle" }, [_vm._v("Ny Artikel")]),
       _vm._v(" "),
@@ -3769,7 +3819,7 @@ var render = function() {
         _c("label", { staticClass: "label" }, [_vm._v("Brødtekst")]),
         _vm._v(" "),
         _c("div", { staticClass: "control" }, [
-          _c("input", {
+          _c("textarea", {
             directives: [
               {
                 name: "model",
@@ -3778,8 +3828,12 @@ var render = function() {
                 expression: "NewArticleDescription"
               }
             ],
-            staticClass: "input",
-            attrs: { type: "text", placeholder: "Description" },
+            staticClass: "textarea",
+            attrs: {
+              type: "text",
+              placeholder: "Artiklens Brødtekst",
+              rows: "15"
+            },
             domProps: { value: _vm.NewArticleDescription },
             on: {
               input: function($event) {
@@ -3808,42 +3862,153 @@ var render = function() {
             }
           })
         ])
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "box" }, [
+      _c("p", { staticClass: "subtitle" }, [_vm._v("Artikel Tags")]),
+      _vm._v(" "),
+      _c("label", { staticClass: "label" }, [
+        _vm._v("Tilføj eksisterende tag til Artikel")
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "field" }, [
-        _c("label", { staticClass: "label" }, [_vm._v("Tags")]),
+      _c("div", { staticClass: "field is-grouped" }, [
+        _c("div", { staticClass: "control is-expanded" }, [
+          _c("div", { staticClass: "select" }, [
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.selectedTags,
+                    expression: "selectedTags"
+                  }
+                ],
+                on: {
+                  change: function($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function(o) {
+                        return o.selected
+                      })
+                      .map(function(o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.selectedTags = $event.target.multiple
+                      ? $$selectedVal
+                      : $$selectedVal[0]
+                  }
+                }
+              },
+              _vm._l(_vm.existingTags, function(tag) {
+                return _c(
+                  "option",
+                  { key: tag.id, domProps: { value: tag.name } },
+                  [_vm._v(_vm._s(tag.name))]
+                )
+              }),
+              0
+            )
+          ])
+        ]),
         _vm._v(" "),
         _c("div", { staticClass: "control" }, [
+          _c(
+            "button",
+            {
+              staticClass: "button",
+              on: {
+                click: function($event) {
+                  return _vm.addExistingTag()
+                }
+              }
+            },
+            [_vm._v("Tilføj")]
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c("label", { staticClass: "label" }, [
+        _vm._v("Tilføj nyt/nye tag til Artikel")
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "field is-grouped" }, [
+        _c("div", { staticClass: "control is-expanded" }, [
           _c("input", {
             directives: [
               {
                 name: "model",
-                rawName: "v-model",
+                rawName: "v-model.trim",
                 value: _vm.NewArticleTags,
-                expression: "NewArticleTags"
+                expression: "NewArticleTags",
+                modifiers: { trim: true }
               }
             ],
             staticClass: "input",
-            attrs: { type: "text", placeholder: "Tags, separated by a space" },
+            attrs: { type: "text", placeholder: "Tags separeret med et komma" },
             domProps: { value: _vm.NewArticleTags },
             on: {
               input: function($event) {
                 if ($event.target.composing) {
                   return
                 }
-                _vm.NewArticleTags = $event.target.value
+                _vm.NewArticleTags = $event.target.value.trim()
+              },
+              blur: function($event) {
+                return _vm.$forceUpdate()
               }
             }
           })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "control" }, [
+          _c(
+            "button",
+            {
+              staticClass: "button",
+              on: {
+                click: function($event) {
+                  return _vm.addNewTag()
+                }
+              }
+            },
+            [_vm._v("Tilføj")]
+          )
         ])
       ]),
       _vm._v(" "),
+      _vm.articleTags.length >= 1
+        ? _c(
+            "div",
+            { staticClass: "field" },
+            [
+              _c("h2", { staticClass: "subtitle" }, [
+                _vm._v("Tilføjede tags til denne artikel")
+              ]),
+              _vm._v(" "),
+              _vm._l(_vm.articleTags, function(articleTag, index) {
+                return _c("p", { key: index, staticClass: "content" }, [
+                  _vm._v(_vm._s(articleTag))
+                ])
+              })
+            ],
+            2
+          )
+        : _vm._e()
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "box" }, [
       _c("div", { staticClass: "field" }, [
         _c("div", { staticClass: "control" }, [
           _c(
             "button",
-            { staticClass: "button", on: { click: _vm.uploadArticle } },
-            [_vm._v("Offentliggør")]
+            {
+              staticClass: "button is-centered",
+              on: { click: _vm.uploadArticle }
+            },
+            [_vm._v("Offentliggør Artikel")]
           )
         ])
       ])
@@ -3914,10 +4079,7 @@ var render = function() {
           _vm._l(_vm.articles, function(article) {
             return _c("div", { key: article.id, staticClass: "card" }, [
               _c("img", {
-                attrs: {
-                  src: "/images/" + article.image,
-                  alt: "artikel billede"
-                }
+                attrs: { src: "/" + article.image, alt: "artikel billede" }
               }),
               _vm._v(" "),
               _c("p", { staticClass: "subtitle" }, [
@@ -4187,7 +4349,7 @@ var render = function() {
         _vm._m(0)
       ]),
       _vm._v(" "),
-      _c("ArticleGrid")
+      _c("ArticleGrid", { attrs: { tagSelection: "artikel" } })
     ],
     1
   )

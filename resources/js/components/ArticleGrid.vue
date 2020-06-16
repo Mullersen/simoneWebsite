@@ -4,7 +4,7 @@
             <div class="columns is-centered">
                 <div class="column is-8" id="masonContainer">
                     <div class="card" v-for="article in articles" :key="article.id">
-                        <img :src="'/images/'+article.image" alt="artikel billede">
+                        <img :src="'/'+article.image" alt="artikel billede">
                         <p class="subtitle">{{article.header}}</p>
                         <p>{{article.content}}</p>
                     </div>
@@ -23,7 +23,7 @@ const Macy = require('macy');
 export default {
     name:"ArticleGrid",
     props: {
-        tag: {
+        tagSelection: {
             required: true,
             type: String,
         }
@@ -37,7 +37,7 @@ export default {
     methods:{
         getArticles: function(index){
             axios.post("/article/getarticles/?page="+ index, {
-                    tag: this.tag,
+                    tagselection: this.tagSelection,
             })
                 .then(response => {
                     console.log(response.data.articles.data);

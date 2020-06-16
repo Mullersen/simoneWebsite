@@ -10,7 +10,7 @@
             </div>
         </div>
     </div>
-    <ArticleGrid/>
+    <ArticleGrid tagSelection="artikel"/>
 </div>
 </template>
 

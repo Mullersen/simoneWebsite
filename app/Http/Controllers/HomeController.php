@@ -30,7 +30,11 @@ class HomeController extends Controller
     }
 
     public function getArticles(Request $request){
-        $articles = \App\Article::orderBy('created_at', 'DESC')->paginate(10);
+        $articles = \App\Article::whereTag($request->tagselection)->orderBy('created_at', 'DESC')->paginate(10);
         return response()->json(['articles' => $articles]);
+    }
+    public function getTags(){
+        $tags = \App\Article::allTags()->get();
+        return response()->json(['tags' => $tags]);
     }
 }

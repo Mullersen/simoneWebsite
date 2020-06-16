@@ -2,7 +2,7 @@
     <div>
         <NavigationBar v-bind:user="this.user" v-bind:csrf="this.csrf"></NavigationBar>
         <div>Hi there this is the subhome view for {{subject}}</div>
-        <ArticleGrid v-bind:tag="subject"/>
+        <ArticleGrid v-bind:tagSelection="subject"/>
     </div>
 </template>
 

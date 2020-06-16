@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h2>This is the article component</h2>
     <div class="box">
       <p class="subtitle">Ny Artikel</p>
       <div class="field">
@@ -12,12 +11,13 @@
       <div class="field">
         <label class="label">Brødtekst</label>
         <div class="control">
-          <input
-            class="input"
+          <textarea
+            class="textarea"
             v-model="NewArticleDescription"
             type="text"
-            placeholder="Description"
-          />
+            placeholder="Artiklens Brødtekst"
+            rows="15"
+          ></textarea>
         </div>
       </div>
       <div class="field">
@@ -26,20 +26,45 @@
           <input class="input" id="file" type="file" ref="file" v-on:change="handleFileUpload()" />
         </div>
       </div>
-      <div class="field">
-        <label class="label">Tags</label>
+    </div>
+    <div class="box">
+      <p class="subtitle">Artikel Tags</p>
+      <label class="label">Tilføj eksisterende tag til Artikel</label>
+      <div class="field is-grouped">
+        <div class="control is-expanded">
+          <div class="select">
+            <select v-model="selectedTags">
+              <option v-for="tag in existingTags" :key="tag.id" :value="tag.name">{{tag.name}}</option>
+            </select>
+          </div>
+        </div>
         <div class="control">
-          <input
-            class="input"
-            v-model="NewArticleTags"
-            type="text"
-            placeholder="Tags, separated by a space"
-          />
+          <button class="button" @click="addExistingTag()">Tilføj</button>
         </div>
       </div>
+      <label class="label">Tilføj nyt/nye tag til Artikel</label>
+      <div class="field is-grouped">
+        <div class="control is-expanded">
+          <input
+            class="input"
+            v-model.trim="NewArticleTags"
+            type="text"
+            placeholder="Tags separeret med et komma"
+          />
+        </div>
+        <div class="control">
+          <button class="button" @click="addNewTag()">Tilføj</button>
+        </div>
+      </div>
+      <div v-if="articleTags.length >= 1" class="field">
+        <h2 class="subtitle">Tilføjede tags til denne artikel</h2>
+        <p v-for="(articleTag, index) in articleTags" :key="index" class="content">{{articleTag}}</p>
+      </div>
+    </div>
+    <div class="box">
       <div class="field">
         <div class="control">
-          <button class="button" @click="uploadArticle">Offentliggør</button>
+          <button class="button is-centered" @click="uploadArticle">Offentliggør Artikel</button>
         </div>
       </div>
     </div>
@@ -56,7 +81,10 @@ export default {
       NewArticleTitle: "",
       NewArticleDescription: "",
       NewArticleTags: "",
-      file: ""
+      selectedTags: [],
+      file: "",
+      existingTags: [],
+      articleTags: []
     };
   },
   methods: {
@@ -64,12 +92,34 @@ export default {
       this.file = this.$refs.file.files[0];
       console.log(this.file);
     },
+    getTags: function() {
+      axios
+        .get("/article/getTags")
+        .then(response => {
+          console.log(response.data.tags);
+          this.existingTags = response.data.tags;
+        })
+        .catch(error => {
+          console.log(error.message);
+        });
+    },
+    addExistingTag: function() {
+      this.articleTags.push(this.selectedTags);
+      console.log(this.articleTags);
+    },
+    addNewTag: function() {
+      var str = this.NewArticleTags.replace(/\s+/g, "");
+      var tagsArray = str.split(",");
+      var finalTags = this.articleTags.concat(tagsArray);
+      this.articleTags = finalTags;
+      console.log(this.articleTags);
+    },
     uploadArticle: function() {
       let formData = new FormData();
       formData.append("image", this.file);
       formData.append("title", this.NewArticleTitle);
       formData.append("description", this.NewArticleDescription);
-      formData.append("tags", this.NewArticleTags);
+      formData.append("tags", this.articleTags);
       axios
         .post("/article/uploadArticle", formData, {
           headers: {
@@ -85,6 +135,9 @@ export default {
           console.log(error.message); // change to error message on screen
         });
     }
+  },
+  mounted() {
+    this.getTags();
   }
 };
 </script>

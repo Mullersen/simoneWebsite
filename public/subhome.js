@@ -63,7 +63,7 @@ var render = function() {
         _vm._v("Hi there this is the subhome view for " + _vm._s(_vm.subject))
       ]),
       _vm._v(" "),
-      _c("ArticleGrid", { attrs: { tag: _vm.subject } })
+      _c("ArticleGrid", { attrs: { tagSelection: _vm.subject } })
     ],
     1
   )
