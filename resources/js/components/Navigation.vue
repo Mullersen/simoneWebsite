@@ -14,14 +14,13 @@
             </div>
             <div id="navMenu" class="navbar-menu">
                     <div class="navbar-end">
-                        <router-link class="navbar-item" v-for="subhome in subhomes" :key="subhome.name" :to="{ name: 'subHome', params:{subject:subhome.name} }">{{subhome.name}}</router-link>
+                        <router-link class="navbar-item" v-for="subhome in subhomes" :key="subhome.name" :to="{ name: 'subHome', params:{ subject: subhome.subject_tags, subjectName: subhome.name } }">{{subhome.name}}</router-link>
                         <a v-if="user.length > 1" class="navbar-item" href="logout" @click.prevent="submitLogoutForm">Log ud</a>
                         <div v-else class="navbar-item">
                             <a class="navbar-item" href="/login" >Log ind</a>
                             <a class="navbar-item" href="/register">Tilmeld</a>
                         </div>
                         <a class="navbar-item" target="_blank" href="https://www.instagram.com/simoneloekke/?hl=da"><img src="/images/glyph-logo_May2016.png" alt="Instagram logo"></a>
-                        <!-- <router-link class="navbar-item" :to="{ name: 'subHome' }">Om</router-link> -->
                     </div>
                     <form id="logout-form" action="/logout" method="POST" style="display: none;">
                         <input type="hidden" name="_token" :value="csrf">
@@ -39,11 +38,11 @@ import subhomeDoc from '../subhome.js';
         name: "Navigation",
         props: {
             user: "",
-            csrf:"",
         },
         data: function(){
             return{
                 subhomes: subhomeDoc.pages,
+                csrf: ""
             }
         },
         methods: {
@@ -53,7 +52,7 @@ import subhomeDoc from '../subhome.js';
             }
         },
         mounted(){
-        console.log("navigation component mounted");
+        this.csrf = document.querySelector('meta[name="csrf-token"]').getAttribute("content");
         // Get all "navbar-burger" elements
         const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
         console.log($navbarBurgers);
@@ -76,6 +75,9 @@ import subhomeDoc from '../subhome.js';
                     });
                 });
             }
+        },
+        beforeMount(){
+
         }
     }
 </script>

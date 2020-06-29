@@ -32,8 +32,11 @@ Auth::routes();
 
 Route::get('/admin', 'AdminController@index')->middleware('auth');
 Route::post('/article/getarticles/', 'HomeController@getArticles');
+Route::get('/articles/getfpArticles', 'HomeController@getfpArticles');
+Route::post('/articles/getarticle', 'HomeController@getArticle');
 Route::post('/article/uploadArticle', 'AdminController@uploadArticle');
 Route::get('/article/getTags', 'HomeController@getTags');
+
 
 //any routes registered before this catch-all for vue-router will still function.
 Route::get('/home/{any}', 'HomeController@index')->where('any', '.*');

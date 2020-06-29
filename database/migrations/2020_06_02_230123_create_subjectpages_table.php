@@ -17,6 +17,7 @@ class CreateSubjectpagesTable extends Migration
             $table->id();
             $table->string('headline');
             $table->string('image');
+            $table->string('subject-tags');
             $table->timestamps();
         });
     }

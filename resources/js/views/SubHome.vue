@@ -1,7 +1,7 @@
 <template>
     <div>
-        <NavigationBar v-bind:user="this.user" v-bind:csrf="this.csrf"></NavigationBar>
-        <div>Hi there this is the subhome view for {{subject}}</div>
+        <NavigationBar v-bind:user="this.user"></NavigationBar>
+        <div>Hi there this is the subhome view for {{subjectName}}</div>
         <ArticleGrid v-bind:tagSelection="subject"/>
     </div>
 </template>
@@ -15,8 +15,11 @@ export default {
     Name: "SubHome",
     props: {
         user: "",
-        csrf: "",
         subject:{
+            required: true,
+            type: Array
+        },
+        subjectName:{
             required: true,
             type: String
         }

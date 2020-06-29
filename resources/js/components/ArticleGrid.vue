@@ -6,7 +6,7 @@
                     <div class="card" v-for="article in articles" :key="article.id">
                         <img :src="'/'+article.image" alt="artikel billede">
                         <p class="subtitle">{{article.header}}</p>
-                        <p>{{article.content}}</p>
+                        <p class="content">{{article.content}}</p>
                     </div>
                 </div>
             </div>
@@ -25,7 +25,7 @@ export default {
     props: {
         tagSelection: {
             required: true,
-            type: String,
+            type: Array,
         }
     },
     data: function(){

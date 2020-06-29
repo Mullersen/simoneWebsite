@@ -3,5 +3,6 @@
     "/css/app.css": "/css/app.css",
     "/article.js": "/article.js",
     "/search.js": "/search.js",
-    "/subhome.js": "/subhome.js"
+    "/subhome.js": "/subhome.js",
+    "/vendors~subhome.js": "/vendors~subhome.js"
 }

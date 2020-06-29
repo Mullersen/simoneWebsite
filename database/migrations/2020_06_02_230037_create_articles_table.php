@@ -17,6 +17,8 @@ class CreateArticlesTable extends Migration
             $table->id();
             $table->string('header');
             $table->string('image');
+            $table->string('header_image');
+            $table->string('secondary_image');
             $table->string('content');
             $table->timestamps();
         });
