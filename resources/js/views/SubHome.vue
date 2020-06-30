@@ -1,8 +1,8 @@
 <template>
     <div>
         <NavigationBar v-bind:user="this.user"></NavigationBar>
-        <div>Hi there this is the subhome view for {{subjectName}}</div>
-        <ArticleGrid v-bind:tagSelection="subject"/>
+        <div>Hi there this is the subhome view for {{subject}}</div>
+        <ArticleGrid v-bind:subject="subject"/>
     </div>
 </template>
 
@@ -17,17 +17,13 @@ export default {
         user: "",
         subject:{
             required: true,
-            type: Array
-        },
-        subjectName:{
-            required: true,
             type: String
-        }
+        },
     },
     components:{
         NavigationBar,
         ArticleGrid
-    },
+    }
 }
 </script>
 

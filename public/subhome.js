@@ -9,6 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _subhome_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../subhome.js */ "./resources/js/subhome.js");
 //
 //
 //
@@ -31,12 +32,13 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
 var Macy = __webpack_require__(/*! macy */ "./node_modules/macy/dist/macy.js");
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "ArticleGrid",
   props: {
-    tagSelection: {
+    subject: {
       required: true,
-      type: Array
+      type: String
     }
   },
   data: function data() {
@@ -49,8 +51,11 @@ var Macy = __webpack_require__(/*! macy */ "./node_modules/macy/dist/macy.js");
     getArticles: function getArticles(index) {
       var _this = this;
 
+      var tagselection = _subhome_js__WEBPACK_IMPORTED_MODULE_0__["default"].pages.find(function (element) {
+        return element.name === _this.subject;
+      });
       axios.post("/article/getarticles/?page=" + index, {
-        tagselection: this.tagSelection
+        tagselection: tagselection.subject_tags
       }).then(function (response) {
         console.log(response.data.articles.data);
         _this.paginationCollection = response.data;
@@ -87,7 +92,12 @@ var Macy = __webpack_require__(/*! macy */ "./node_modules/macy/dist/macy.js");
   },
   beforeMount: function beforeMount() {
     this.getArticles(1);
-  }
+  } // computed: {
+  //     subhome: function(){
+  //         return subhomeDoc.pages.find(element => element.name === this.subject);
+  //     }
+  // }
+
 });
 
 /***/ }),
@@ -118,10 +128,6 @@ __webpack_require__.r(__webpack_exports__);
   props: {
     user: "",
     subject: {
-      required: true,
-      type: Array
-    },
-    subjectName: {
       required: true,
       type: String
     }
@@ -268,12 +274,10 @@ var render = function() {
       _c("NavigationBar", { attrs: { user: this.user } }),
       _vm._v(" "),
       _c("div", [
-        _vm._v(
-          "Hi there this is the subhome view for " + _vm._s(_vm.subjectName)
-        )
+        _vm._v("Hi there this is the subhome view for " + _vm._s(_vm.subject))
       ]),
       _vm._v(" "),
-      _c("ArticleGrid", { attrs: { tagSelection: _vm.subject } })
+      _c("ArticleGrid", { attrs: { subject: _vm.subject } })
     ],
     1
   )

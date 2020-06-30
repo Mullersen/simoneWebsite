@@ -14,7 +14,7 @@
             </div>
             <div id="navMenu" class="navbar-menu">
                     <div class="navbar-end">
-                        <router-link class="navbar-item" v-for="subhome in subhomes" :key="subhome.name" :to="{ name: 'subHome', params:{ subject: subhome.subject_tags, subjectName: subhome.name } }">{{subhome.name}}</router-link>
+                        <router-link class="navbar-item" v-for="subhome in subhomes" :key="subhome.name" :to="{ name: 'subHome', params:{ subject: subhome.name } }">{{subhome.name}}</router-link>
                         <a v-if="user.length > 1" class="navbar-item" href="logout" @click.prevent="submitLogoutForm">Log ud</a>
                         <div v-else class="navbar-item">
                             <a class="navbar-item" href="/login" >Log ind</a>

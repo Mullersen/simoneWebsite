@@ -19,13 +19,15 @@
 <script>
 const axios = require('axios');
 const Macy = require('macy');
+import subhomeDoc from '../subhome.js';
+
 
 export default {
     name:"ArticleGrid",
     props: {
-        tagSelection: {
+        subject: {
             required: true,
-            type: Array,
+            type: String,
         }
     },
     data: function(){
@@ -36,8 +38,10 @@ export default {
     },
     methods:{
         getArticles: function(index){
+
+            var tagselection = subhomeDoc.pages.find(element => element.name === this.subject);
             axios.post("/article/getarticles/?page="+ index, {
-                    tagselection: this.tagSelection,
+                    tagselection: tagselection.subject_tags,
             })
                 .then(response => {
                     console.log(response.data.articles.data);
@@ -79,7 +83,12 @@ export default {
     },
     beforeMount(){
         this.getArticles(1);
-    }
+    },
+    // computed: {
+    //     subhome: function(){
+    //         return subhomeDoc.pages.find(element => element.name === this.subject);
+    //     }
+    // }
 }
 </script>
 

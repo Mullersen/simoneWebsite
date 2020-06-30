@@ -4032,10 +4032,7 @@ var render = function() {
                       attrs: {
                         to: {
                           name: "subHome",
-                          params: {
-                            subject: subhome.subject_tags,
-                            subjectName: subhome.name
-                          }
+                          params: { subject: subhome.name }
                         }
                       }
                     },
