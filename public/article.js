@@ -64,6 +64,7 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
       }).then(function (response) {
         console.log(response.data.article[0]);
         _this.article = response.data.article[0];
+        console.log(_this.article.image);
       })["catch"](function (error) {
         console.log(error.message); // change to error message on screen
       });

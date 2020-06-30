@@ -52,6 +52,7 @@ export default {
         .then(response => {
           console.log(response.data.article[0]);
           this.article = response.data.article[0];
+          console.log(this.article.image);
         })
         .catch(error => {
           console.log(error.message); // change to error message on screen
@@ -60,7 +61,7 @@ export default {
   },
   beforeMount() {
     this.getArticle();
-  }
+  }, 
 };
 </script>
 

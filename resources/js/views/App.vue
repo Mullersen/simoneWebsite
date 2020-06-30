@@ -23,5 +23,11 @@ export default {
 </script>
 
 <style>
+a {
+    color: black;
+}
 
+a:hover {
+    color: #d3bfa8;
+}
 </style>

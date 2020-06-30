@@ -4,7 +4,7 @@
         <div class="container">
             <div class="navbar-brand">
                 <a class="navbar-item" href="/">
-                    <img src="/images/bird.png" alt="Logo">
+                    <img id="logo" src="/images/logo_1.png" alt="essou.dk - skift stress ud med selvindsigt, balance og ro">
                 </a>
                 <a role="button" class="navbar-burger has-text-white" aria-label="menu" aria-expanded="false" data-target="navMenu">
                     <span aria-hidden="true"></span>
@@ -82,6 +82,8 @@ import subhomeDoc from '../subhome.js';
     }
 </script>
 
-<style>
-
+<style scoped>
+#logo{
+    max-height: 3.2rem;
+}
 </style>

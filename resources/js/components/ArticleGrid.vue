@@ -4,9 +4,12 @@
             <div class="columns is-centered">
                 <div class="column is-8" id="masonContainer">
                     <div class="card" v-for="article in articles" :key="article.id">
+                        <router-link :to="{ name: 'article', params:{header:article.header} }">
                         <img :src="'/'+article.image" alt="artikel billede">
-                        <p class="subtitle">{{article.header}}</p>
+                        <p class="title">{{article.header}}</p>
+                        <p class="subtitle">{{formatDate(article.created_at)}}</p>
                         <p class="content">{{article.content}}</p>
+                        </router-link>
                     </div>
                 </div>
             </div>
@@ -20,6 +23,7 @@
 const axios = require('axios');
 const Macy = require('macy');
 import subhomeDoc from '../subhome.js';
+import moment from 'moment'
 
 
 export default {
@@ -37,6 +41,11 @@ export default {
         }
     },
     methods:{
+        formatDate: function(value){
+            if(value){
+                return moment(String(value)).format('L');
+            }
+        },
         getArticles: function(index){
 
             var tagselection = subhomeDoc.pages.find(element => element.name === this.subject);
@@ -84,11 +93,6 @@ export default {
     beforeMount(){
         this.getArticles(1);
     },
-    // computed: {
-    //     subhome: function(){
-    //         return subhomeDoc.pages.find(element => element.name === this.subject);
-    //     }
-    // }
 }
 </script>
 

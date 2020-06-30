@@ -6,7 +6,7 @@
       </div>
       <div class="hero-body">
         <div class="container has-text-centered">
-          <h2 class="myTitle">Velkommen til Essou</h2>
+          <h1 class="myTitle">Velkommen til essou</h1>
         </div>
       </div>
     </div>
@@ -24,7 +24,7 @@
             <div class="columns is-centered is-8 is-variable">
               <div class="column" id="masonContainer">
                 <div class="card" v-for="article in articles.slice(0,2)" :key="article.id">
-                  <router-link :to="{ name: 'article', params:{header:article.header, user:user} }">
+                  <router-link :to="{ name: 'article', params:{header:article.header} }">
                     <img :src=" '/'+article.image" alt="artikel" />
                     <h2 class="title">{{article.header}}</h2>
                     <p class="content">{{article.created_at}}</p>
@@ -36,7 +36,7 @@
                 <div class="card" v-for="article in articles.slice(2,3)" :key="article.id">
                   <router-link :to="{ name: 'article', params:{header:article.header, user:user} }">
                     <img :src=" '/'+article.image" alt="artikel" />
-                    <h2 class="subtitle">{{article.header}}</h2>
+                    <h2 class="title">{{article.header}}</h2>
                     <p class="content">{{article.created_at}}</p>
                     <p class="content">{{article.content}}</p>
                   </router-link>
@@ -73,7 +73,7 @@
                 <div class="card" v-for="article in articles.slice(4,6)" :key="article.id">
                   <router-link :to="{ name: 'article', params:{header:article.header, user:user} }">
                     <img :src=" '/'+article.image" alt="artikel" />
-                    <h2 class="subtitle">{{article.header}}</h2>
+                    <h2 class="title">{{article.header}}</h2>
                     <p class="content">{{article.created_at}}</p>
                     <p class="content">{{article.content}}</p>
                   </router-link>
@@ -94,7 +94,10 @@ import NavigationBar from "../components/Navigation.vue";
 export default {
   name: "welcome",
   props: {
-    user: "",
+    user: {
+      required: true,
+      type: String
+    }
   },
   components: {
     NavigationBar
@@ -124,9 +127,10 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .myTitle {
   font-size: 4rem !important;
+  font-family: "Playfair Display", serif;
 }
 .has-bg-img {
   background: url("/images/jungle.jpg") center center;
@@ -139,12 +143,7 @@ export default {
 #secondColumn {
   margin-top: 20rem;
 }
-a{
-    color:black;
-}
-a:hover{
-    color: #d3bfa8;
-}
+
 
 /* a.router-link-exact-active{
     color:black;
