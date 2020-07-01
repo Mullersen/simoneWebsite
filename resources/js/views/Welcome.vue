@@ -27,7 +27,7 @@
                   <router-link :to="{ name: 'article', params:{header:article.header} }">
                     <img :src=" '/'+article.image" alt="artikel" />
                     <h2 class="title">{{article.header}}</h2>
-                    <p class="content">{{article.created_at}}</p>
+                    <p class="subtitle">{{formatDate(article.created_at)}}</p>
                     <p class="content">{{article.content}}</p>
                   </router-link>
                 </div>
@@ -37,7 +37,7 @@
                   <router-link :to="{ name: 'article', params:{header:article.header, user:user} }">
                     <img :src=" '/'+article.image" alt="artikel" />
                     <h2 class="title">{{article.header}}</h2>
-                    <p class="content">{{article.created_at}}</p>
+                    <p class="subtitle">{{formatDate(article.created_at)}}</p>
                     <p class="content">{{article.content}}</p>
                   </router-link>
                 </div>
@@ -59,22 +59,22 @@
         <div class="columns is-centered">
           <div class="column is-8">
             <div class="columns is-centered is-8 is-variable">
-              <div class="column" id="masonContainer">
+              <div class="column" id="secondColumn">
                 <div class="card" v-for="article in articles.slice(3,4)" :key="article.id">
                   <router-link :to="{ name: 'article', params:{header:article.header, user:user} }">
                     <img :src=" '/'+article.image" alt="artikel" />
                     <h2 class="title">{{article.header}}</h2>
-                    <p class="content">{{article.created_at}}</p>
+                    <p class="subtitle">{{formatDate(article.created_at)}}</p>
                     <p class="content">{{article.content}}</p>
                   </router-link>
                 </div>
               </div>
-              <div class="column" id="secondColumn">
+              <div class="column">
                 <div class="card" v-for="article in articles.slice(4,6)" :key="article.id">
                   <router-link :to="{ name: 'article', params:{header:article.header, user:user} }">
                     <img :src=" '/'+article.image" alt="artikel" />
                     <h2 class="title">{{article.header}}</h2>
-                    <p class="content">{{article.created_at}}</p>
+                    <p class="subtitle">{{formatDate(article.created_at)}}</p>
                     <p class="content">{{article.content}}</p>
                   </router-link>
                 </div>
@@ -90,6 +90,7 @@
 <script>
 const axios = require("axios");
 import NavigationBar from "../components/Navigation.vue";
+import moment from 'moment'
 
 export default {
   name: "welcome",
@@ -108,8 +109,13 @@ export default {
     };
   },
   methods: {
+      formatDate: function(value){
+            if(value){
+                moment.locale('da');
+                return moment(value).format('L');
+            }
+        },
     getFPArticles: function() {
-      console.log("get fp articles");
       axios
         .get("/articles/getfpArticles")
         .then(response => {
@@ -139,11 +145,15 @@ export default {
 .card {
   box-shadow: none;
   padding: 1rem;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
 }
 #secondColumn {
-  margin-top: 20rem;
+  margin-top: 15rem;
 }
-
+.title{
+    margin-top:none;
+}
 
 /* a.router-link-exact-active{
     color:black;

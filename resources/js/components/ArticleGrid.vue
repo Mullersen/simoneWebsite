@@ -43,7 +43,8 @@ export default {
     methods:{
         formatDate: function(value){
             if(value){
-                return moment(String(value)).format('L');
+                moment.locale('da');
+                return moment(value).format('L');
             }
         },
         getArticles: function(index){
@@ -74,7 +75,7 @@ export default {
                     trueOrder: true,
                     margin: {
                         x: 40,
-                        y: 60,
+                        y: 70,
                     },
                     breakAt: {
                         1040: 1,

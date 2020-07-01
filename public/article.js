@@ -10,6 +10,22 @@
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Navigation_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/Navigation.vue */ "./resources/js/components/Navigation.vue");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_1__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -34,6 +50,7 @@ __webpack_require__.r(__webpack_exports__);
 var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "myarticle",
   components: {
@@ -51,10 +68,37 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
   },
   data: function data() {
     return {
-      article: []
+      article: [],
+      comment: ""
     };
   },
   methods: {
+    formatDate: function formatDate(value) {
+      if (value) {
+        moment__WEBPACK_IMPORTED_MODULE_1___default.a.locale("da");
+        return moment__WEBPACK_IMPORTED_MODULE_1___default()(value).format("L");
+      }
+    },
+    getComment: function getComment() {
+      axios.post('/comment/getcomments', {
+        header: this.header
+      }).then(function (response) {
+        console.log(response.data);
+      })["catch"](function (error) {
+        console.log(error.message); // change to error message on screen
+      });
+    },
+    sendComment: function sendComment() {
+      axios.post('/comment/sendcomment', {
+        content: this.comment,
+        user: this.user,
+        header: this.header
+      }).then(function (response) {
+        console.log(response.data);
+      })["catch"](function (error) {
+        console.log(error.message); // change to error message on screen
+      });
+    },
     getArticle: function getArticle() {
       var _this = this;
 
@@ -64,7 +108,6 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
       }).then(function (response) {
         console.log(response.data.article[0]);
         _this.article = response.data.article[0];
-        console.log(_this.article.image);
       })["catch"](function (error) {
         console.log(error.message); // change to error message on screen
       });
@@ -114,7 +157,7 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("h2", { staticClass: "subtitle" }, [
-              _vm._v(_vm._s(_vm.article.created_at))
+              _vm._v(_vm._s(_vm.formatDate(_vm.article.created_at)))
             ])
           ])
         ])
@@ -123,9 +166,54 @@ var render = function() {
     _vm._v(" "),
     _c("section", { staticClass: "section" }, [
       _c("div", { staticClass: "container" }, [
-        _vm._v("\n        " + _vm._s(_vm.article.content) + "\n    ")
+        _vm._v(_vm._s(_vm.article.content))
       ])
-    ])
+    ]),
+    _vm._v(" "),
+    _vm.user.length > 1
+      ? _c("section", { staticClass: "section is-small" }, [
+          _c("div", { staticClass: "box" }, [
+            _c("div", { staticClass: "field" }, [
+              _c("label", { staticClass: "label" }, [_vm._v("Kommenter")]),
+              _vm._v(" "),
+              _c("div", { staticClass: "control" }, [
+                _c("textarea", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.comment,
+                      expression: "comment"
+                    }
+                  ],
+                  staticClass: "textarea",
+                  attrs: { rows: "3", placeholder: "Din kommentar" },
+                  domProps: { value: _vm.comment },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.comment = $event.target.value
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "control" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "button is-link",
+                    on: { click: _vm.sendComment }
+                  },
+                  [_vm._v("Indsend")]
+                )
+              ])
+            ])
+          ])
+        ])
+      : _vm._e()
   ])
 }
 var staticRenderFns = []

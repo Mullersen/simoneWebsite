@@ -10,6 +10,11 @@
         </div>
       </div>
     </div>
+    <div v-if="subject == 'Om'">
+        <h2>
+            her skal der stå noget om essou
+        </h2>
+    </div>
     <ArticleGrid v-bind:subject="subject" />
   </div>
 </template>
@@ -34,7 +39,7 @@ export default {
     components:{
         NavigationBar,
         ArticleGrid
-    }, 
+    },
     computed: {
         image: function(){
             return subhomeDoc.pages.find(element => element.name === this.subject);

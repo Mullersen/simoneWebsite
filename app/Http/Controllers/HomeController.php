@@ -45,4 +45,18 @@ class HomeController extends Controller
         $tags = \App\Article::allTags()->get();
         return response()->json(['tags' => $tags]);
     }
+    public function sendComment(Request $request){
+        if(Auth::user()->name === $request->user){
+            $articleId = \App\Article::where('header', $request->header)->value('id');
+            $comment = new \App\Comment;
+            $comment->article_id = $articleId;
+            $comment->user_id = Auth::user()->id;
+            $comment->content = $request->content;
+            $comment->save();
+
+            return response()->json(['comment' => 'uploaded']);
+        } else {
+            return response()->json(['comment' => 'du har ikke adgang til dette']);
+        }
+    }
 }
