@@ -19,7 +19,9 @@ class AdminController extends Controller
             $article = new \App\Article;
             $article->header = $request->title;
             $article->content = $request->description;
-            $article->image = $request->file('image')->store('images');
+            $article->header_image = $request->file('header_image')->store('images');
+            $article->secondary_image = $request->file('secondary_image')->store('images');
+
             $article->save();
 
             $article->tag('artikel'); //always have this tag for articles - so that the front page article view works.

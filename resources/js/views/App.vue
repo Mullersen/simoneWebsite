@@ -1,34 +1,49 @@
 <template>
   <div>
-    <router-view :key="$route.path" v-bind:user="this.user" v-bind:csrf="this.csrf"></router-view>
+    <router-view :key="$route.path" v-bind:user="this.user" v-bind:csrf="this.csrf"/>
   </div>
 </template>
 
 <script>
-
-
 export default {
-    name: "app",
-    props: {
-        user: "",
-        csrf: ""
-    }
+  name: "app",
+  props: {
+    user: "",
+    csrf: ""
+  }
 
-//   created () {
-//     console.log(this.authUser)
-
-//   },
-
-}
+};
 </script>
 
 <style>
 a {
-    color: black;
+  color: black;
 }
 
 a:hover {
-    color: #d3bfa8;
+  color: #d3bfa8;
 }
+.reveal {
+  opacity: 0;
+  -webkit-transform:translateY(60px);
+  -moz-transform:translateY(60px);
+  -ms-transform:translateY(60px);
+  -o-transform:translateY(60px);
+  transform: translateY(60px);
+  -webkit-transition: all 1s ease-in-out;
+  -moz-transition: all 1s ease-in-out;
+  -ms-transition: all 1s ease-in-out;
+  -o-transition: all 1s ease-in-out;
+  transition: all 1s ease-in-out;
+}
+.reveal.visible {
+  opacity: 1;
+  -webkit-transform: none;
+  -moz-transform: none;
+  -ms-transform: none;
+  -o-transform: none;
+  transform: none;
+}
+</style>
 
 </style>

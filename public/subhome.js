@@ -262,7 +262,7 @@ var render = function() {
                   [
                     _c("img", {
                       attrs: {
-                        src: "/" + article.image,
+                        src: "/" + article.header_image,
                         alt: "artikel billede"
                       }
                     }),
@@ -276,7 +276,7 @@ var render = function() {
                     ]),
                     _vm._v(" "),
                     _c("p", { staticClass: "content" }, [
-                      _vm._v(_vm._s(article.content))
+                      _vm._v(_vm._s(article.content.slice(0, 180)) + "...")
                     ])
                   ]
                 )

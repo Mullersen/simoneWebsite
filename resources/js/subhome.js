@@ -1,21 +1,21 @@
 export default {
     pages: [{
-            name: "Stress",
+            name: "STRESS",
             subject_tags: ['stress', 'symptomer'],
             image: "/images/stress.jpg",
         },
         {
-            name: "Balance",
+            name: "BALANCE",
             subject_tags: ['balance', 'sundhed'],
             image: "/images/balance.jpg",
         },
         {
-            name: "Livet Efter Stress",
+            name: "LIVET EFTER STRESS",
             subject_tags: ['selvindsigt', 'målrealisering'],
             image: "/images/selvudvikling.jpg",
         },
         {
-            name: "Om",
+            name: "OM",
             image: "/images/om.jpg",
         },
 

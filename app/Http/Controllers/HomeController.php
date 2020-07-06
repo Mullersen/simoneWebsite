@@ -59,4 +59,9 @@ class HomeController extends Controller
             return response()->json(['comment' => 'du har ikke adgang til dette']);
         }
     }
+    public function getComments(Request $request){
+        $articleId = \App\Article::where('header', $request->header)->value('id');
+        $comments = \App\Comment::where('article_id', '=', $articleId);
+         return response()->json(['comments' => $comments]);
+    }
 }

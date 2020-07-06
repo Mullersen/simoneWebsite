@@ -47,6 +47,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
 
@@ -69,7 +81,8 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
   data: function data() {
     return {
       article: [],
-      comment: ""
+      comment: "",
+      comments: []
     };
   },
   methods: {
@@ -79,17 +92,21 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
         return moment__WEBPACK_IMPORTED_MODULE_1___default()(value).format("L");
       }
     },
-    getComment: function getComment() {
-      axios.post('/comment/getcomments', {
+    getComments: function getComments() {
+      var _this = this;
+
+      axios.post("/comment/getcomments", {
         header: this.header
       }).then(function (response) {
         console.log(response.data);
+
+        _this.comments.push(response.data.comments);
       })["catch"](function (error) {
         console.log(error.message); // change to error message on screen
       });
     },
     sendComment: function sendComment() {
-      axios.post('/comment/sendcomment', {
+      axios.post("/comment/sendcomment", {
         content: this.comment,
         user: this.user,
         header: this.header
@@ -100,14 +117,14 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
       });
     },
     getArticle: function getArticle() {
-      var _this = this;
+      var _this2 = this;
 
       console.log(this.header);
       axios.post("/articles/getarticle", {
         header: this.header
       }).then(function (response) {
         console.log(response.data.article[0]);
-        _this.article = response.data.article[0];
+        _this2.article = response.data.article[0];
       })["catch"](function (error) {
         console.log(error.message); // change to error message on screen
       });
@@ -115,6 +132,7 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
   },
   beforeMount: function beforeMount() {
     this.getArticle();
+    this.getComments();
   }
 });
 
@@ -172,6 +190,25 @@ var render = function() {
     _vm._v(" "),
     _vm.user.length > 1
       ? _c("section", { staticClass: "section is-small" }, [
+          this.comments.length >= 1
+            ? _c("div", { staticClass: "container" }, [
+                _c("div", { staticClass: "columns" }, [
+                  _c(
+                    "div",
+                    { staticClass: "column is-half" },
+                    _vm._l(this.comments, function(comment) {
+                      return _c("div", { key: comment.id }, [
+                        _c("p", [_vm._v(_vm._s(comment.content))]),
+                        _vm._v(" "),
+                        _c("h6", [_vm._v(_vm._s(comment.user_id))])
+                      ])
+                    }),
+                    0
+                  )
+                ])
+              ])
+            : _vm._e(),
+          _vm._v(" "),
           _c("div", { staticClass: "box" }, [
             _c("div", { staticClass: "field" }, [
               _c("label", { staticClass: "label" }, [_vm._v("Kommenter")]),
@@ -198,8 +235,10 @@ var render = function() {
                     }
                   }
                 })
-              ]),
-              _vm._v(" "),
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", [
               _c("div", { staticClass: "control" }, [
                 _c(
                   "button",

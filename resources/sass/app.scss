@@ -1,5 +1,5 @@
 // Fonts
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Quicksand&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans&family=Playfair+Display&display=swap');
 //import initial Bulma variables
 @import "~bulma/sass/utilities/initial-variables.sass";
 @import "~bulma/sass/utilities/functions.sass";
@@ -9,7 +9,7 @@ $beige: #D3BFA8;
 $grey: #e0d7c8;
 $family-header: 'Playfair Display',
 serif;
-$family-sans-serif: 'Quicksand',
+$family-sans-serif:'DM Sans',
 sans-serif;
 $title-family: $family-header;
 $subtitle-family: $family-header;

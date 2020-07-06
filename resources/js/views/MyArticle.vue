@@ -18,12 +18,24 @@
       <div class="container">{{article.content}}</div>
     </section>
     <section class="section is-small" v-if="user.length > 1">
+      <div class="container" v-if="this.comments.length >=1">
+        <div class="columns">
+          <div class="column is-half">
+            <div v-for="comment in this.comments" :key="comment.id">
+              <p>{{comment.content}}</p>
+              <h6>{{comment.user_id}}</h6>
+            </div>
+          </div>
+        </div>
+      </div>
       <div class="box">
         <div class="field">
           <label class="label">Kommenter</label>
           <div class="control">
             <textarea v-model="comment" class="textarea" rows="3" placeholder="Din kommentar"></textarea>
           </div>
+        </div>
+        <div>
           <div class="control">
             <button class="button is-link" @click="sendComment">Indsend</button>
           </div>
@@ -56,8 +68,9 @@ export default {
   data: function() {
     return {
       article: [],
-      comment: ""
-    }
+      comment: "",
+      comments: []
+    };
   },
   methods: {
     formatDate: function(value) {
@@ -66,22 +79,25 @@ export default {
         return moment(value).format("L");
       }
     },
-    getComment: function(){
-        axios.post('/comment/getcomments', {
-            header: this.header
+    getComments: function() {
+      axios
+        .post("/comment/getcomments", {
+          header: this.header
         })
         .then(response => {
           console.log(response.data);
+          this.comments.push(response.data.comments);
         })
         .catch(error => {
           console.log(error.message); // change to error message on screen
         });
     },
-    sendComment: function(){
-        axios.post('/comment/sendcomment', {
-            content: this.comment,
-            user: this.user,
-            header: this.header
+    sendComment: function() {
+      axios
+        .post("/comment/sendcomment", {
+          content: this.comment,
+          user: this.user,
+          header: this.header
         })
         .then(response => {
           console.log(response.data);
@@ -107,6 +123,7 @@ export default {
   },
   beforeMount() {
     this.getArticle();
+    this.getComments();
   }
 };
 </script>

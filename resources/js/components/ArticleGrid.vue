@@ -5,10 +5,10 @@
                 <div class="column is-8" id="masonContainer">
                     <div class="card" v-for="article in articles" :key="article.id">
                         <router-link :to="{ name: 'article', params:{header:article.header} }">
-                        <img :src="'/'+article.image" alt="artikel billede">
+                        <img :src="'/'+article.header_image" alt="artikel billede">
                         <p class="title">{{article.header}}</p>
                         <p class="subtitle">{{formatDate(article.created_at)}}</p>
-                        <p class="content">{{article.content}}</p>
+                        <p class="content">{{article.content.slice(0,180)}}...</p>
                         </router-link>
                     </div>
                 </div>

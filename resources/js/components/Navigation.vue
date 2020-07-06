@@ -4,7 +4,7 @@
         <div class="container">
             <div class="navbar-brand">
                 <a class="navbar-item" href="/">
-                    <img id="logo" src="/images/logo_1.png" alt="essou.dk - skift stress ud med selvindsigt, balance og ro">
+                    <img id="logo" src="/images/logo_2.png" alt="essou.dk - skift stress ud med selvindsigt, balance og ro">
                 </a>
                 <a role="button" class="navbar-burger has-text-white" aria-label="menu" aria-expanded="false" data-target="navMenu">
                     <span aria-hidden="true"></span>
@@ -15,10 +15,10 @@
             <div id="navMenu" class="navbar-menu">
                     <div class="navbar-end">
                         <router-link class="navbar-item" v-for="subhome in subhomes" :key="subhome.name" :to="{ name: 'subHome', params:{ subject: subhome.name } }">{{subhome.name}}</router-link>
-                        <a v-if="user.length > 1" class="navbar-item" href="logout" @click.prevent="submitLogoutForm">Log ud</a>
+                        <a v-if="user.length > 1" class="navbar-item" href="logout" @click.prevent="submitLogoutForm">LOG UD</a>
                         <div v-else class="navbar-item">
-                            <a class="navbar-item" href="/login" >Log ind</a>
-                            <a class="navbar-item" href="/register">Tilmeld</a>
+                            <a class="navbar-item" href="/login" >LOG IND</a>
+                            <a class="navbar-item" href="/register">TILMELD</a>
                         </div>
                         <a class="navbar-item" target="_blank" href="https://www.instagram.com/simoneloekke/?hl=da"><img src="/images/glyph-logo_May2016.png" alt="Instagram logo"></a>
                     </div>
@@ -85,5 +85,8 @@ import subhomeDoc from '../subhome.js';
 <style scoped>
 #logo{
     max-height: 3.2rem;
+}
+.container{
+    min-height:6rem;
 }
 </style>

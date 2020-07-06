@@ -16,10 +16,9 @@ class CreateArticlesTable extends Migration
         Schema::create('articles', function (Blueprint $table) {
             $table->id();
             $table->string('header');
-            $table->string('image');
             $table->string('header_image');
             $table->string('secondary_image');
-            $table->string('content');
+            $table->mediumText('content');
             $table->timestamps();
         });
     }

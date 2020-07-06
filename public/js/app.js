@@ -2169,6 +2169,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2179,15 +2185,20 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
       NewArticleDescription: "",
       NewArticleTags: "",
       selectedTags: [],
-      file: "",
+      firstFile: "",
+      secondFile: "",
       existingTags: [],
       articleTags: []
     };
   },
   methods: {
     handleFileUpload: function handleFileUpload() {
-      this.file = this.$refs.file.files[0];
-      console.log(this.file);
+      this.firstFile = this.$refs.firstFile.files[0];
+      console.log(this.firstFile);
+    },
+    handleFileUpload1: function handleFileUpload1() {
+      this.secondFile = this.$refs.secondFile.files[0];
+      console.log(this.secondFile);
     },
     getTags: function getTags() {
       var _this = this;
@@ -2211,8 +2222,11 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
       console.log(this.articleTags);
     },
     uploadArticle: function uploadArticle() {
+      var _this2 = this;
+
       var formData = new FormData();
-      formData.append("image", this.file);
+      formData.append("header_image", this.firstFile);
+      formData.append("secondary_image", this.secondFile);
       formData.append("title", this.NewArticleTitle);
       formData.append("description", this.NewArticleDescription);
       formData.append("tags", this.articleTags);
@@ -2222,7 +2236,12 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
           "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
         }
       }).then(function (response) {
-        console.log(response.data); //this.$store.dispatch("requestAddons");
+        console.log(response.data);
+        _this2.firstFile = "";
+        _this2.secondFile = "";
+        _this2.NewArticleTitle = "";
+        _this2.NewArticleDescription = "";
+        _this2.articleTags = []; //this.$store.dispatch("requestAddons");
       })["catch"](function (error) {
         console.log(error.message); // change to error message on screen
       });
@@ -2363,10 +2382,7 @@ __webpack_require__.r(__webpack_exports__);
   props: {
     user: "",
     csrf: ""
-  } //   created () {
-  //     console.log(this.authUser)
-  //   },
-
+  }
 });
 
 /***/ }),
@@ -2529,7 +2545,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n#logo[data-v-d456e682]{\n    max-height: 3.2rem;\n}\n", ""]);
+exports.push([module.i, "\n#logo[data-v-d456e682]{\n    max-height: 3.2rem;\n}\n.container[data-v-d456e682]{\n    min-height:6rem;\n}\n", ""]);
 
 // exports
 
@@ -2548,7 +2564,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\na {\n    color: black;\n}\na:hover {\n    color: #d3bfa8;\n}\n\n", ""]);
+exports.push([module.i, "\na {\n  color: black;\n}\na:hover {\n  color: #d3bfa8;\n}\n.reveal {\n  opacity: 0;\n  transform: translateY(60px);\n  transition: all 1s ease-in-out;\n}\n.reveal.visible {\n  opacity: 1;\n  transform: none;\n}\n", ""]);
 
 // exports
 
@@ -25054,6 +25070,23 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "field" }, [
+        _c("label", { staticClass: "label" }, [_vm._v("Header billede")]),
+        _vm._v(" "),
+        _c("div", { staticClass: "control" }, [
+          _c("input", {
+            ref: "firstFile",
+            staticClass: "input",
+            attrs: { id: "file", type: "file" },
+            on: {
+              change: function($event) {
+                return _vm.handleFileUpload()
+              }
+            }
+          })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "field" }, [
         _c("label", { staticClass: "label" }, [_vm._v("Brødtekst")]),
         _vm._v(" "),
         _c("div", { staticClass: "control" }, [
@@ -25090,12 +25123,12 @@ var render = function() {
         _vm._v(" "),
         _c("div", { staticClass: "control" }, [
           _c("input", {
-            ref: "file",
+            ref: "secondFile",
             staticClass: "input",
             attrs: { id: "file", type: "file" },
             on: {
               change: function($event) {
-                return _vm.handleFileUpload()
+                return _vm.handleFileUpload1()
               }
             }
           })
@@ -25354,7 +25387,7 @@ var render = function() {
                           }
                         }
                       },
-                      [_vm._v("Log ud")]
+                      [_vm._v("LOG UD")]
                     )
                   : _c("div", { staticClass: "navbar-item" }, [
                       _c(
@@ -25363,7 +25396,7 @@ var render = function() {
                           staticClass: "navbar-item",
                           attrs: { href: "/login" }
                         },
-                        [_vm._v("Log ind")]
+                        [_vm._v("LOG IND")]
                       ),
                       _vm._v(" "),
                       _c(
@@ -25372,7 +25405,7 @@ var render = function() {
                           staticClass: "navbar-item",
                           attrs: { href: "/register" }
                         },
-                        [_vm._v("Tilmeld")]
+                        [_vm._v("TILMELD")]
                       )
                     ]),
                 _vm._v(" "),
@@ -25410,7 +25443,7 @@ var staticRenderFns = [
         _c("img", {
           attrs: {
             id: "logo",
-            src: "/images/logo_1.png",
+            src: "/images/logo_2.png",
             alt: "essou.dk - skift stress ud med selvindsigt, balance og ro"
           }
         })
@@ -25536,7 +25569,10 @@ var render = function() {
             _c("div", { staticClass: "columns is-centered is-8 is-variable" }, [
               _c(
                 "div",
-                { staticClass: "column", attrs: { id: "masonContainer" } },
+                {
+                  staticClass: "column reveal",
+                  attrs: { id: "masonContainer" }
+                },
                 _vm._l(_vm.articles.slice(0, 2), function(article) {
                   return _c(
                     "div",
@@ -25554,7 +25590,10 @@ var render = function() {
                         },
                         [
                           _c("img", {
-                            attrs: { src: "/" + article.image, alt: "artikel" }
+                            attrs: {
+                              src: "/" + article.header_image,
+                              alt: "artikel"
+                            }
                           }),
                           _vm._v(" "),
                           _c("h2", { staticClass: "title" }, [
@@ -25566,7 +25605,9 @@ var render = function() {
                           ]),
                           _vm._v(" "),
                           _c("p", { staticClass: "content" }, [
-                            _vm._v(_vm._s(article.content))
+                            _vm._v(
+                              _vm._s(article.content.slice(0, 180)) + "..."
+                            )
                           ])
                         ]
                       )
@@ -25579,7 +25620,7 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "div",
-                { staticClass: "column", attrs: { id: "secondColumn" } },
+                { staticClass: "column reveal", attrs: { id: "secondColumn" } },
                 _vm._l(_vm.articles.slice(2, 3), function(article) {
                   return _c(
                     "div",
@@ -25597,7 +25638,10 @@ var render = function() {
                         },
                         [
                           _c("img", {
-                            attrs: { src: "/" + article.image, alt: "artikel" }
+                            attrs: {
+                              src: "/" + article.header_image,
+                              alt: "artikel"
+                            }
                           }),
                           _vm._v(" "),
                           _c("h2", { staticClass: "title" }, [
@@ -25609,7 +25653,9 @@ var render = function() {
                           ]),
                           _vm._v(" "),
                           _c("p", { staticClass: "content" }, [
-                            _vm._v(_vm._s(article.content))
+                            _vm._v(
+                              _vm._s(article.content.slice(0, 180)) + "..."
+                            )
                           ])
                         ]
                       )
@@ -25634,7 +25680,7 @@ var render = function() {
             _c("div", { staticClass: "columns is-centered is-8 is-variable" }, [
               _c(
                 "div",
-                { staticClass: "column", attrs: { id: "secondColumn" } },
+                { staticClass: "column reveal", attrs: { id: "secondColumn" } },
                 _vm._l(_vm.articles.slice(3, 4), function(article) {
                   return _c(
                     "div",
@@ -25652,7 +25698,10 @@ var render = function() {
                         },
                         [
                           _c("img", {
-                            attrs: { src: "/" + article.image, alt: "artikel" }
+                            attrs: {
+                              src: "/" + article.header_image,
+                              alt: "artikel"
+                            }
                           }),
                           _vm._v(" "),
                           _c("h2", { staticClass: "title" }, [
@@ -25664,7 +25713,9 @@ var render = function() {
                           ]),
                           _vm._v(" "),
                           _c("p", { staticClass: "content" }, [
-                            _vm._v(_vm._s(article.content))
+                            _vm._v(
+                              _vm._s(article.content.slice(0, 180)) + "..."
+                            )
                           ])
                         ]
                       )
@@ -25677,7 +25728,7 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "div",
-                { staticClass: "column" },
+                { staticClass: "column reveal" },
                 _vm._l(_vm.articles.slice(4, 6), function(article) {
                   return _c(
                     "div",
@@ -25695,7 +25746,10 @@ var render = function() {
                         },
                         [
                           _c("img", {
-                            attrs: { src: "/" + article.image, alt: "artikel" }
+                            attrs: {
+                              src: "/" + article.header_image,
+                              alt: "artikel"
+                            }
                           }),
                           _vm._v(" "),
                           _c("h2", { staticClass: "title" }, [
@@ -25707,7 +25761,9 @@ var render = function() {
                           ]),
                           _vm._v(" "),
                           _c("p", { staticClass: "content" }, [
-                            _vm._v(_vm._s(article.content))
+                            _vm._v(
+                              _vm._s(article.content.slice(0, 180)) + "..."
+                            )
                           ])
                         ]
                       )
@@ -25731,7 +25787,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "hero-body" }, [
       _c("div", { staticClass: "container has-text-centered" }, [
-        _c("h1", { staticClass: "myTitle" }, [_vm._v("Velkommen til essou")])
+        _c("h1", { staticClass: "myTitle" }, [_vm._v("Velkommen")])
       ])
     ])
   },
@@ -25745,7 +25801,7 @@ var staticRenderFns = [
           "p",
           {
             staticClass:
-              "content is-italic has-text-weight-bold has-text-centered"
+              "reveal content is-italic has-text-weight-bold has-text-centered"
           },
           [
             _vm._v(
@@ -25766,7 +25822,7 @@ var staticRenderFns = [
           "p",
           {
             staticClass:
-              "content is-italic has-text-weight-bold has-text-centered"
+              "reveal content is-italic has-text-weight-bold has-text-centered"
           },
           [
             _vm._v(
@@ -41347,19 +41403,19 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   pages: [{
-    name: "Stress",
+    name: "STRESS",
     subject_tags: ['stress', 'symptomer'],
     image: "/images/stress.jpg"
   }, {
-    name: "Balance",
+    name: "BALANCE",
     subject_tags: ['balance', 'sundhed'],
     image: "/images/balance.jpg"
   }, {
-    name: "Livet Efter Stress",
+    name: "LIVET EFTER STRESS",
     subject_tags: ['selvindsigt', 'målrealisering'],
     image: "/images/selvudvikling.jpg"
   }, {
-    name: "Om",
+    name: "OM",
     image: "/images/om.jpg"
   }]
 });

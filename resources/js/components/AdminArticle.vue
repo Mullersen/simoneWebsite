@@ -9,6 +9,12 @@
         </div>
       </div>
       <div class="field">
+        <label class="label">Header billede</label>
+        <div class="control">
+          <input class="input" id="file" type="file" ref="firstFile" v-on:change="handleFileUpload()" />
+        </div>
+      </div>
+      <div class="field">
         <label class="label">Brødtekst</label>
         <div class="control">
           <textarea
@@ -23,7 +29,7 @@
       <div class="field">
         <label class="label">Billede</label>
         <div class="control">
-          <input class="input" id="file" type="file" ref="file" v-on:change="handleFileUpload()" />
+          <input class="input" id="file" type="file" ref="secondFile" v-on:change="handleFileUpload1()" />
         </div>
       </div>
     </div>
@@ -82,15 +88,20 @@ export default {
       NewArticleDescription: "",
       NewArticleTags: "",
       selectedTags: [],
-      file: "",
+      firstFile: "",
+      secondFile: "",
       existingTags: [],
       articleTags: []
     };
   },
   methods: {
     handleFileUpload: function() {
-      this.file = this.$refs.file.files[0];
-      console.log(this.file);
+      this.firstFile = this.$refs.firstFile.files[0];
+      console.log(this.firstFile);
+    },
+    handleFileUpload1: function() {
+      this.secondFile = this.$refs.secondFile.files[0];
+      console.log(this.secondFile);
     },
     getTags: function() {
       axios
@@ -116,7 +127,8 @@ export default {
     },
     uploadArticle: function() {
       let formData = new FormData();
-      formData.append("image", this.file);
+      formData.append("header_image", this.firstFile);
+      formData.append("secondary_image", this.secondFile);
       formData.append("title", this.NewArticleTitle);
       formData.append("description", this.NewArticleDescription);
       formData.append("tags", this.articleTags);
@@ -129,6 +141,11 @@ export default {
         })
         .then(response => {
           console.log(response.data);
+          this.firstFile= "";
+          this.secondFile= "";
+          this.NewArticleTitle= "";
+          this. NewArticleDescription= "";
+          this.articleTags = [];
           //this.$store.dispatch("requestAddons");
         })
         .catch(error => {
