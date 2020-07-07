@@ -33,6 +33,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
 var Macy = __webpack_require__(/*! macy */ "./node_modules/macy/dist/macy.js");
@@ -78,6 +80,7 @@ var Macy = __webpack_require__(/*! macy */ "./node_modules/macy/dist/macy.js");
         _this.buildMasonry();
       })["catch"](function (error) {
         console.log(error.message); // change to error message on screen
+        //this.loading = false;
       });
     },
     buildMasonry: function buildMasonry() {
@@ -96,7 +99,7 @@ var Macy = __webpack_require__(/*! macy */ "./node_modules/macy/dist/macy.js");
             1040: 1
           }
         });
-      }, 1000); // setTimeout(function(){
+      }, 500); // setTimeout(function(){
       //     console.log("timeout called");
       //     macyInstance.recalculate(true, true);
       // }, 2000)
@@ -142,6 +145,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -162,7 +166,7 @@ __webpack_require__.r(__webpack_exports__);
     ArticleGrid: _components_ArticleGrid_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   computed: {
-    image: function image() {
+    subjectPage: function subjectPage() {
       var _this = this;
 
       return _subhome_js__WEBPACK_IMPORTED_MODULE_2__["default"].pages.find(function (element) {
@@ -238,71 +242,73 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("section", { staticClass: "section" }, [
-    _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "columns is-centered" }, [
-        _c(
-          "div",
-          { staticClass: "column is-8", attrs: { id: "masonContainer" } },
-          _vm._l(_vm.articles, function(article) {
-            return _c(
-              "div",
-              { key: article.id, staticClass: "card" },
-              [
-                _c(
-                  "router-link",
-                  {
-                    attrs: {
-                      to: {
-                        name: "article",
-                        params: { header: article.header }
-                      }
-                    }
-                  },
-                  [
-                    _c("img", {
+  return _c("div", [
+    _c("section", { staticClass: "section" }, [
+      _c("div", { staticClass: "container" }, [
+        _c("div", { staticClass: "columns is-centered" }, [
+          _c(
+            "div",
+            { staticClass: "column is-8", attrs: { id: "masonContainer" } },
+            _vm._l(_vm.articles, function(article) {
+              return _c(
+                "div",
+                { key: article.id, staticClass: "card" },
+                [
+                  _c(
+                    "router-link",
+                    {
                       attrs: {
-                        src: "/" + article.header_image,
-                        alt: "artikel billede"
+                        to: {
+                          name: "article",
+                          params: { header: article.header }
+                        }
                       }
-                    }),
-                    _vm._v(" "),
-                    _c("p", { staticClass: "title" }, [
-                      _vm._v(_vm._s(article.header))
-                    ]),
-                    _vm._v(" "),
-                    _c("p", { staticClass: "subtitle" }, [
-                      _vm._v(_vm._s(_vm.formatDate(article.created_at)))
-                    ]),
-                    _vm._v(" "),
-                    _c("p", { staticClass: "content" }, [
-                      _vm._v(_vm._s(article.content.slice(0, 180)) + "...")
-                    ])
-                  ]
-                )
-              ],
-              1
-            )
-          }),
-          0
-        )
-      ])
-    ]),
-    _vm._v(" "),
-    _c(
-      "button",
-      {
-        staticClass: "button",
-        on: {
-          click: function($event) {
-            return _vm.getArticles(
-              _vm.paginationCollection.articles.current_page + 1
-            )
+                    },
+                    [
+                      _c("img", {
+                        attrs: {
+                          src: "/" + article.header_image,
+                          alt: "artikel billede"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("p", { staticClass: "title" }, [
+                        _vm._v(_vm._s(article.header))
+                      ]),
+                      _vm._v(" "),
+                      _c("p", { staticClass: "subtitle" }, [
+                        _vm._v(_vm._s(_vm.formatDate(article.created_at)))
+                      ]),
+                      _vm._v(" "),
+                      _c("p", { staticClass: "content" }, [
+                        _vm._v(_vm._s(article.content.slice(0, 180)) + "...")
+                      ])
+                    ]
+                  )
+                ],
+                1
+              )
+            }),
+            0
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "button",
+          on: {
+            click: function($event) {
+              return _vm.getArticles(
+                _vm.paginationCollection.articles.current_page + 1
+              )
+            }
           }
-        }
-      },
-      [_vm._v("Flere Artikler")]
-    )
+        },
+        [_vm._v("Flere Artikler")]
+      )
+    ])
   ])
 }
 var staticRenderFns = []
@@ -334,7 +340,7 @@ var render = function() {
         "div",
         {
           staticClass: "hero is-medium",
-          style: { backgroundImage: "url(" + _vm.image.image + ")" }
+          style: { backgroundImage: "url(" + _vm.subjectPage.image + ")" }
         },
         [
           _c(
@@ -346,7 +352,11 @@ var render = function() {
           _vm._v(" "),
           _c("div", { staticClass: "hero-body" }, [
             _c("div", { staticClass: "container has-text-centered" }, [
-              _c("h1", { staticClass: "title" }, [_vm._v(_vm._s(_vm.subject))])
+              _c("h1", { staticClass: "title" }, [_vm._v(_vm._s(_vm.subject))]),
+              _vm._v(" "),
+              _c("p", { staticClass: "content" }, [
+                _vm._v(_vm._s(_vm.subjectPage.citation))
+              ])
             ])
           ])
         ]

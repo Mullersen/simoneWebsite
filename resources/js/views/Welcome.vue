@@ -6,15 +6,15 @@
       </div>
       <div class="hero-body">
         <div class="container has-text-centered">
-          <h1 class="myTitle">Velkommen</h1>
+          <h1 class="myTitle"></h1>
         </div>
       </div>
     </div>
     <section class="section is-small">
       <div class="container">
         <p
-          class="reveal content is-italic has-text-weight-bold has-text-centered"
-        >"Det her er et citat som skal inspirere og få besøgeren til at få lyst til at scrolle længere ned og opdage hvad der er på siden."</p>
+          class="reveal subtitle is-italic has-text-weight-bold has-text-centered"
+        >"Tag en dyb indånding"</p>
       </div>
     </section>
     <section class="section">
@@ -50,8 +50,8 @@
     <section class="section is-small">
       <div class="container">
         <p
-          class="reveal content is-italic has-text-weight-bold has-text-centered"
-        >"Det her er et mere citat som skal inspirere og få besøgeren til at få lyst til at scrolle længere ned og opdage hvad der er på siden."</p>
+          class="reveal subtitle is-italic has-text-weight-bold has-text-centered"
+        >"Tag en dyb indånding"</p>
       </div>
     </section>
     <section class="section">
@@ -84,12 +84,14 @@
         </div>
       </div>
     </section>
+    <InstagramGrid/>
   </div>
 </template>
 
 <script>
 const axios = require("axios");
 import NavigationBar from "../components/Navigation.vue";
+import InstagramGrid from "../components/InstagramGrid.vue";
 import moment from 'moment'
 
 export default {
@@ -101,7 +103,8 @@ export default {
     }
   },
   components: {
-    NavigationBar
+    NavigationBar,
+    InstagramGrid
   },
   data: function() {
     return {

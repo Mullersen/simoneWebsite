@@ -2275,6 +2275,29 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/InstagramGrid.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/InstagramGrid.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "InstagramGrid"
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Navigation.vue?vue&type=script&lang=js&":
 /*!*********************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Navigation.vue?vue&type=script&lang=js& ***!
@@ -2377,6 +2400,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "app",
   props: {
@@ -2397,8 +2422,10 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Navigation_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/Navigation.vue */ "./resources/js/components/Navigation.vue");
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _components_InstagramGrid_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/InstagramGrid.vue */ "./resources/js/components/InstagramGrid.vue");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_2__);
+//
 //
 //
 //
@@ -2492,6 +2519,7 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
 
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "welcome",
   props: {
@@ -2501,7 +2529,8 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
     }
   },
   components: {
-    NavigationBar: _components_Navigation_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+    NavigationBar: _components_Navigation_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
+    InstagramGrid: _components_InstagramGrid_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   data: function data() {
     return {
@@ -2511,8 +2540,8 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
   methods: {
     formatDate: function formatDate(value) {
       if (value) {
-        moment__WEBPACK_IMPORTED_MODULE_1___default.a.locale('da');
-        return moment__WEBPACK_IMPORTED_MODULE_1___default()(value).format('L');
+        moment__WEBPACK_IMPORTED_MODULE_2___default.a.locale('da');
+        return moment__WEBPACK_IMPORTED_MODULE_2___default()(value).format('L');
       }
     },
     getFPArticles: function getFPArticles() {
@@ -2564,7 +2593,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\na {\n  color: black;\n}\na:hover {\n  color: #d3bfa8;\n}\n.reveal {\n  opacity: 0;\n  transform: translateY(60px);\n  transition: all 1s ease-in-out;\n}\n.reveal.visible {\n  opacity: 1;\n  transform: none;\n}\n", ""]);
+exports.push([module.i, "\na {\n  color: black;\n}\na:hover {\n  color: #d3bfa8;\n}\n.reveal {\n  opacity: 0;\n  transform: translateY(60px);\n  transition: all 1s ease-in-out;\n}\n.reveal.visible {\n  opacity: 1;\n  transform: none;\n}\n.fade-enter-active, .fade-leave-active {\n  transition: opacity .9s;\n}\n.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {\n  opacity: 0;\n}\n", ""]);
 
 // exports
 
@@ -25326,6 +25355,50 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/InstagramGrid.vue?vue&type=template&id=36d12dbd&":
+/*!****************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/InstagramGrid.vue?vue&type=template&id=36d12dbd& ***!
+  \****************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("section", { staticClass: "section is-medium" }, [
+      _c("div", { staticClass: "container" }, [
+        _c("iframe", {
+          staticClass: "lightwidget-widget",
+          staticStyle: { width: "100%", border: "0", overflow: "hidden" },
+          attrs: {
+            src:
+              "//lightwidget.com/widgets/1b8f9acd934d5cd2a53118fc363ca545.html",
+            scrolling: "no",
+            allowtransparency: "true"
+          }
+        })
+      ])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Navigation.vue?vue&type=template&id=d456e682&scoped=true&":
 /*!*************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Navigation.vue?vue&type=template&id=d456e682&scoped=true& ***!
@@ -25518,10 +25591,17 @@ var render = function() {
   return _c(
     "div",
     [
-      _c("router-view", {
-        key: _vm.$route.path,
-        attrs: { user: this.user, csrf: this.csrf }
-      })
+      _c(
+        "transition",
+        { attrs: { name: "fade" } },
+        [
+          _c("router-view", {
+            key: _vm.$route.path,
+            attrs: { user: this.user, csrf: this.csrf }
+          })
+        ],
+        1
+      )
     ],
     1
   )
@@ -25548,237 +25628,274 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("div", { staticClass: "hero is-fullheight has-bg-img" }, [
-      _c(
-        "div",
-        { staticClass: "hero-head" },
-        [_c("NavigationBar", { attrs: { user: this.user } })],
-        1
-      ),
+  return _c(
+    "div",
+    [
+      _c("div", { staticClass: "hero is-fullheight has-bg-img" }, [
+        _c(
+          "div",
+          { staticClass: "hero-head" },
+          [_c("NavigationBar", { attrs: { user: this.user } })],
+          1
+        ),
+        _vm._v(" "),
+        _vm._m(0)
+      ]),
       _vm._v(" "),
-      _vm._m(0)
-    ]),
-    _vm._v(" "),
-    _vm._m(1),
-    _vm._v(" "),
-    _c("section", { staticClass: "section" }, [
-      _c("div", { staticClass: "container" }, [
-        _c("div", { staticClass: "columns is-centered" }, [
-          _c("div", { staticClass: "column is-8" }, [
-            _c("div", { staticClass: "columns is-centered is-8 is-variable" }, [
+      _vm._m(1),
+      _vm._v(" "),
+      _c("section", { staticClass: "section" }, [
+        _c("div", { staticClass: "container" }, [
+          _c("div", { staticClass: "columns is-centered" }, [
+            _c("div", { staticClass: "column is-8" }, [
               _c(
                 "div",
-                {
-                  staticClass: "column reveal",
-                  attrs: { id: "masonContainer" }
-                },
-                _vm._l(_vm.articles.slice(0, 2), function(article) {
-                  return _c(
+                { staticClass: "columns is-centered is-8 is-variable" },
+                [
+                  _c(
                     "div",
-                    { key: article.id, staticClass: "card" },
-                    [
-                      _c(
-                        "router-link",
-                        {
-                          attrs: {
-                            to: {
-                              name: "article",
-                              params: { header: article.header }
-                            }
-                          }
-                        },
+                    {
+                      staticClass: "column reveal",
+                      attrs: { id: "masonContainer" }
+                    },
+                    _vm._l(_vm.articles.slice(0, 2), function(article) {
+                      return _c(
+                        "div",
+                        { key: article.id, staticClass: "card" },
                         [
-                          _c("img", {
-                            attrs: {
-                              src: "/" + article.header_image,
-                              alt: "artikel"
-                            }
-                          }),
-                          _vm._v(" "),
-                          _c("h2", { staticClass: "title" }, [
-                            _vm._v(_vm._s(article.header))
-                          ]),
-                          _vm._v(" "),
-                          _c("p", { staticClass: "subtitle" }, [
-                            _vm._v(_vm._s(_vm.formatDate(article.created_at)))
-                          ]),
-                          _vm._v(" "),
-                          _c("p", { staticClass: "content" }, [
-                            _vm._v(
-                              _vm._s(article.content.slice(0, 180)) + "..."
-                            )
-                          ])
-                        ]
+                          _c(
+                            "router-link",
+                            {
+                              attrs: {
+                                to: {
+                                  name: "article",
+                                  params: { header: article.header }
+                                }
+                              }
+                            },
+                            [
+                              _c("img", {
+                                attrs: {
+                                  src: "/" + article.header_image,
+                                  alt: "artikel"
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c("h2", { staticClass: "title" }, [
+                                _vm._v(_vm._s(article.header))
+                              ]),
+                              _vm._v(" "),
+                              _c("p", { staticClass: "subtitle" }, [
+                                _vm._v(
+                                  _vm._s(_vm.formatDate(article.created_at))
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c("p", { staticClass: "content" }, [
+                                _vm._v(
+                                  _vm._s(article.content.slice(0, 180)) + "..."
+                                )
+                              ])
+                            ]
+                          )
+                        ],
+                        1
                       )
-                    ],
-                    1
-                  )
-                }),
-                0
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "column reveal", attrs: { id: "secondColumn" } },
-                _vm._l(_vm.articles.slice(2, 3), function(article) {
-                  return _c(
+                    }),
+                    0
+                  ),
+                  _vm._v(" "),
+                  _c(
                     "div",
-                    { key: article.id, staticClass: "card" },
-                    [
-                      _c(
-                        "router-link",
-                        {
-                          attrs: {
-                            to: {
-                              name: "article",
-                              params: { header: article.header, user: _vm.user }
-                            }
-                          }
-                        },
+                    {
+                      staticClass: "column reveal",
+                      attrs: { id: "secondColumn" }
+                    },
+                    _vm._l(_vm.articles.slice(2, 3), function(article) {
+                      return _c(
+                        "div",
+                        { key: article.id, staticClass: "card" },
                         [
-                          _c("img", {
-                            attrs: {
-                              src: "/" + article.header_image,
-                              alt: "artikel"
-                            }
-                          }),
-                          _vm._v(" "),
-                          _c("h2", { staticClass: "title" }, [
-                            _vm._v(_vm._s(article.header))
-                          ]),
-                          _vm._v(" "),
-                          _c("p", { staticClass: "subtitle" }, [
-                            _vm._v(_vm._s(_vm.formatDate(article.created_at)))
-                          ]),
-                          _vm._v(" "),
-                          _c("p", { staticClass: "content" }, [
-                            _vm._v(
-                              _vm._s(article.content.slice(0, 180)) + "..."
-                            )
-                          ])
-                        ]
+                          _c(
+                            "router-link",
+                            {
+                              attrs: {
+                                to: {
+                                  name: "article",
+                                  params: {
+                                    header: article.header,
+                                    user: _vm.user
+                                  }
+                                }
+                              }
+                            },
+                            [
+                              _c("img", {
+                                attrs: {
+                                  src: "/" + article.header_image,
+                                  alt: "artikel"
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c("h2", { staticClass: "title" }, [
+                                _vm._v(_vm._s(article.header))
+                              ]),
+                              _vm._v(" "),
+                              _c("p", { staticClass: "subtitle" }, [
+                                _vm._v(
+                                  _vm._s(_vm.formatDate(article.created_at))
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c("p", { staticClass: "content" }, [
+                                _vm._v(
+                                  _vm._s(article.content.slice(0, 180)) + "..."
+                                )
+                              ])
+                            ]
+                          )
+                        ],
+                        1
                       )
-                    ],
-                    1
+                    }),
+                    0
                   )
-                }),
-                0
+                ]
               )
             ])
           ])
         ])
-      ])
-    ]),
-    _vm._v(" "),
-    _vm._m(2),
-    _vm._v(" "),
-    _c("section", { staticClass: "section" }, [
-      _c("div", { staticClass: "container" }, [
-        _c("div", { staticClass: "columns is-centered" }, [
-          _c("div", { staticClass: "column is-8" }, [
-            _c("div", { staticClass: "columns is-centered is-8 is-variable" }, [
+      ]),
+      _vm._v(" "),
+      _vm._m(2),
+      _vm._v(" "),
+      _c("section", { staticClass: "section" }, [
+        _c("div", { staticClass: "container" }, [
+          _c("div", { staticClass: "columns is-centered" }, [
+            _c("div", { staticClass: "column is-8" }, [
               _c(
                 "div",
-                { staticClass: "column reveal", attrs: { id: "secondColumn" } },
-                _vm._l(_vm.articles.slice(3, 4), function(article) {
-                  return _c(
+                { staticClass: "columns is-centered is-8 is-variable" },
+                [
+                  _c(
                     "div",
-                    { key: article.id, staticClass: "card" },
-                    [
-                      _c(
-                        "router-link",
-                        {
-                          attrs: {
-                            to: {
-                              name: "article",
-                              params: { header: article.header, user: _vm.user }
-                            }
-                          }
-                        },
+                    {
+                      staticClass: "column reveal",
+                      attrs: { id: "secondColumn" }
+                    },
+                    _vm._l(_vm.articles.slice(3, 4), function(article) {
+                      return _c(
+                        "div",
+                        { key: article.id, staticClass: "card" },
                         [
-                          _c("img", {
-                            attrs: {
-                              src: "/" + article.header_image,
-                              alt: "artikel"
-                            }
-                          }),
-                          _vm._v(" "),
-                          _c("h2", { staticClass: "title" }, [
-                            _vm._v(_vm._s(article.header))
-                          ]),
-                          _vm._v(" "),
-                          _c("p", { staticClass: "subtitle" }, [
-                            _vm._v(_vm._s(_vm.formatDate(article.created_at)))
-                          ]),
-                          _vm._v(" "),
-                          _c("p", { staticClass: "content" }, [
-                            _vm._v(
-                              _vm._s(article.content.slice(0, 180)) + "..."
-                            )
-                          ])
-                        ]
+                          _c(
+                            "router-link",
+                            {
+                              attrs: {
+                                to: {
+                                  name: "article",
+                                  params: {
+                                    header: article.header,
+                                    user: _vm.user
+                                  }
+                                }
+                              }
+                            },
+                            [
+                              _c("img", {
+                                attrs: {
+                                  src: "/" + article.header_image,
+                                  alt: "artikel"
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c("h2", { staticClass: "title" }, [
+                                _vm._v(_vm._s(article.header))
+                              ]),
+                              _vm._v(" "),
+                              _c("p", { staticClass: "subtitle" }, [
+                                _vm._v(
+                                  _vm._s(_vm.formatDate(article.created_at))
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c("p", { staticClass: "content" }, [
+                                _vm._v(
+                                  _vm._s(article.content.slice(0, 180)) + "..."
+                                )
+                              ])
+                            ]
+                          )
+                        ],
+                        1
                       )
-                    ],
-                    1
-                  )
-                }),
-                0
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "column reveal" },
-                _vm._l(_vm.articles.slice(4, 6), function(article) {
-                  return _c(
+                    }),
+                    0
+                  ),
+                  _vm._v(" "),
+                  _c(
                     "div",
-                    { key: article.id, staticClass: "card" },
-                    [
-                      _c(
-                        "router-link",
-                        {
-                          attrs: {
-                            to: {
-                              name: "article",
-                              params: { header: article.header, user: _vm.user }
-                            }
-                          }
-                        },
+                    { staticClass: "column reveal" },
+                    _vm._l(_vm.articles.slice(4, 6), function(article) {
+                      return _c(
+                        "div",
+                        { key: article.id, staticClass: "card" },
                         [
-                          _c("img", {
-                            attrs: {
-                              src: "/" + article.header_image,
-                              alt: "artikel"
-                            }
-                          }),
-                          _vm._v(" "),
-                          _c("h2", { staticClass: "title" }, [
-                            _vm._v(_vm._s(article.header))
-                          ]),
-                          _vm._v(" "),
-                          _c("p", { staticClass: "subtitle" }, [
-                            _vm._v(_vm._s(_vm.formatDate(article.created_at)))
-                          ]),
-                          _vm._v(" "),
-                          _c("p", { staticClass: "content" }, [
-                            _vm._v(
-                              _vm._s(article.content.slice(0, 180)) + "..."
-                            )
-                          ])
-                        ]
+                          _c(
+                            "router-link",
+                            {
+                              attrs: {
+                                to: {
+                                  name: "article",
+                                  params: {
+                                    header: article.header,
+                                    user: _vm.user
+                                  }
+                                }
+                              }
+                            },
+                            [
+                              _c("img", {
+                                attrs: {
+                                  src: "/" + article.header_image,
+                                  alt: "artikel"
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c("h2", { staticClass: "title" }, [
+                                _vm._v(_vm._s(article.header))
+                              ]),
+                              _vm._v(" "),
+                              _c("p", { staticClass: "subtitle" }, [
+                                _vm._v(
+                                  _vm._s(_vm.formatDate(article.created_at))
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c("p", { staticClass: "content" }, [
+                                _vm._v(
+                                  _vm._s(article.content.slice(0, 180)) + "..."
+                                )
+                              ])
+                            ]
+                          )
+                        ],
+                        1
                       )
-                    ],
-                    1
+                    }),
+                    0
                   )
-                }),
-                0
+                ]
               )
             ])
           ])
         ])
-      ])
-    ])
-  ])
+      ]),
+      _vm._v(" "),
+      _c("InstagramGrid")
+    ],
+    1
+  )
 }
 var staticRenderFns = [
   function() {
@@ -25787,7 +25904,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "hero-body" }, [
       _c("div", { staticClass: "container has-text-centered" }, [
-        _c("h1", { staticClass: "myTitle" }, [_vm._v("Velkommen")])
+        _c("h1", { staticClass: "myTitle" })
       ])
     ])
   },
@@ -25801,13 +25918,9 @@ var staticRenderFns = [
           "p",
           {
             staticClass:
-              "reveal content is-italic has-text-weight-bold has-text-centered"
+              "reveal subtitle is-italic has-text-weight-bold has-text-centered"
           },
-          [
-            _vm._v(
-              '"Det her er et citat som skal inspirere og få besøgeren til at få lyst til at scrolle længere ned og opdage hvad der er på siden."'
-            )
-          ]
+          [_vm._v('"Tag en dyb indånding"')]
         )
       ])
     ])
@@ -25822,13 +25935,9 @@ var staticRenderFns = [
           "p",
           {
             staticClass:
-              "reveal content is-italic has-text-weight-bold has-text-centered"
+              "reveal subtitle is-italic has-text-weight-bold has-text-centered"
           },
-          [
-            _vm._v(
-              '"Det her er et mere citat som skal inspirere og få besøgeren til at få lyst til at scrolle længere ned og opdage hvad der er på siden."'
-            )
-          ]
+          [_vm._v('"Tag en dyb indånding"')]
         )
       ])
     ])
@@ -41305,6 +41414,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/InstagramGrid.vue":
+/*!***************************************************!*\
+  !*** ./resources/js/components/InstagramGrid.vue ***!
+  \***************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _InstagramGrid_vue_vue_type_template_id_36d12dbd___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./InstagramGrid.vue?vue&type=template&id=36d12dbd& */ "./resources/js/components/InstagramGrid.vue?vue&type=template&id=36d12dbd&");
+/* harmony import */ var _InstagramGrid_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./InstagramGrid.vue?vue&type=script&lang=js& */ "./resources/js/components/InstagramGrid.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _InstagramGrid_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _InstagramGrid_vue_vue_type_template_id_36d12dbd___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _InstagramGrid_vue_vue_type_template_id_36d12dbd___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/InstagramGrid.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/InstagramGrid.vue?vue&type=script&lang=js&":
+/*!****************************************************************************!*\
+  !*** ./resources/js/components/InstagramGrid.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_InstagramGrid_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./InstagramGrid.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/InstagramGrid.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_InstagramGrid_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/InstagramGrid.vue?vue&type=template&id=36d12dbd&":
+/*!**********************************************************************************!*\
+  !*** ./resources/js/components/InstagramGrid.vue?vue&type=template&id=36d12dbd& ***!
+  \**********************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_InstagramGrid_vue_vue_type_template_id_36d12dbd___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./InstagramGrid.vue?vue&type=template&id=36d12dbd& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/InstagramGrid.vue?vue&type=template&id=36d12dbd&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_InstagramGrid_vue_vue_type_template_id_36d12dbd___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_InstagramGrid_vue_vue_type_template_id_36d12dbd___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/Navigation.vue":
 /*!************************************************!*\
   !*** ./resources/js/components/Navigation.vue ***!
@@ -41405,15 +41583,18 @@ __webpack_require__.r(__webpack_exports__);
   pages: [{
     name: "STRESS",
     subject_tags: ['stress', 'symptomer'],
-    image: "/images/stress.jpg"
+    image: "/images/stress.jpg",
+    citation: "Du glemte dine behov. Vælg igen."
   }, {
     name: "BALANCE",
     subject_tags: ['balance', 'sundhed'],
-    image: "/images/balance.jpg"
+    image: "/images/balance.jpg",
+    citation: "Lyt til kroppen og mød dig selv med en kærlig, ikke-dømmende bevidsthed."
   }, {
     name: "LIVET EFTER STRESS",
     subject_tags: ['selvindsigt', 'målrealisering'],
-    image: "/images/selvudvikling.jpg"
+    image: "/images/selvudvikling.jpg",
+    citation: "Lad stress være årsagen til, at dit liv blev bedre. "
   }, {
     name: "OM",
     image: "/images/om.jpg"

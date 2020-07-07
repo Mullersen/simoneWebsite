@@ -1,12 +1,13 @@
 <template>
   <div>
-    <div class="hero is-medium" v-bind:style="{ backgroundImage: 'url(' + image.image +')' }">
+    <div class="hero is-medium" v-bind:style="{ backgroundImage: 'url(' + subjectPage.image +')' }">
       <div class="hero-head">
         <NavigationBar v-bind:user="this.user"></NavigationBar>
       </div>
       <div class="hero-body">
         <div class="container has-text-centered">
           <h1 class="title">{{subject}}</h1>
+          <p class="content">{{subjectPage.citation}}</p>
         </div>
       </div>
     </div>
@@ -41,7 +42,7 @@ export default {
         ArticleGrid
     },
     computed: {
-        image: function(){
+        subjectPage: function(){
             return subhomeDoc.pages.find(element => element.name === this.subject);
         }
     }

@@ -1,5 +1,6 @@
 <template>
-  <section class="section">
+<div>
+    <section class="section">
         <div class="container" >
             <div class="columns is-centered">
                 <div class="column is-8" id="masonContainer">
@@ -17,11 +18,13 @@
         <button class="button"
             @click="getArticles(paginationCollection.articles.current_page+1)">Flere Artikler</button>
     </section>
+</div>
 </template>
 
 <script>
 const axios = require('axios');
 const Macy = require('macy');
+
 import subhomeDoc from '../subhome.js';
 import moment from 'moment'
 
@@ -37,7 +40,7 @@ export default {
     data: function(){
         return{
             articles: [],
-            paginationCollection: {}
+            paginationCollection: {},
         }
     },
     methods:{
@@ -60,9 +63,11 @@ export default {
                         this.articles.push(element);
                     });
                     this.buildMasonry();
+
                 })
                 .catch(error => {
                     console.log(error.message); // change to error message on screen
+                    //this.loading = false;
                 });
         },
         buildMasonry: function(){
@@ -80,9 +85,9 @@ export default {
                     breakAt: {
                         1040: 1,
                     },
-
                 });
-            },1000)
+            },500)
+
 
             // setTimeout(function(){
             //     console.log("timeout called");
