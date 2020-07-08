@@ -1,6 +1,6 @@
 <template>
   <div>
-    <transition name="fade">
+    <transition name="fade" mode="out-in">
         <router-view :key="$route.path" v-bind:user="this.user" v-bind:csrf="this.csrf"/>
     </transition>
   </div>
@@ -47,11 +47,15 @@ a:hover {
   transform: none;
 }
 .fade-enter-active, .fade-leave-active {
-  transition: opacity .9s;
+  transition: opacity .8s;
 }
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;
 }
-</style>
-
+#footer{
+    background-color: #e0d7c8;
+}
+.footerContent{
+    color: #36453b;
+}
 </style>

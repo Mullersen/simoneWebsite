@@ -43,7 +43,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "" + ({"article":"article","search":"search","vendors~subhome":"vendors~subhome","subhome":"subhome"}[chunkId]||chunkId) + ".js"
+/******/ 		return __webpack_require__.p + "" + ({"article":"article","vendors~search~subhome":"vendors~search~subhome","search":"search","subhome":"subhome"}[chunkId]||chunkId) + ".js"
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -2292,6 +2292,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "InstagramGrid"
 });
@@ -2308,6 +2309,7 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _subhome_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../subhome.js */ "./resources/js/subhome.js");
+//
 //
 //
 //
@@ -2593,7 +2595,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\na {\n  color: black;\n}\na:hover {\n  color: #d3bfa8;\n}\n.reveal {\n  opacity: 0;\n  transform: translateY(60px);\n  transition: all 1s ease-in-out;\n}\n.reveal.visible {\n  opacity: 1;\n  transform: none;\n}\n.fade-enter-active, .fade-leave-active {\n  transition: opacity .9s;\n}\n.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {\n  opacity: 0;\n}\n", ""]);
+exports.push([module.i, "\na {\n  color: black;\n}\na:hover {\n  color: #d3bfa8;\n}\n.reveal {\n  opacity: 0;\n  transform: translateY(60px);\n  transition: all 1s ease-in-out;\n}\n.reveal.visible {\n  opacity: 1;\n  transform: none;\n}\n.fade-enter-active, .fade-leave-active {\n  transition: opacity .8s;\n}\n.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {\n  opacity: 0;\n}\n#footer{\n    background-color: #e0d7c8;\n}\n.footerContent{\n    color: #36453b;\n}\n", ""]);
 
 // exports
 
@@ -25378,7 +25380,9 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("section", { staticClass: "section is-medium" }, [
-      _c("div", { staticClass: "container" }, [
+      _c("div", { staticClass: "container has-text-centered" }, [
+        _c("h2", { staticClass: "title" }, [_vm._v("FØLG OS PÅ INSTAGRAM")]),
+        _vm._v(" "),
         _c("iframe", {
           staticClass: "lightwidget-widget",
           staticStyle: { width: "100%", border: "0", overflow: "hidden" },
@@ -25481,6 +25485,22 @@ var render = function() {
                         [_vm._v("TILMELD")]
                       )
                     ]),
+                _vm._v(" "),
+                _c(
+                  "router-link",
+                  {
+                    staticClass: "navbar-item",
+                    attrs: { to: { name: "search" } }
+                  },
+                  [
+                    _c("img", {
+                      attrs: {
+                        src: "/images/search.png",
+                        alt: "Søg på essou om stress eller balance"
+                      }
+                    })
+                  ]
+                ),
                 _vm._v(" "),
                 _vm._m(1)
               ],
@@ -25593,7 +25613,7 @@ var render = function() {
     [
       _c(
         "transition",
-        { attrs: { name: "fade" } },
+        { attrs: { name: "fade", mode: "out-in" } },
         [
           _c("router-view", {
             key: _vm.$route.path,
@@ -41162,13 +41182,13 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
     name: 'subHome',
     props: true,
     component: function component() {
-      return Promise.all(/*! import() | subhome */[__webpack_require__.e("vendors~subhome"), __webpack_require__.e("subhome")]).then(__webpack_require__.bind(null, /*! ./views/SubHome.vue */ "./resources/js/views/SubHome.vue"));
+      return Promise.all(/*! import() | subhome */[__webpack_require__.e("vendors~search~subhome"), __webpack_require__.e("subhome")]).then(__webpack_require__.bind(null, /*! ./views/SubHome.vue */ "./resources/js/views/SubHome.vue"));
     }
   }, {
     path: '/home/search',
     name: 'search',
     component: function component() {
-      return __webpack_require__.e(/*! import() | search */ "search").then(__webpack_require__.bind(null, /*! ./views/Search.vue */ "./resources/js/views/Search.vue"));
+      return Promise.all(/*! import() | search */[__webpack_require__.e("vendors~search~subhome"), __webpack_require__.e("search")]).then(__webpack_require__.bind(null, /*! ./views/Search.vue */ "./resources/js/views/Search.vue"));
     }
   }, {
     path: '/home/article/:header',

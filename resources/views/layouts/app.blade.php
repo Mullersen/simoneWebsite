@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Essou</title>
+    <title>essou</title>
 
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet" type="text/css">
@@ -16,6 +16,13 @@
     <main>
         @yield('content')
     </main>
+    <footer class="footer" id="footer">
+        <div class="content has-text-centered">
+            <p class="content footerContent"><strong>© essou 2020 </strong></p>
+            <p class="content footerContent">København</p>
+            <p class="content footerContent">Design og Webudvikling: Mariann Haugland</p>
+        </div>
+    </footer>
     <script src="/js/app.js" ></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.3.4/gsap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/ScrollMagic.min.js"></script>

@@ -38,6 +38,7 @@ Route::post('/article/uploadArticle', 'AdminController@uploadArticle');
 Route::get('/article/getTags', 'HomeController@getTags');
 Route::post('/comment/sendcomment', 'HomeController@sendComment');
 Route::post('/comment/getcomments', 'HomeController@getComments');
+Route::post('/search/searchArticles', 'HomeController@searchArticles');
 
 
 //any routes registered before this catch-all for vue-router will still function.

@@ -1,6 +1,6 @@
 <template>
 <div>
-    <section class="section">
+    <section id="hiddenSection" class="section hidden">
         <div class="container" >
             <div class="columns is-centered">
                 <div class="column is-8" id="masonContainer">
@@ -51,10 +51,10 @@ export default {
             }
         },
         getArticles: function(index){
+            // var tagselection = subhomeDoc.pages.find(element => element.name === this.subject);
 
-            var tagselection = subhomeDoc.pages.find(element => element.name === this.subject);
             axios.post("/article/getarticles/?page="+ index, {
-                    tagselection: tagselection.subject_tags,
+                    tagselection: this.subject,
             })
                 .then(response => {
                     console.log(response.data.articles.data);
@@ -86,6 +86,10 @@ export default {
                         1040: 1,
                     },
                 });
+                setTimeout(function(){
+                    var section = document.getElementById("hiddenSection")
+                    section.classList.remove('hidden');
+                }, 500)
             },500)
 
 
@@ -107,5 +111,8 @@ export default {
     word-break: break-all;
     padding: 1rem;
     box-shadow: none !important;
+}
+.hidden{
+    visibility:hidden;
 }
 </style>
