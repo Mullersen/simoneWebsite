@@ -5,8 +5,8 @@
                 <aside class="menu">
                     <p class="menu-label">Admin arbejde</p>
                     <ul class="menu-list">
-                        <li><a @click="articleToggle()">Administrer Artikler</a></li>
-                        <li><a @click="imageToggle()">Billeder</a></li>
+                        <li><a @click="articleToggle()">Opret Nye Artikler</a></li>
+                        <li><a @click="imageToggle()">Rediger og Slet Artikler</a></li>
                     </ul>
                 </aside>
             </div>
@@ -16,7 +16,7 @@
                     <AdminArticle/>
                 </div>
                 <div v-if="toggleImages == true">
-                    <AdminImages/>
+                    <AdminArticles/>
                 </div>
             </div>
         </div>
@@ -25,17 +25,17 @@
 
 <script>
 import AdminArticle from "./AdminArticle.vue";
-import AdminImages from "./AdminImages.vue";
+import AdminArticles from "./AdminArticles.vue";
 
 export default {
  name: "Admin",
  components:{
      AdminArticle,
-     AdminImages,
+     AdminArticles,
  },
  props: {
         user: "",
-    }, 
+    },
     data:function(){
         return{
             toggleImages: false,

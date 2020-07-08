@@ -7775,7 +7775,7 @@ body.has-navbar-fixed-bottom {
 }
 
 .navbar-burger {
-  color: #4a4a4a;
+  color: black;
   cursor: pointer;
   display: block;
   height: 3.25rem;
@@ -7831,7 +7831,7 @@ body.has-navbar-fixed-bottom {
 
 .navbar-item,
 .navbar-link {
-  color: #4a4a4a;
+  color: black;
   display: block;
   line-height: 1.5;
   padding: 0.5rem 0.75rem;
@@ -7858,7 +7858,7 @@ a.navbar-item.is-active,
 .navbar-link:hover,
 .navbar-link.is-active {
   background-color: #fafafa;
-  color: #D3BFA8;
+  color: #36453b;
 }
 
 .navbar-item {

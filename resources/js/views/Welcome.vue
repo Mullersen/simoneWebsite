@@ -142,7 +142,7 @@ export default {
   font-family: "Playfair Display", serif;
 }
 .has-bg-img {
-  background: url("/images/jungle.jpg") center center;
+  background: url("/images/sky1.jpg") center center;
   background-size: cover;
 }
 .card {

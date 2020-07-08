@@ -51,8 +51,6 @@ export default {
             }
         },
         getArticles: function(index){
-            // var tagselection = subhomeDoc.pages.find(element => element.name === this.subject);
-
             axios.post("/article/getarticles/?page="+ index, {
                     tagselection: this.subject,
             })

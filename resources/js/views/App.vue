@@ -3,6 +3,13 @@
     <transition name="fade" mode="out-in">
         <router-view :key="$route.path" v-bind:user="this.user" v-bind:csrf="this.csrf"/>
     </transition>
+    <footer class="footer" id="footer">
+        <div class="content has-text-centered">
+            <p class="content footerContent"><strong>© essou 2020</strong></p>
+            <p class="content footerContent">København</p>
+            <p class="content footerContent">Design og Webudvikling: Mariann Haugland</p>
+        </div>
+    </footer>
   </div>
 </template>
 

@@ -11,7 +11,13 @@
       <div class="field">
         <label class="label">Header billede</label>
         <div class="control">
-          <input class="input" id="file" type="file" ref="firstFile" v-on:change="handleFileUpload()" />
+          <input
+            class="input"
+            id="file"
+            type="file"
+            ref="firstFile"
+            v-on:change="handleFileUpload()"
+          />
         </div>
       </div>
       <div class="field">
@@ -27,9 +33,15 @@
         </div>
       </div>
       <div class="field">
-        <label class="label">Billede</label>
+        <label class="label">Sekundært billede</label>
         <div class="control">
-          <input class="input" id="file" type="file" ref="secondFile" v-on:change="handleFileUpload1()" />
+          <input
+            class="input"
+            id="file"
+            type="file"
+            ref="secondFile"
+            v-on:change="handleFileUpload1()"
+          />
         </div>
       </div>
     </div>
@@ -65,6 +77,9 @@
       <div v-if="articleTags.length >= 1" class="field">
         <h2 class="subtitle">Tilføjede tags til denne artikel</h2>
         <p v-for="(articleTag, index) in articleTags" :key="index" class="content">{{articleTag}}</p>
+      </div>
+      <div v-else>
+        <h2 class="subtitle">Der er endnu ingen tags tilføjet til denne artikel</h2>
       </div>
     </div>
     <div class="box">
@@ -141,12 +156,11 @@ export default {
         })
         .then(response => {
           console.log(response.data);
-          this.firstFile= "";
-          this.secondFile= "";
-          this.NewArticleTitle= "";
-          this. NewArticleDescription= "";
+          this.firstFile = "";
+          this.secondFile = "";
+          this.NewArticleTitle = "";
+          this.NewArticleDescription = "";
           this.articleTags = [];
-          //this.$store.dispatch("requestAddons");
         })
         .catch(error => {
           console.log(error.message); // change to error message on screen

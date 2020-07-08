@@ -65,7 +65,6 @@ var Macy = __webpack_require__(/*! macy */ "./node_modules/macy/dist/macy.js");
     getArticles: function getArticles(index) {
       var _this = this;
 
-      // var tagselection = subhomeDoc.pages.find(element => element.name === this.subject);
       axios.post("/article/getarticles/?page=" + index, {
         tagselection: this.subject
       }).then(function (response) {
