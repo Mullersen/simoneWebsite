@@ -69,8 +69,8 @@ class HomeController extends Controller
         }
     }
     public function getComments(Request $request){
-        $articleId = \App\Article::where('header', $request->header)->value('id');
-        $comments = \App\Comment::where('article_id', '=', $articleId);
+        $articleId = \App\Article::where('header', '=', $request->header)->value('id');
+        $comments = \App\Comment::where('article_id', '=', $articleId)->with('user')->get();
          return response()->json(['comments' => $comments]);
     }
 }

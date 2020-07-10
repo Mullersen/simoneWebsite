@@ -15,8 +15,11 @@
                 </div>
             </div>
         </div>
-        <button class="button"
-            @click="getArticles(paginationCollection.articles.current_page+1)">Flere Artikler</button>
+        <div v-if="articles.length >= 1" class="columns is-centered">
+            <button class="button subtitle"
+            @click="getArticles(paginationCollection.articles.current_page+1)">Læs mere</button>
+        </div>
+        
     </section>
 </div>
 </template>
@@ -112,5 +115,8 @@ export default {
 }
 .hidden{
     visibility:hidden;
+}
+.button{
+    border: none !important;
 }
 </style>

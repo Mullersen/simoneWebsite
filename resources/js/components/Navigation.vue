@@ -6,7 +6,7 @@
           <a class="navbar-item" href="/">
             <img
               id="logo"
-              src="/images/logo_2.png"
+              src="/images/logo.png"
               alt="essou.dk - skift stress ud med selvindsigt, balance og ro"
             />
           </a>
@@ -36,17 +36,15 @@
               href="logout"
               @click.prevent="submitLogoutForm"
             >LOG UD</a>
-            <div v-else class="navbar-item">
-              <a class="navbar-item" href="/login">LOG IND</a>
-              <a class="navbar-item" href="/register">TILMELD</a>
-            </div>
+              <a v-if="user.length <1" class="navbar-item" href="/login">LOG IND</a>
+              <a v-if="user.length <1" class="navbar-item" href="/register">TILMELD</a>
             <router-link class="navbar-item" :to="{ name: 'search' }">
               <img src="/images/search.png" alt="Søg på essou om stress eller balance" />
             </router-link>
             <a
               class="navbar-item"
               target="_blank"
-              href="https://www.instagram.com/simoneloekke/?hl=da"
+              href="https://www.instagram.com/essou___official/"
             >
               <img src="/images/glyph-logo_May2016.png" alt="Instagram logo" />
             </a>
@@ -128,8 +126,12 @@ export default {
   min-height: 6rem;
 }
 .navbar-background{
-    background-color: white;
+    background-color: #E0D7C8 !important;
     opacity:.93;
 }
+.navbar-item img{
+    max-height: 1rem;
+}
+
 
 </style>

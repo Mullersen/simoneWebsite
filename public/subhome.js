@@ -35,6 +35,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
 var Macy = __webpack_require__(/*! macy */ "./node_modules/macy/dist/macy.js");
@@ -182,7 +185,9 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   mounted: function mounted() {
-    document.getElementById('citat').classList.add('visible');
+    setTimeout(function () {
+      document.getElementById('citation').classList.add('visible');
+    }, 500);
   }
 });
 
@@ -200,7 +205,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.card[data-v-000b637e]{\n    word-break: break-all;\n    padding: 1rem;\n    box-shadow: none !important;\n}\n.hidden[data-v-000b637e]{\n    visibility:hidden;\n}\n", ""]);
+exports.push([module.i, "\n.card[data-v-000b637e]{\n    word-break: break-all;\n    padding: 1rem;\n    box-shadow: none !important;\n}\n.hidden[data-v-000b637e]{\n    visibility:hidden;\n}\n.button[data-v-000b637e]{\n    border: none !important;\n}\n", ""]);
 
 // exports
 
@@ -307,20 +312,24 @@ var render = function() {
           ])
         ]),
         _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass: "button",
-            on: {
-              click: function($event) {
-                return _vm.getArticles(
-                  _vm.paginationCollection.articles.current_page + 1
-                )
-              }
-            }
-          },
-          [_vm._v("Flere Artikler")]
-        )
+        _vm.articles.length >= 1
+          ? _c("div", { staticClass: "columns is-centered" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "button subtitle",
+                  on: {
+                    click: function($event) {
+                      return _vm.getArticles(
+                        _vm.paginationCollection.articles.current_page + 1
+                      )
+                    }
+                  }
+                },
+                [_vm._v("Læs mere")]
+              )
+            ])
+          : _vm._e()
       ]
     )
   ])
@@ -373,9 +382,11 @@ var render = function() {
       ),
       _vm._v(" "),
       _c("section", { staticClass: "section is-medium has-text-centered" }, [
-        _c("p", { staticClass: "subtitle reveal", attrs: { id: "citat" } }, [
-          _vm._v('"' + _vm._s(_vm.subjectPage.citation) + '"')
-        ])
+        _c(
+          "p",
+          { staticClass: "title citat reveal", attrs: { id: "citation" } },
+          [_vm._v(_vm._s(_vm.subjectPage.citation))]
+        )
       ]),
       _vm._v(" "),
       _vm.subject == "Om"

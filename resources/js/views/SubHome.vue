@@ -11,7 +11,7 @@
       </div>
     </div>
     <section class="section is-medium has-text-centered">
-        <p id="citat" class="subtitle reveal">"{{subjectPage.citation}}"</p>
+        <p id="citation" class="title citat reveal">{{subjectPage.citation}}</p>
     </section>
     <div v-if="subject == 'Om'">
         <h2>
@@ -52,7 +52,9 @@ export default {
         }
     },
     mounted(){
-        document.getElementById('citat').classList.add('visible');
+        setTimeout(function(){
+            document.getElementById('citation').classList.add('visible');
+        },500)
     }
 }
 </script>

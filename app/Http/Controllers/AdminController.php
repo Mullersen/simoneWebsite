@@ -20,7 +20,6 @@ class AdminController extends Controller
             $article->header = $request->title;
             $article->content = $request->description;
             $article->header_image = $request->file('header_image')->store('images');
-            $article->secondary_image = $request->file('secondary_image')->store('images');
 
             $article->save();
 

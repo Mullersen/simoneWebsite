@@ -35,6 +35,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
 var Macy = __webpack_require__(/*! macy */ "./node_modules/macy/dist/macy.js");
@@ -148,14 +151,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
 var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
 
@@ -207,7 +202,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.card[data-v-000b637e]{\n    word-break: break-all;\n    padding: 1rem;\n    box-shadow: none !important;\n}\n.hidden[data-v-000b637e]{\n    visibility:hidden;\n}\n", ""]);
+exports.push([module.i, "\n.card[data-v-000b637e]{\n    word-break: break-all;\n    padding: 1rem;\n    box-shadow: none !important;\n}\n.hidden[data-v-000b637e]{\n    visibility:hidden;\n}\n.button[data-v-000b637e]{\n    border: none !important;\n}\n", ""]);
 
 // exports
 
@@ -363,20 +358,24 @@ var render = function() {
           ])
         ]),
         _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass: "button",
-            on: {
-              click: function($event) {
-                return _vm.getArticles(
-                  _vm.paginationCollection.articles.current_page + 1
-                )
-              }
-            }
-          },
-          [_vm._v("Flere Artikler")]
-        )
+        _vm.articles.length >= 1
+          ? _c("div", { staticClass: "columns is-centered" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "button subtitle",
+                  on: {
+                    click: function($event) {
+                      return _vm.getArticles(
+                        _vm.paginationCollection.articles.current_page + 1
+                      )
+                    }
+                  }
+                },
+                [_vm._v("Læs mere")]
+              )
+            ])
+          : _vm._e()
       ]
     )
   ])
@@ -406,7 +405,7 @@ var render = function() {
   return _c(
     "div",
     [
-      _c("div", { staticClass: "hero is-large has-bg-img" }, [
+      _c("div", { staticClass: "hero is-fullheight has-bg-img" }, [
         _c(
           "div",
           { staticClass: "hero-head" },
@@ -416,7 +415,7 @@ var render = function() {
         _vm._v(" "),
         _c("div", { staticClass: "hero-body" }, [
           _c("div", { staticClass: "container has-text-centered" }, [
-            _c("h1", { staticClass: "myTitle" }, [_vm._v("Søg")]),
+            _c("h1", { staticClass: "title" }, [_vm._v("SØG")]),
             _vm._v(" "),
             _c("div", { staticClass: "field has-addons" }, [
               _c("div", { staticClass: "control is-expanded" }, [
@@ -463,8 +462,6 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _vm._m(0),
-      _vm._v(" "),
       _c("ArticleGrid", {
         key: _vm.rerenderKey,
         attrs: { subject: _vm.subject }
@@ -473,26 +470,7 @@ var render = function() {
     1
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("section", { staticClass: "section is-small" }, [
-      _c("div", { staticClass: "container" }, [
-        _c(
-          "p",
-          {
-            staticClass:
-              "reveal subtitle is-italic has-text-weight-bold has-text-centered",
-            attrs: { id: "citat" }
-          },
-          [_vm._v('"At søge er at finde sig selv"')]
-        )
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

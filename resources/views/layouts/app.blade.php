@@ -7,6 +7,8 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    <link rel="icon" href="/images/icon.png">
+
     <title>essou</title>
 
     <!-- Styles -->
@@ -34,9 +36,8 @@
                                 // reverse: false,
 							})
 							.setClassToggle(revealElements[i], "visible") // add class toggle
-							.addIndicators({name: "digit " + (i+1) }) // add indicators (requires plugin)
+							// .addIndicators({name: "digit " + (i+1) }) // add indicators (requires plugin)
                             .addTo(controller);
-
         }
 
 

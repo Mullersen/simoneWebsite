@@ -1,12 +1,12 @@
 <template>
   <div>
-    <div class="hero is-large has-bg-img">
+    <div class="hero is-fullheight has-bg-img">
       <div class="hero-head">
         <NavigationBar v-bind:user="this.user"></NavigationBar>
       </div>
       <div class="hero-body">
         <div class="container has-text-centered">
-          <h1 class="myTitle">Søg</h1>
+          <h1 class="title">SØG</h1>
           <div class="field has-addons">
               <div class="control is-expanded">
                   <input class="input" v-model="search" type="text" placeholder="Søg artikler efter emne">
@@ -18,14 +18,6 @@
         </div>
       </div>
     </div>
-    <section class="section is-small">
-      <div class="container">
-        <p
-        id="citat"
-          class="reveal subtitle is-italic has-text-weight-bold has-text-centered"
-        >"At søge er at finde sig selv"</p>
-      </div>
-    </section>
     <ArticleGrid v-bind:subject="subject" :key="rerenderKey"/>
   </div>
 </template>

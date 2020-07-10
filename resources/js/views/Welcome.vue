@@ -13,8 +13,8 @@
     <section class="section is-small">
       <div class="container">
         <p
-          class="reveal subtitle is-italic has-text-weight-bold has-text-centered"
-        >"Tag en dyb indånding"</p>
+          class="reveal title citat is-italic has-text-weight-bold has-text-centered"
+        >Tag en dyb indånding.</p>
       </div>
     </section>
     <section class="section">
@@ -50,8 +50,8 @@
     <section class="section is-small">
       <div class="container">
         <p
-          class="reveal subtitle is-italic has-text-weight-bold has-text-centered"
-        >"Tag en dyb indånding"</p>
+          class="reveal title citat is-italic has-text-weight-bold has-text-centered"
+        >Lad stress være årsagen til, at dit liv blev bedre.</p>
       </div>
     </section>
     <section class="section">

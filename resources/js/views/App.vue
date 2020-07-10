@@ -1,14 +1,18 @@
 <template>
   <div>
     <transition name="fade" mode="out-in">
-        <router-view :key="$route.path" v-bind:user="this.user" v-bind:csrf="this.csrf"/>
+      <router-view :key="$route.path" v-bind:user="this.user" v-bind:csrf="this.csrf" />
     </transition>
     <footer class="footer" id="footer">
-        <div class="content has-text-centered">
-            <p class="content footerContent"><strong>© essou 2020</strong></p>
-            <p class="content footerContent">København</p>
-            <p class="content footerContent">Design og Webudvikling: Mariann Haugland</p>
+      <div class="container">
+        <div class="content">
+          <p class="content footerContent">
+            <strong>© essou 2020</strong>
+          </p>
+          <p class="content footerContent">kontakt@essou.dk</p>
+          <p class="content footerContent">Design og webudvikling: Mariann Haugland</p>
         </div>
+      </div>
     </footer>
   </div>
 </template>
@@ -20,7 +24,6 @@ export default {
     user: "",
     csrf: ""
   }
-
 };
 </script>
 
@@ -34,10 +37,10 @@ a:hover {
 }
 .reveal {
   opacity: 0;
-  -webkit-transform:translateY(60px);
-  -moz-transform:translateY(60px);
-  -ms-transform:translateY(60px);
-  -o-transform:translateY(60px);
+  -webkit-transform: translateY(60px);
+  -moz-transform: translateY(60px);
+  -ms-transform: translateY(60px);
+  -o-transform: translateY(60px);
   transform: translateY(60px);
   -webkit-transition: all 1s ease-in-out;
   -moz-transition: all 1s ease-in-out;
@@ -53,16 +56,21 @@ a:hover {
   -o-transform: none;
   transform: none;
 }
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .8s;
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.8s;
 }
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;
 }
-#footer{
-    background-color: #e0d7c8;
+#footer {
+  background-color: #e0d7c8;
 }
-.footerContent{
-    color: #36453b;
+.footerContent {
+  color: #36453b;
+}
+.citat {
+  color: #955748;
+  font-size: 2.5rem;
 }
 </style>

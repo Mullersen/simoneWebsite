@@ -32,18 +32,6 @@
           ></textarea>
         </div>
       </div>
-      <div class="field">
-        <label class="label">Sekundært billede</label>
-        <div class="control">
-          <input
-            class="input"
-            id="file"
-            type="file"
-            ref="secondFile"
-            v-on:change="handleFileUpload1()"
-          />
-        </div>
-      </div>
     </div>
     <div class="box">
       <p class="subtitle">Artikel Tags</p>
@@ -104,7 +92,6 @@ export default {
       NewArticleTags: "",
       selectedTags: [],
       firstFile: "",
-      secondFile: "",
       existingTags: [],
       articleTags: []
     };
@@ -113,10 +100,6 @@ export default {
     handleFileUpload: function() {
       this.firstFile = this.$refs.firstFile.files[0];
       console.log(this.firstFile);
-    },
-    handleFileUpload1: function() {
-      this.secondFile = this.$refs.secondFile.files[0];
-      console.log(this.secondFile);
     },
     getTags: function() {
       axios
@@ -143,7 +126,6 @@ export default {
     uploadArticle: function() {
       let formData = new FormData();
       formData.append("header_image", this.firstFile);
-      formData.append("secondary_image", this.secondFile);
       formData.append("title", this.NewArticleTitle);
       formData.append("description", this.NewArticleDescription);
       formData.append("tags", this.articleTags);
@@ -157,7 +139,6 @@ export default {
         .then(response => {
           console.log(response.data);
           this.firstFile = "";
-          this.secondFile = "";
           this.NewArticleTitle = "";
           this.NewArticleDescription = "";
           this.articleTags = [];

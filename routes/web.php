@@ -38,8 +38,9 @@ Route::get('/article/getAllArticles', 'HomeController@getAllArticles');
 Route::post('/article/uploadArticle', 'AdminController@uploadArticle');
 Route::post("/addons/deleteArticle", "HomeController@deleteArticle");
 Route::get('/article/getTags', 'HomeController@getTags');
-Route::post('/comment/sendcomment', 'HomeController@sendComment');
+Route::post('/comment/sendcomment', 'HomeController@sendComment')->middleware('auth');;
 Route::post('/comment/getcomments', 'HomeController@getComments');
+Route::post("/comment/deleteComment", 'HomeController@deleteComment')->middleware('auth');;
 Route::post('/search/searchArticles', 'HomeController@searchArticles');
 
 

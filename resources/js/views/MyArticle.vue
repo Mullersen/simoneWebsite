@@ -2,7 +2,7 @@
   <div>
     <section
       class="hero is-medium"
-      v-bind:style="{ backgroundImage: 'url(/' + article.image +')' }"
+      v-bind:style="{ backgroundImage: 'url(/' + article.header_image +')' }"
     >
       <div class="hero-head">
         <NavigationBar v-bind:user="this.user"></NavigationBar>
@@ -17,27 +17,34 @@
     <section class="section">
       <div class="container">{{article.content}}</div>
     </section>
-    <section class="section is-small" v-if="user.length > 1">
+    <section class="secction is-small">
       <div class="container" v-if="this.comments.length >=1">
+          <p class="subtitle">Kommentarer</p>
         <div class="columns">
           <div class="column is-half">
-            <div v-for="comment in this.comments" :key="comment.id">
+            <div v-for="comment in comments" :key="comment.id">
               <p>{{comment.content}}</p>
-              <h6>{{comment.user_id}}</h6>
+              <h6 class="cName">{{comment.user.name}}</h6>
+              <div v-if="commment.user.name === this.user">
+                  <button class="button is-small" @click.once="deleteComment(comment.id)">
+                      Slet
+                  </button>
+              </div>
             </div>
           </div>
         </div>
       </div>
+    </section>
+    <section class="section is-small" v-if="user.length > 1">
       <div class="box">
         <div class="field">
-          <label class="label">Kommenter</label>
           <div class="control">
             <textarea v-model="comment" class="textarea" rows="3" placeholder="Din kommentar"></textarea>
           </div>
         </div>
         <div>
           <div class="control">
-            <button class="button is-link" @click="sendComment">Indsend</button>
+            <button class="button is-link" @click.once="sendComment">Kommenter</button>
           </div>
         </div>
       </div>
@@ -85,8 +92,8 @@ export default {
           header: this.header
         })
         .then(response => {
-          console.log(response.data);
-          this.comments.push(response.data.comments);
+          console.log(response.data.comments[0]);
+          this.comments.push(response.data.comments[0]);
         })
         .catch(error => {
           console.log(error.message); // change to error message on screen
@@ -101,6 +108,19 @@ export default {
         })
         .then(response => {
           console.log(response.data);
+        })
+        .catch(error => {
+          console.log(error.message); // change to error message on screen
+        });
+    },
+    deleteComment: function(id){
+    axios
+        .post("/comment/deleteComment", {
+          id: id
+        })
+        .then(response => {
+          console.log(response.data);
+            this.getComments();
         })
         .catch(error => {
           console.log(error.message); // change to error message on screen
@@ -128,5 +148,8 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.cName{
+    border-bottom: 1px black solid;
+}
 </style>
