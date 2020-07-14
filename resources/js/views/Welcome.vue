@@ -51,7 +51,7 @@
       <div class="container">
         <p
           class="reveal title citat is-italic has-text-weight-bold has-text-centered"
-        >Lad stress være årsagen til, at dit liv blev bedre.</p>
+        >Bliv bevidst om dine behov, vælg det til som giver værdi og vær tålmodig med processen.</p>
       </div>
     </section>
     <section class="section">

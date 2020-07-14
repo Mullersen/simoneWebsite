@@ -154,6 +154,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -183,11 +199,6 @@ __webpack_require__.r(__webpack_exports__);
         return element.name === _this.subject;
       });
     }
-  },
-  mounted: function mounted() {
-    setTimeout(function () {
-      document.getElementById('citation').classList.add('visible');
-    }, 500);
   }
 });
 
@@ -384,27 +395,149 @@ var render = function() {
       _c("section", { staticClass: "section is-medium has-text-centered" }, [
         _c(
           "p",
-          { staticClass: "title citat reveal", attrs: { id: "citation" } },
+          {
+            directives: [
+              { name: "scrollanimation", rawName: "v-scrollanimation" }
+            ],
+            staticClass: "title citat",
+            attrs: { id: "citation" }
+          },
           [_vm._v(_vm._s(_vm.subjectPage.citation))]
         )
       ]),
       _vm._v(" "),
-      _vm.subject == "Om"
+      _vm.subject == "OM"
         ? _c("div", [
-            _c("h2", [
-              _vm._v("\n          her skal der stå noget om essou\n      ")
-            ])
+            _c(
+              "section",
+              { staticClass: "section is-medium has-text-centered" },
+              [
+                _c("div", { staticClass: "container" }, [
+                  _c(
+                    "p",
+                    {
+                      directives: [
+                        {
+                          name: "scrollanimation",
+                          rawName: "v-scrollanimation"
+                        }
+                      ],
+                      staticClass: "content"
+                    },
+                    [
+                      _vm._v(
+                        "essou er en platform, hvor din mentale sundhed og balance er i fokus. Gennem deling af personlige erfaringer, faglig viden og kærlige værktøjer til dagligdagen ønsker vi at inspirere til en kultur, hvor du står øverst på to-do listen. Vi vil bidrage til en nuancering af, hvilken betydning og påvirkning stress har for den enkelte gennem fortællinger, man kan spejle sig i, og hvor den positive vinkel skaber håb om, at stress kan være en øjenåbner og anledning til at ændre retning i livet. Ved at se travlhed og stress som en mulighed for at gentænke din livsstil samt genfinde dig selv og dine værdier, kan du designe en mere meningsfuld tilværelse med alt det, der opløfter dig. Du har ansvaret og evnerne til at skabe dit bedste liv, og det er vores intention at styrke din bevidsthed om, hvordan det kan se ud i praksis."
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("br"),
+                  _vm._v(" "),
+                  _c("h1", { staticClass: "title" }, [_vm._v("☯☯☯")]),
+                  _vm._v(" "),
+                  _c("br"),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "subtitle" }, [
+                    _vm._v("For spørgsmål eller samarbejde")
+                  ]),
+                  _vm._v(" "),
+                  _vm._m(0),
+                  _vm._v(" "),
+                  _c("br"),
+                  _vm._v(" "),
+                  _c(
+                    "h2",
+                    {
+                      directives: [
+                        {
+                          name: "scrollanimation",
+                          rawName: "v-scrollanimation"
+                        }
+                      ],
+                      staticClass: "subtitle"
+                    },
+                    [_vm._v("BIOGRAFI")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "p",
+                    {
+                      directives: [
+                        {
+                          name: "scrollanimation",
+                          rawName: "v-scrollanimation"
+                        }
+                      ],
+                      staticClass: "content"
+                    },
+                    [
+                      _vm._v(
+                        "Simone Løkke er cand.merc i strategisk kommunikation og marketing fra Copenhagen Business School og har senest arbejdet med sociale medier, marketing, PR og events. Som følge af stress har hendes personlige rejse affødt en nysgerrighed for udvikling, selvindsigt og bevidsthed, der netop har resulteret i gennemførelsen af et seks måneders intensivt coachingforløb om menneskets og sindets potentiale."
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "p",
+                    {
+                      directives: [
+                        {
+                          name: "scrollanimation",
+                          rawName: "v-scrollanimation"
+                        }
+                      ],
+                      staticClass: "content"
+                    },
+                    [
+                      _vm._v(
+                        "“For mig var stress reaktionen på en årelang negligering af mig selv og mine behov. Det blev en omvej i den rigtige retning med livslektien om at sænke tempoet, sætte grænser, sige nej tak og fylde min egen kop op før andres. Jeg nyder i dag et liv med langt større glæde, overskud og balance, og det er derfor mit ønske at være ambassadør for, at stress kan være en konstruktiv mulighed for at skabe en hverdag i større overensstemmelse med din essens. Denne platform er manifestationen af det indre arbejde med mig selv og drømmen om at viderebringe min viden og erfaring til gavn for dig. Jeg er ufatteligt taknemmelig for, at du læser med og håber, at du vil blive inspireret til at foretage kærlige ændringer i dit eget liv.”"
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "p",
+                    {
+                      directives: [
+                        {
+                          name: "scrollanimation",
+                          rawName: "v-scrollanimation"
+                        }
+                      ],
+                      staticClass: "content is-italic"
+                    },
+                    [_vm._v("__ Simone Løkke")]
+                  )
+                ])
+              ]
+            )
           ])
         : _vm._e(),
       _vm._v(" "),
-      _c("ArticleGrid", { attrs: { subject: _vm.subject } }),
+      _c("ArticleGrid", {
+        directives: [{ name: "scrollanimation", rawName: "v-scrollanimation" }],
+        attrs: { subject: _vm.subject }
+      }),
       _vm._v(" "),
-      _c("InstagramGrid")
+      _c("InstagramGrid", {
+        directives: [{ name: "scrollanimation", rawName: "v-scrollanimation" }]
+      })
     ],
     1
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", { staticClass: "content" }, [
+      _c("a", { attrs: { href: "mailto:kontakt@essou.dk" } }, [
+        _vm._v("kontakt@essou.dk")
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 

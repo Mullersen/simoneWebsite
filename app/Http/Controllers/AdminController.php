@@ -29,4 +29,19 @@ class AdminController extends Controller
             return response()->json(['the new article' => $article]);
         }
     }
+    public function deleteArticle(Request $request){
+        if(Auth::user()->id === 1){
+        \App\Article::find($request->id)->untag();
+        \App\Article::where('id', '=', $request->id)->delete();
+        return response()->json(['article' => 'deleted']);
+        }
+    }
+    public function getAutofillTags(Request $request){
+        if(Auth::user()->id === 1){
+            $article = \App\Article::find($request->id);
+            $tags = $article->tags;
+            return response()->json(['tags' => $tags]);
+        }
+    }
+
 }

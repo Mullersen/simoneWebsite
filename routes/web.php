@@ -35,12 +35,13 @@ Route::post('/article/getarticles/', 'HomeController@getArticles');
 Route::get('/articles/getfpArticles', 'HomeController@getfpArticles');
 Route::post('/articles/getarticle', 'HomeController@getArticle');
 Route::get('/article/getAllArticles', 'HomeController@getAllArticles');
-Route::post('/article/uploadArticle', 'AdminController@uploadArticle');
-Route::post("/addons/deleteArticle", "HomeController@deleteArticle");
+Route::post('/article/uploadArticle', 'AdminController@uploadArticle')->middleware('auth');
+Route::post("/addons/deleteArticle", "AdminController@deleteArticle")->middleware('auth');
 Route::get('/article/getTags', 'HomeController@getTags');
-Route::post('/comment/sendcomment', 'HomeController@sendComment')->middleware('auth');;
+Route::post('/article/getAutofillTags', 'AdminController@getAutofillTags')->middleware('Auth');
+Route::post('/comment/sendcomment', 'HomeController@sendComment')->middleware('auth');
 Route::post('/comment/getcomments', 'HomeController@getComments');
-Route::post("/comment/deleteComment", 'HomeController@deleteComment')->middleware('auth');;
+Route::post("/comment/deleteComment", 'HomeController@deleteComment')->middleware('auth');
 Route::post('/search/searchArticles', 'HomeController@searchArticles');
 
 

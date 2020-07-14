@@ -18,7 +18,7 @@
         </div>
       </div>
     </div>
-    <ArticleGrid v-bind:subject="subject" :key="rerenderKey"/>
+    <ArticleGrid v-scrollanimation v-bind:subject="subject" :key="rerenderKey"/>
   </div>
 </template>
 
@@ -55,9 +55,6 @@ export default {
             this.rerenderKey +=1;
         }
     },
-     mounted(){
-        document.getElementById('citat').classList.add('visible');
-    }
 }
 </script>
 

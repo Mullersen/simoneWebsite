@@ -5,6 +5,9 @@
  */
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import ScrollAnimation from './scrollanimation.js'
+
+Vue.directive('scrollanimation', ScrollAnimation);
 
 Vue.use(VueRouter)
 

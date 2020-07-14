@@ -17,15 +17,15 @@
     <section class="section">
       <div class="container">{{article.content}}</div>
     </section>
-    <section class="secction is-small">
+    <section class="section is-small">
       <div class="container" v-if="this.comments.length >=1">
           <p class="subtitle">Kommentarer</p>
         <div class="columns">
           <div class="column is-half">
-            <div v-for="comment in comments" :key="comment.id">
+            <div v-for="(comment, index) in comments" :key="index">
               <p>{{comment.content}}</p>
               <h6 class="cName">{{comment.user.name}}</h6>
-              <div v-if="commment.user.name === this.user">
+              <div v-if="comment.user.name === user">
                   <button class="button is-small" @click.once="deleteComment(comment.id)">
                       Slet
                   </button>
@@ -92,8 +92,11 @@ export default {
           header: this.header
         })
         .then(response => {
-          console.log(response.data.comments[0]);
-          this.comments.push(response.data.comments[0]);
+          console.log(response.data);
+          if(response.data.comments.length >= 1){
+              this.comments.push(response.data.comments[0]);
+          }
+ 
         })
         .catch(error => {
           console.log(error.message); // change to error message on screen
@@ -108,15 +111,17 @@ export default {
         })
         .then(response => {
           console.log(response.data);
+          this.comment = "";
         })
         .catch(error => {
           console.log(error.message); // change to error message on screen
         });
     },
-    deleteComment: function(id){
+    deleteComment: function(comment_id){
     axios
         .post("/comment/deleteComment", {
-          id: id
+          comment_id: comment_id,
+          user_name: this.user
         })
         .then(response => {
           console.log(response.data);

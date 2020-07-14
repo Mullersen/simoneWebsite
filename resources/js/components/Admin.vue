@@ -13,9 +13,11 @@
             <div class="column has-text-centered" >
                 <p class="title has-text-primary" style="padding-top: 1rem;">Du er logget ind som admin</p>
                 <div v-if="toggleArticles == true">
+                    <h2>Ny artikel</h2>
                     <AdminArticle/>
                 </div>
                 <div v-if="toggleImages == true">
+                    <h2>Rediger og slet artikler</h2>
                     <AdminArticles/>
                 </div>
             </div>

@@ -1,11 +1,11 @@
 <template>
   <div>
     <div class="box">
-      <p class="subtitle">Artikel</p>
+      <p class="subtitle">Rediger Artikel</p>
       <div class="field">
         <label class="label">Titel</label>
         <div class="control">
-          <input class="input" v-model="NewArticleTitle" type="text" placeholder="Titel" />
+          <input class="input" v-model="this.chosenArticle.header" type="text" placeholder="Titel" />
         </div>
       </div>
       <div class="field">
@@ -25,7 +25,7 @@
         <div class="control">
           <textarea
             class="textarea"
-            v-model="NewArticleDescription"
+            v-model="this.chosenArticle.content"
             type="text"
             placeholder="Artiklens Brødtekst"
             rows="15"
@@ -80,25 +80,30 @@
   </div>
 </template>
 
+
 <script>
 const axios = require("axios");
-
 export default {
-  name: "AdminArticle",
-
-  data: function() {
-    return {
-      NewArticleTitle: "",
+name : "AdminEditArticle",
+  props: {
+      chosenArticle: {
+          type: Object,
+          required:true
+      },
+  },
+  data: function(){
+      return{
+        NewArticleTitle: "",
       NewArticleDescription: "",
       NewArticleTags: "",
       selectedTags: [],
       firstFile: "",
       existingTags: [],
       articleTags: [],
-    };
+      }
   },
   methods: {
-    handleFileUpload: function() {
+      handleFileUpload: function() {
       this.firstFile = this.$refs.firstFile.files[0];
       console.log(this.firstFile);
     },
@@ -124,36 +129,27 @@ export default {
       this.articleTags = finalTags;
       console.log(this.articleTags);
     },
-    uploadArticle: function() {
-      let formData = new FormData();
-      formData.append("header_image", this.firstFile);
-      formData.append("title", this.NewArticleTitle);
-      formData.append("description", this.NewArticleDescription);
-      formData.append("tags", this.articleTags);
-      axios
-        .post("/article/uploadArticle", formData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-            "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
-          }
+    autofillTags: function(){
+        console.log(this.chosenArticle.id);
+        axios
+        .post("/article/getAutofillTags", {
+            id: this.chosenArticle.id
         })
         .then(response => {
-          console.log(response.data);
-          this.firstFile = "";
-          this.NewArticleTitle = "";
-          this.NewArticleDescription = "";
-          this.articleTags = [];
+          console.log(response.data.tags);
+          this.articleTags = response.data.tags;
         })
         .catch(error => {
-          console.log(error.message); // change to error message on screen
+          console.log(error.message);
         });
-    }
+    },
   },
-  mounted() {
-    this.getTags();
+  mounted(){
+      this.autofillTags();
   }
-};
+}
 </script>
 
 <style>
+
 </style>

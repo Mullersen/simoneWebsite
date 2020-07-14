@@ -182,9 +182,6 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
       this.subject = str;
       this.rerenderKey += 1;
     }
-  },
-  mounted: function mounted() {
-    document.getElementById('citat').classList.add('visible');
   }
 });
 
@@ -463,6 +460,7 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("ArticleGrid", {
+        directives: [{ name: "scrollanimation", rawName: "v-scrollanimation" }],
         key: _vm.rerenderKey,
         attrs: { subject: _vm.subject }
       })

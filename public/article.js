@@ -105,46 +105,52 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
       axios.post("/comment/getcomments", {
         header: this.header
       }).then(function (response) {
-        console.log(response.data.comments[0]);
+        console.log(response.data);
 
-        _this.comments.push(response.data.comments[0]);
+        if (response.data.comments.length >= 1) {
+          _this.comments.push(response.data.comments[0]);
+        }
       })["catch"](function (error) {
         console.log(error.message); // change to error message on screen
       });
     },
     sendComment: function sendComment() {
+      var _this2 = this;
+
       axios.post("/comment/sendcomment", {
         content: this.comment,
         user: this.user,
         header: this.header
       }).then(function (response) {
         console.log(response.data);
+        _this2.comment = "";
       })["catch"](function (error) {
         console.log(error.message); // change to error message on screen
       });
     },
-    deleteComment: function deleteComment(id) {
-      var _this2 = this;
+    deleteComment: function deleteComment(comment_id) {
+      var _this3 = this;
 
       axios.post("/comment/deleteComment", {
-        id: id
+        comment_id: comment_id,
+        user_name: this.user
       }).then(function (response) {
         console.log(response.data);
 
-        _this2.getComments();
+        _this3.getComments();
       })["catch"](function (error) {
         console.log(error.message); // change to error message on screen
       });
     },
     getArticle: function getArticle() {
-      var _this3 = this;
+      var _this4 = this;
 
       console.log(this.header);
       axios.post("/articles/getarticle", {
         header: this.header
       }).then(function (response) {
         console.log(response.data.article[0]);
-        _this3.article = response.data.article[0];
+        _this4.article = response.data.article[0];
       })["catch"](function (error) {
         console.log(error.message); // change to error message on screen
       });
@@ -257,7 +263,7 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _c("section", { staticClass: "secction is-small" }, [
+    _c("section", { staticClass: "section is-small" }, [
       this.comments.length >= 1
         ? _c("div", { staticClass: "container" }, [
             _c("p", { staticClass: "subtitle" }, [_vm._v("Kommentarer")]),
@@ -266,15 +272,15 @@ var render = function() {
               _c(
                 "div",
                 { staticClass: "column is-half" },
-                _vm._l(_vm.comments, function(comment) {
-                  return _c("div", { key: comment.id }, [
+                _vm._l(_vm.comments, function(comment, index) {
+                  return _c("div", { key: index }, [
                     _c("p", [_vm._v(_vm._s(comment.content))]),
                     _vm._v(" "),
                     _c("h6", { staticClass: "cName" }, [
                       _vm._v(_vm._s(comment.user.name))
                     ]),
                     _vm._v(" "),
-                    _vm.commment.user.name === this.user
+                    comment.user.name === _vm.user
                       ? _c("div", [
                           _c(
                             "button",

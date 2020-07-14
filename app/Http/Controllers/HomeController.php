@@ -32,11 +32,6 @@ class HomeController extends Controller
         $articles = \App\Article::all();
         return response()->json(['articles' => $articles]);
     }
-    public function deleteArticle(Request $request){
-        \App\Article::find($request->id)->untag();
-        \App\Article::where('id', '=', $request->id)->delete();
-        return response()->json(['article' => 'deleted']);
-    }
 
     public function getArticles(Request $request){
         $articles = \App\Article::withTag($request->tagselection)->orderBy('created_at', 'DESC')->paginate(10);
@@ -72,5 +67,11 @@ class HomeController extends Controller
         $articleId = \App\Article::where('header', '=', $request->header)->value('id');
         $comments = \App\Comment::where('article_id', '=', $articleId)->with('user')->get();
          return response()->json(['comments' => $comments]);
+    }
+    public function deleteComment(Request $request){
+            if(Auth::user()->name === $request->user_name){
+            \App\Comment::where('id', '=', $request->comment_id)->delete();
+            return response()->json(['comment' => 'deleted']);
+            }
     }
 }
