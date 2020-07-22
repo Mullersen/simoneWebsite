@@ -170,6 +170,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 
@@ -309,9 +311,14 @@ var render = function() {
                           _vm._v(_vm._s(_vm.formatDate(article.created_at)))
                         ]),
                         _vm._v(" "),
-                        _c("p", { staticClass: "content" }, [
-                          _vm._v(_vm._s(article.content.slice(0, 180)) + "...")
-                        ])
+                        _c("p", {
+                          staticClass: "content",
+                          domProps: {
+                            innerHTML: _vm._s(
+                              article.content.slice(0, 180) + "..."
+                            )
+                          }
+                        })
                       ]
                     )
                   ],
@@ -433,7 +440,226 @@ var render = function() {
                   _vm._v(" "),
                   _c("br"),
                   _vm._v(" "),
-                  _c("h1", { staticClass: "title" }, [_vm._v("☯☯☯")]),
+                  _c("h1", { staticClass: "title" }, [
+                    _c(
+                      "svg",
+                      {
+                        staticStyle: { height: "32px", width: "32px" },
+                        attrs: {
+                          xmlns: "http://www.w3.org/2000/svg",
+                          viewBox: "0 0 512 512"
+                        }
+                      },
+                      [
+                        _c("path", {
+                          attrs: {
+                            d: "M0 0h512v512H0z",
+                            fill: "#000000",
+                            "fill-opacity": "0.01"
+                          }
+                        }),
+                        _c(
+                          "g",
+                          {
+                            staticStyle: { "touch-action": "none" },
+                            attrs: { transform: "translate(0,0)" }
+                          },
+                          [
+                            _c(
+                              "g",
+                              {
+                                attrs: {
+                                  transform:
+                                    "translate(0, 0) scale(1, 1) rotate(-90, 256, 256)"
+                                }
+                              },
+                              [
+                                _c("path", {
+                                  attrs: {
+                                    d:
+                                      "M256 23C127.424 23 23 127.424 23 256C23 384.576 127.424 489 256 489C384.576 489 489 384.576 489 256C489 127.424 384.576 23 256 23Z",
+                                    fill: "#000000",
+                                    "fill-opacity": "1"
+                                  }
+                                }),
+                                _c("path", {
+                                  attrs: {
+                                    d:
+                                      "M249.906 41.09C128.036 47.807 130.066 256 256 256C381.215 256 383.935 461.872 264.168 470.83C261.458 470.93 258.736 471 256 471C137.152 471 41 374.848 41 256C41 139.19 133.883 44.31 249.906 41.09Z",
+                                    fill: "#ffffff",
+                                    "fill-opacity": "1"
+                                  }
+                                }),
+                                _c("path", {
+                                  attrs: {
+                                    d:
+                                      "M256 103C278.537 103 297 121.463 297 144C297 166.537 278.537 185 256 185C233.463 185 215 166.537 215 144C215 121.463 233.463 103 256 103Z",
+                                    fill: "#ffffff",
+                                    "fill-opacity": "1"
+                                  }
+                                }),
+                                _c("path", {
+                                  staticClass: "selected",
+                                  attrs: {
+                                    d:
+                                      "M256 327C233.463 327 215 345.463 215 368C215 390.537 233.463 409 256 409C278.537 409 297 390.537 297 368C297 345.463 278.537 327 256 327Z",
+                                    fill: "#000000",
+                                    "fill-opacity": "1"
+                                  }
+                                })
+                              ]
+                            )
+                          ]
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "svg",
+                      {
+                        staticStyle: { height: "32px", width: "32px" },
+                        attrs: {
+                          xmlns: "http://www.w3.org/2000/svg",
+                          viewBox: "0 0 512 512"
+                        }
+                      },
+                      [
+                        _c("path", {
+                          attrs: {
+                            d: "M0 0h512v512H0z",
+                            fill: "#000000",
+                            "fill-opacity": "0.01"
+                          }
+                        }),
+                        _c(
+                          "g",
+                          {
+                            staticStyle: { "touch-action": "none" },
+                            attrs: { transform: "translate(0,0)" }
+                          },
+                          [
+                            _c(
+                              "g",
+                              {
+                                attrs: {
+                                  transform:
+                                    "translate(0, 0) scale(1, 1) rotate(-90, 256, 256)"
+                                }
+                              },
+                              [
+                                _c("path", {
+                                  attrs: {
+                                    d:
+                                      "M256 23C127.424 23 23 127.424 23 256C23 384.576 127.424 489 256 489C384.576 489 489 384.576 489 256C489 127.424 384.576 23 256 23Z",
+                                    fill: "#000000",
+                                    "fill-opacity": "1"
+                                  }
+                                }),
+                                _c("path", {
+                                  attrs: {
+                                    d:
+                                      "M249.906 41.09C128.036 47.807 130.066 256 256 256C381.215 256 383.935 461.872 264.168 470.83C261.458 470.93 258.736 471 256 471C137.152 471 41 374.848 41 256C41 139.19 133.883 44.31 249.906 41.09Z",
+                                    fill: "#ffffff",
+                                    "fill-opacity": "1"
+                                  }
+                                }),
+                                _c("path", {
+                                  attrs: {
+                                    d:
+                                      "M256 103C278.537 103 297 121.463 297 144C297 166.537 278.537 185 256 185C233.463 185 215 166.537 215 144C215 121.463 233.463 103 256 103Z",
+                                    fill: "#ffffff",
+                                    "fill-opacity": "1"
+                                  }
+                                }),
+                                _c("path", {
+                                  staticClass: "selected",
+                                  attrs: {
+                                    d:
+                                      "M256 327C233.463 327 215 345.463 215 368C215 390.537 233.463 409 256 409C278.537 409 297 390.537 297 368C297 345.463 278.537 327 256 327Z",
+                                    fill: "#000000",
+                                    "fill-opacity": "1"
+                                  }
+                                })
+                              ]
+                            )
+                          ]
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "svg",
+                      {
+                        staticStyle: { height: "32px", width: "32px" },
+                        attrs: {
+                          xmlns: "http://www.w3.org/2000/svg",
+                          viewBox: "0 0 512 512"
+                        }
+                      },
+                      [
+                        _c("path", {
+                          attrs: {
+                            d: "M0 0h512v512H0z",
+                            fill: "#000000",
+                            "fill-opacity": "0.01"
+                          }
+                        }),
+                        _c(
+                          "g",
+                          {
+                            staticStyle: { "touch-action": "none" },
+                            attrs: { transform: "translate(0,0)" }
+                          },
+                          [
+                            _c(
+                              "g",
+                              {
+                                attrs: {
+                                  transform:
+                                    "translate(0, 0) scale(1, 1) rotate(-90, 256, 256)"
+                                }
+                              },
+                              [
+                                _c("path", {
+                                  attrs: {
+                                    d:
+                                      "M256 23C127.424 23 23 127.424 23 256C23 384.576 127.424 489 256 489C384.576 489 489 384.576 489 256C489 127.424 384.576 23 256 23Z",
+                                    fill: "#000000",
+                                    "fill-opacity": "1"
+                                  }
+                                }),
+                                _c("path", {
+                                  attrs: {
+                                    d:
+                                      "M249.906 41.09C128.036 47.807 130.066 256 256 256C381.215 256 383.935 461.872 264.168 470.83C261.458 470.93 258.736 471 256 471C137.152 471 41 374.848 41 256C41 139.19 133.883 44.31 249.906 41.09Z",
+                                    fill: "#ffffff",
+                                    "fill-opacity": "1"
+                                  }
+                                }),
+                                _c("path", {
+                                  attrs: {
+                                    d:
+                                      "M256 103C278.537 103 297 121.463 297 144C297 166.537 278.537 185 256 185C233.463 185 215 166.537 215 144C215 121.463 233.463 103 256 103Z",
+                                    fill: "#ffffff",
+                                    "fill-opacity": "1"
+                                  }
+                                }),
+                                _c("path", {
+                                  staticClass: "selected",
+                                  attrs: {
+                                    d:
+                                      "M256 327C233.463 327 215 345.463 215 368C215 390.537 233.463 409 256 409C278.537 409 297 390.537 297 368C297 345.463 278.537 327 256 327Z",
+                                    fill: "#000000",
+                                    "fill-opacity": "1"
+                                  }
+                                })
+                              ]
+                            )
+                          ]
+                        )
+                      ]
+                    )
+                  ]),
                   _vm._v(" "),
                   _c("br"),
                   _vm._v(" "),
@@ -506,7 +732,7 @@ var render = function() {
                       ],
                       staticClass: "content is-italic"
                     },
-                    [_vm._v("__ Simone Løkke")]
+                    [_vm._v("-- Simone Løkke")]
                   )
                 ])
               ]

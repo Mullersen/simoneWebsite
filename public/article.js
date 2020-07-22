@@ -66,6 +66,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
 
@@ -176,7 +181,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.cName[data-v-4240eaca]{\n    border-bottom: 1px black solid;\n}\n", ""]);
+exports.push([module.i, "\n.cName[data-v-4240eaca]{\n    border-bottom: 1px black solid;\n}\n#heroBackgroundImage[data-v-4240eaca]{\n    background-position: center;\n    background-repeat: no-repeat;\n    background-size: cover;\n}\n", ""]);
 
 // exports
 
@@ -233,7 +238,8 @@ var render = function() {
       "section",
       {
         staticClass: "hero is-medium",
-        style: { backgroundImage: "url(/" + _vm.article.header_image + ")" }
+        style: { backgroundImage: "url(/" + _vm.article.header_image + ")" },
+        attrs: { id: "heroBackgroundImage" }
       },
       [
         _c(
@@ -258,8 +264,13 @@ var render = function() {
     ),
     _vm._v(" "),
     _c("section", { staticClass: "section" }, [
-      _c("div", { staticClass: "container" }, [
-        _vm._v(_vm._s(_vm.article.content))
+      _c("div", { staticClass: "columns is-centered" }, [
+        _c("div", { staticClass: "column is-7" }, [
+          _c("div", {
+            staticClass: "container",
+            domProps: { innerHTML: _vm._s(_vm.article.content) }
+          })
+        ])
       ])
     ]),
     _vm._v(" "),

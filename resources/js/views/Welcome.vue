@@ -28,7 +28,7 @@
                     <img :src=" '/'+article.header_image" alt="artikel" />
                     <h2 class="title">{{article.header}}</h2>
                     <p class="subtitle">{{formatDate(article.created_at)}}</p>
-                    <p class="content">{{article.content.slice(0,180)}}...</p>
+                    <p class="content" v-html="article.content.slice(0,180)  + '...'"></p>
                   </router-link>
                 </div>
               </div>
@@ -38,7 +38,7 @@
                     <img :src=" '/'+article.header_image" alt="artikel" />
                     <h2 class="title">{{article.header}}</h2>
                     <p class="subtitle">{{formatDate(article.created_at)}}</p>
-                    <p class="content">{{article.content.slice(0,180)}}...</p>
+                    <p class="content" v-html="article.content.slice(0,180)  + '...'"></p>
                   </router-link>
                 </div>
               </div>
@@ -65,7 +65,7 @@
                     <img :src=" '/'+article.header_image" alt="artikel" />
                     <h2 class="title">{{article.header}}</h2>
                     <p class="subtitle">{{formatDate(article.created_at)}}</p>
-                    <p class="content">{{article.content.slice(0,180)}}...</p>
+                    <p class="content" v-html="article.content.slice(0,180)  + '...'"></p>
                   </router-link>
                 </div>
               </div>
@@ -75,7 +75,7 @@
                     <img :src=" '/'+article.header_image" alt="artikel" />
                     <h2 class="title">{{article.header}}</h2>
                     <p class="subtitle">{{formatDate(article.created_at)}}</p>
-                    <p class="content">{{article.content.slice(0,180)}}...</p>
+                    <p class="content" v-html="article.content.slice(0,180)  + '...'"></p>
                   </router-link>
                 </div>
               </div>

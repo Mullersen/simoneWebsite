@@ -2,7 +2,8 @@
   <div>
     <section
       class="hero is-medium"
-      v-bind:style="{ backgroundImage: 'url(/' + article.header_image +')' }"
+      id="heroBackgroundImage"
+      v-bind:style="{ backgroundImage: 'url(/' + article.header_image +')'}"
     >
       <div class="hero-head">
         <NavigationBar v-bind:user="this.user"></NavigationBar>
@@ -15,7 +16,11 @@
       </div>
     </section>
     <section class="section">
-      <div class="container">{{article.content}}</div>
+        <div class="columns is-centered">
+          <div class="column is-7">
+                <div class="container" v-html="article.content"></div>
+          </div>
+        </div>
     </section>
     <section class="section is-small">
       <div class="container" v-if="this.comments.length >=1">
@@ -96,7 +101,7 @@ export default {
           if(response.data.comments.length >= 1){
               this.comments.push(response.data.comments[0]);
           }
- 
+
         })
         .catch(error => {
           console.log(error.message); // change to error message on screen
@@ -156,5 +161,10 @@ export default {
 <style scoped>
 .cName{
     border-bottom: 1px black solid;
+}
+#heroBackgroundImage{
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 </style>

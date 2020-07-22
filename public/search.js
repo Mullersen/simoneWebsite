@@ -341,9 +341,14 @@ var render = function() {
                           _vm._v(_vm._s(_vm.formatDate(article.created_at)))
                         ]),
                         _vm._v(" "),
-                        _c("p", { staticClass: "content" }, [
-                          _vm._v(_vm._s(article.content.slice(0, 180)) + "...")
-                        ])
+                        _c("p", {
+                          staticClass: "content",
+                          domProps: {
+                            innerHTML: _vm._s(
+                              article.content.slice(0, 180) + "..."
+                            )
+                          }
+                        })
                       ]
                     )
                   ],

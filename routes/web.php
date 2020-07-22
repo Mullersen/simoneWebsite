@@ -30,15 +30,16 @@ return redirect('/home/home');
 
 Auth::routes();
 
-Route::get('/admin', 'AdminController@index')->middleware('auth');
+Route::get('/admin', 'AdminController@index');
 Route::post('/article/getarticles/', 'HomeController@getArticles');
 Route::get('/articles/getfpArticles', 'HomeController@getfpArticles');
 Route::post('/articles/getarticle', 'HomeController@getArticle');
 Route::get('/article/getAllArticles', 'HomeController@getAllArticles');
 Route::post('/article/uploadArticle', 'AdminController@uploadArticle')->middleware('auth');
 Route::post("/addons/deleteArticle", "AdminController@deleteArticle")->middleware('auth');
+Route::post('/article/editArticle', 'AdminController@editArticle')->middleware('auth');
 Route::get('/article/getTags', 'HomeController@getTags');
-Route::post('/article/getAutofillTags', 'AdminController@getAutofillTags')->middleware('Auth');
+Route::post('/article/getArticleTags', 'AdminController@getArticleTags')->middleware('auth');
 Route::post('/comment/sendcomment', 'HomeController@sendComment')->middleware('auth');
 Route::post('/comment/getcomments', 'HomeController@getComments');
 Route::post("/comment/deleteComment", 'HomeController@deleteComment')->middleware('auth');

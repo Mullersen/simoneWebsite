@@ -23,13 +23,7 @@
       <div class="field">
         <label class="label">Brødtekst</label>
         <div class="control">
-          <textarea
-            class="textarea"
-            v-model="this.chosenArticle.content"
-            type="text"
-            placeholder="Artiklens Brødtekst"
-            rows="15"
-          ></textarea>
+          <editor api-key="kpj7rgac9iauixcrqhckw6w866lbc50kf0f7ei3xw1k9kseg" v-model="this.chosenArticle.content" output-format="html" :init="{plugins: ['wordcount lists autoresize'], content_css:'/css/app.css',  toolbar: ['undo redo | formatselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent']}" />
         </div>
       </div>
     </div>
@@ -64,7 +58,7 @@
       </div>
       <div v-if="articleTags.length >= 1" class="field">
         <h2 class="subtitle">Tilføjede tags til denne artikel</h2>
-        <p v-for="(articleTag, index) in articleTags" :key="index" class="content">{{articleTag}}</p>
+        <div><span v-for="(articleTag, index) in articleTags" :key="index" class="content">{{articleTag}} <a class="delete" @click.once="deleteTag(index)"></a></span></div>
       </div>
       <div v-else>
         <h2 class="subtitle">Der er endnu ingen tags tilføjet til denne artikel</h2>
@@ -73,7 +67,7 @@
     <div class="box">
       <div class="field">
         <div class="control">
-          <button class="button is-centered" @click="uploadArticle">Offentliggør Artikel</button>
+          <button class="button is-centered" @click="editArticle">Opdater Artikel</button>
         </div>
       </div>
     </div>
@@ -83,8 +77,13 @@
 
 <script>
 const axios = require("axios");
+import Editor from '@tinymce/tinymce-vue';
+
 export default {
 name : "AdminEditArticle",
+components: {
+    'editor': Editor
+},
   props: {
       chosenArticle: {
           type: Object,
@@ -103,6 +102,9 @@ name : "AdminEditArticle",
       }
   },
   methods: {
+      deleteTag: function(index){
+          this.articleTags.splice(index, 1);
+      },
       handleFileUpload: function() {
       this.firstFile = this.$refs.firstFile.files[0];
       console.log(this.firstFile);
@@ -113,6 +115,27 @@ name : "AdminEditArticle",
         .then(response => {
           console.log(response.data.tags);
           this.existingTags = response.data.tags;
+        })
+        .catch(error => {
+          console.log(error.message);
+        });
+    },
+    editArticle: function(){
+        let formData = new FormData();
+      formData.append("header_image", this.firstFile);
+      formData.append("title", this.NewArticleTitle);
+      formData.append("description", this.NewArticleDescription);
+      formData.append("tags", this.articleTags);
+        axios
+        .get("/article/editArticle", formData, {
+             headers: {
+            "Content-Type": "multipart/form-data",
+            "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
+          },
+          id: this.chosenArticle.id
+        })
+        .then(response => {
+          console.log(response.data);
         })
         .catch(error => {
           console.log(error.message);
@@ -130,18 +153,19 @@ name : "AdminEditArticle",
       console.log(this.articleTags);
     },
     autofillTags: function(){
-        console.log(this.chosenArticle.id);
-        axios
-        .post("/article/getAutofillTags", {
-            id: this.chosenArticle.id
-        })
-        .then(response => {
-          console.log(response.data.tags);
-          this.articleTags = response.data.tags;
-        })
-        .catch(error => {
-          console.log(error.message);
-        });
+        axios.post("/article/getArticleTags", {
+                    tagid: this.chosenArticle.id,
+            })
+                .then(response => {
+                    console.log(response.data.tags);
+                response.data.tags.forEach(element => {
+                    this.articleTags.push(element.name);
+                });
+                })
+                .catch(error => {
+                    console.log(error.message); // change to error message on screen
+                    //this.loading = false;
+                });
     },
   },
   mounted(){

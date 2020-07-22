@@ -9,8 +9,12 @@ class AdminController extends Controller
 {
     public function index(){
         //potentially add another if statement to make sure the username Admin matches the admins unique email address
-        if(Auth::user()->id === 1){
-            return view("admin");
+        if(Auth::check()){
+            if(Auth::user()->id === 1){
+                return view("admin");
+            }
+        } else {
+            return redirect('/login');
         }
     }
 
@@ -36,12 +40,28 @@ class AdminController extends Controller
         return response()->json(['article' => 'deleted']);
         }
     }
-    public function getAutofillTags(Request $request){
+
+    public function getArticleTags(Request $request){
         if(Auth::user()->id === 1){
-            $article = \App\Article::find($request->id);
-            $tags = $article->tags;
-            return response()->json(['tags' => $tags]);
+            $myarticle = \App\Article::find($request->tagid);
+            $articletags = $myarticle->tags;
+            return response()->json(['tags' => $articletags]);
         }
     }
+
+    public function editArticle(Request $request){
+        if(Auth::user()->id === 1){
+            $article = \App\Article::find($request->id);
+            $article->header = $request->title;
+            $article->content = $request->description;
+            $article->header_image = $request->file('header_image')->store('images');
+
+            $article->save();
+
+            $article->tag($request->tags);
+            return response()->json(['article edited' => $article]);
+        }
+    }
+
 
 }

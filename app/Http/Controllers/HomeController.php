@@ -38,7 +38,7 @@ class HomeController extends Controller
         return response()->json(['articles' => $articles]);
     }
     public function getfpArticles(){
-        $fparticles = \App\Article::all();
+        $fparticles = \App\Article::orderBy('created_at', 'DESC')->get();
         return response()->json(['fparticles' => $fparticles]);
     }
     public function getArticle(Request $request){

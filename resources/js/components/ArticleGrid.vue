@@ -9,7 +9,7 @@
                         <img :src="'/'+article.header_image" alt="artikel billede">
                         <p class="title">{{article.header}}</p>
                         <p class="subtitle">{{formatDate(article.created_at)}}</p>
-                        <p class="content">{{article.content.slice(0,180)}}...</p>
+                        <p class="content" v-html="article.content.slice(0,180)  + '...'"></p>
                         </router-link>
                     </div>
                 </div>
@@ -19,7 +19,7 @@
             <button class="button subtitle"
             @click="getArticles(paginationCollection.articles.current_page+1)">Læs mere</button>
         </div>
-        
+
     </section>
 </div>
 </template>
