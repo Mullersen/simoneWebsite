@@ -2904,8 +2904,6 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
   },
   data: function data() {
     return {
-      NewArticleTitle: "",
-      NewArticleDescription: "",
       NewArticleTags: "",
       selectedTags: [],
       firstFile: "",
@@ -2932,19 +2930,31 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
       });
     },
     editArticle: function editArticle() {
+      var _this2 = this;
+
       var formData = new FormData();
-      formData.append("header_image", this.firstFile);
-      formData.append("title", this.NewArticleTitle);
-      formData.append("description", this.NewArticleDescription);
+
+      if (this.firstFile == !"") {
+        formData.append("header_image", this.firstFile);
+      } else {
+        formData.append("header_image", this.chosenArticle.header_image);
+      }
+
+      formData.append("title", this.chosenArticle.header);
+      formData.append("description", this.chosenArticle.content);
       formData.append("tags", this.articleTags);
-      axios.get("/article/editArticle", formData, {
+      formData.append("id", this.chosenArticle.id);
+      axios.post("/article/editArticle", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
           "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
-        },
-        id: this.chosenArticle.id
+        }
       }).then(function (response) {
         console.log(response.data);
+        _this2.chosenArticle.header = "";
+        _this2.chosenArticle.content = "";
+        _this2.articleTags = [];
+        document.getElementById('editButton').disabled = true;
       })["catch"](function (error) {
         console.log(error.message);
       });
@@ -2961,14 +2971,14 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
       console.log(this.articleTags);
     },
     autofillTags: function autofillTags() {
-      var _this2 = this;
+      var _this3 = this;
 
       axios.post("/article/getArticleTags", {
         tagid: this.chosenArticle.id
       }).then(function (response) {
         console.log(response.data.tags);
         response.data.tags.forEach(function (element) {
-          _this2.articleTags.push(element.name);
+          _this3.articleTags.push(element.name);
         });
       })["catch"](function (error) {
         console.log(error.message); // change to error message on screen
@@ -2978,6 +2988,7 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
   },
   mounted: function mounted() {
     this.autofillTags();
+    this.getTags();
   }
 });
 
@@ -26378,19 +26389,19 @@ var render = function() {
               {
                 name: "model",
                 rawName: "v-model",
-                value: this.chosenArticle.header,
-                expression: "this.chosenArticle.header"
+                value: _vm.chosenArticle.header,
+                expression: "chosenArticle.header"
               }
             ],
             staticClass: "input",
             attrs: { type: "text", placeholder: "Titel" },
-            domProps: { value: this.chosenArticle.header },
+            domProps: { value: _vm.chosenArticle.header },
             on: {
               input: function($event) {
                 if ($event.target.composing) {
                   return
                 }
-                _vm.$set(this.chosenArticle, "header", $event.target.value)
+                _vm.$set(_vm.chosenArticle, "header", $event.target.value)
               }
             }
           })
@@ -26398,7 +26409,11 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "field" }, [
-        _c("label", { staticClass: "label" }, [_vm._v("Header billede")]),
+        _c("label", { staticClass: "label" }, [
+          _vm._v(
+            "Header billede - vil forblive det samme med mindre det ændres"
+          )
+        ]),
         _vm._v(" "),
         _c("div", { staticClass: "control" }, [
           _c("input", {
@@ -26434,11 +26449,11 @@ var render = function() {
                 }
               },
               model: {
-                value: this.chosenArticle.content,
+                value: _vm.chosenArticle.content,
                 callback: function($$v) {
-                  _vm.$set(this.chosenArticle, "content", $$v)
+                  _vm.$set(_vm.chosenArticle, "content", $$v)
                 },
-                expression: "this.chosenArticle.content"
+                expression: "chosenArticle.content"
               }
             })
           ],
@@ -26599,6 +26614,7 @@ var render = function() {
             "button",
             {
               staticClass: "button is-centered",
+              attrs: { id: "editButton" },
               on: { click: _vm.editArticle }
             },
             [_vm._v("Opdater Artikel")]

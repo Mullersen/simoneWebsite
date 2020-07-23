@@ -54,7 +54,11 @@ class AdminController extends Controller
             $article = \App\Article::find($request->id);
             $article->header = $request->title;
             $article->content = $request->description;
-            $article->header_image = $request->file('header_image')->store('images');
+            if (is_string($request->header_image) == 1){
+                $article->header_image = $request->header_image;
+            } else{
+                $article->header_image = $request->file('header_image')->store('images');
+            }
 
             $article->save();
 

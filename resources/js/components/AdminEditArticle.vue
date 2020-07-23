@@ -5,11 +5,11 @@
       <div class="field">
         <label class="label">Titel</label>
         <div class="control">
-          <input class="input" v-model="this.chosenArticle.header" type="text" placeholder="Titel" />
+          <input class="input" v-model="chosenArticle.header" type="text" placeholder="Titel" />
         </div>
       </div>
       <div class="field">
-        <label class="label">Header billede</label>
+        <label class="label">Header billede - vil forblive det samme med mindre det ændres</label>
         <div class="control">
           <input
             class="input"
@@ -23,7 +23,7 @@
       <div class="field">
         <label class="label">Brødtekst</label>
         <div class="control">
-          <editor api-key="kpj7rgac9iauixcrqhckw6w866lbc50kf0f7ei3xw1k9kseg" v-model="this.chosenArticle.content" output-format="html" :init="{plugins: ['wordcount lists autoresize'], content_css:'/css/app.css',  toolbar: ['undo redo | formatselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent']}" />
+          <editor api-key="kpj7rgac9iauixcrqhckw6w866lbc50kf0f7ei3xw1k9kseg" v-model="chosenArticle.content" output-format="html" :init="{plugins: ['wordcount lists autoresize'], content_css:'/css/app.css',  toolbar: ['undo redo | formatselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent']}" />
         </div>
       </div>
     </div>
@@ -67,7 +67,7 @@
     <div class="box">
       <div class="field">
         <div class="control">
-          <button class="button is-centered" @click="editArticle">Opdater Artikel</button>
+          <button id="editButton" class="button is-centered" @click="editArticle">Opdater Artikel</button>
         </div>
       </div>
     </div>
@@ -92,8 +92,6 @@ components: {
   },
   data: function(){
       return{
-        NewArticleTitle: "",
-      NewArticleDescription: "",
       NewArticleTags: "",
       selectedTags: [],
       firstFile: "",
@@ -122,20 +120,29 @@ components: {
     },
     editArticle: function(){
         let formData = new FormData();
-      formData.append("header_image", this.firstFile);
-      formData.append("title", this.NewArticleTitle);
-      formData.append("description", this.NewArticleDescription);
+        if(this.firstFile == !""){
+            formData.append("header_image", this.firstFile);
+        } else {
+            formData.append("header_image", this.chosenArticle.header_image)
+        }
+
+      formData.append("title", this.chosenArticle.header);
+      formData.append("description", this.chosenArticle.content);
       formData.append("tags", this.articleTags);
+      formData.append("id", this.chosenArticle.id);
         axios
-        .get("/article/editArticle", formData, {
+        .post("/article/editArticle", formData, {
              headers: {
             "Content-Type": "multipart/form-data",
             "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
           },
-          id: this.chosenArticle.id
         })
         .then(response => {
           console.log(response.data);
+          this.chosenArticle.header = "";
+          this.chosenArticle.content = "";
+          this.articleTags = [];
+          document.getElementById('editButton').disabled = true;
         })
         .catch(error => {
           console.log(error.message);
@@ -170,6 +177,7 @@ components: {
   },
   mounted(){
       this.autofillTags();
+      this.getTags();
   }
 }
 </script>

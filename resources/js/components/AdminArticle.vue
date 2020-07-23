@@ -155,10 +155,10 @@ export default {
                     document.getElementById('hidden').classList.add('visible');
                     if(this.user == ""){
                         document.getElementById('errorTitle').innerHTML = 'You session has run out';
-                    document.getElementById('errorText').innerHTML ='Try logging in again. Refresh to go to login page';
+                        document.getElementById('errorText').innerHTML ='Try logging in again. Refresh to go to login page';
                     } else {
-                    document.getElementById('errorTitle').innerHTML = 'There is something wrong with the article you are trying to upload';
-                    document.getElementById('errorText').innerHTML ='Check if the image is a jpeg, png, jpg, at a maxium size of 7MB. Check and see if you added a title, and the according tags';
+                        document.getElementById('errorTitle').innerHTML = 'There is something wrong with the article you are trying to upload';
+                        document.getElementById('errorText').innerHTML ='Check if the image is a jpeg, png, jpg, at a maxium size of 7MB. Check and see if you added a title, and the according tags';
                     }
         });
     },
