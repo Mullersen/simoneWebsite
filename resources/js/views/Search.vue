@@ -63,5 +63,4 @@ export default {
   background: url("/images/jungle.jpg") center center;
   background-size: cover;
 }
-
 </style>

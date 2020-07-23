@@ -83,7 +83,7 @@ export default {
     },
     deleteArticle: function() {
       axios
-        .post("/addons/deleteArticle", {
+        .post("/article/deleteArticle", {
           id: this.id
         })
         .then(response => {

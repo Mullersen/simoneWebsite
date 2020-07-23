@@ -21,7 +21,7 @@
       <div class="container">
         <div class="columns is-centered">
           <div class="column is-8">
-            <div class="columns is-centered is-8 is-variable">
+            <div class="columns is-centered">
               <div class="column reveal" id="masonContainer">
                 <div class="card" v-for="article in articles.slice(0,2)" :key="article.id">
                   <router-link :to="{ name: 'article', params:{header:article.header} }">
@@ -58,7 +58,7 @@
       <div class="container">
         <div class="columns is-centered">
           <div class="column is-8">
-            <div class="columns is-centered is-8 is-variable">
+            <div class="columns is-centered">
               <div class="column reveal" id="secondColumn">
                 <div class="card" v-for="article in articles.slice(3,4)" :key="article.id">
                   <router-link :to="{ name: 'article', params:{header:article.header, user:user} }">
@@ -84,7 +84,7 @@
         </div>
       </div>
     </section>
-    <InstagramGrid/>
+    <InstagramGrid class="reveal"/>
   </div>
 </template>
 
@@ -126,7 +126,7 @@ export default {
           this.articles = response.data.fparticles;
         })
         .catch(error => {
-          console.log(error.message); // change to error message on screen
+          console.log(error.message);
         });
     }
   },

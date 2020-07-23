@@ -2781,7 +2781,7 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
     deleteArticle: function deleteArticle() {
       var _this3 = this;
 
-      axios.post("/addons/deleteArticle", {
+      axios.post("/article/deleteArticle", {
         id: this.id
       }).then(function (response) {
         console.log(response.data);
@@ -3330,7 +3330,7 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
         console.log(response.data.fparticles);
         _this.articles = response.data.fparticles;
       })["catch"](function (error) {
-        console.log(error.message); // change to error message on screen
+        console.log(error.message);
       });
     }
   },
@@ -26978,126 +26978,118 @@ var render = function() {
         _c("div", { staticClass: "container" }, [
           _c("div", { staticClass: "columns is-centered" }, [
             _c("div", { staticClass: "column is-8" }, [
-              _c(
-                "div",
-                { staticClass: "columns is-centered is-8 is-variable" },
-                [
-                  _c(
-                    "div",
-                    {
-                      staticClass: "column reveal",
-                      attrs: { id: "masonContainer" }
-                    },
-                    _vm._l(_vm.articles.slice(0, 2), function(article) {
-                      return _c(
-                        "div",
-                        { key: article.id, staticClass: "card" },
-                        [
-                          _c(
-                            "router-link",
-                            {
+              _c("div", { staticClass: "columns is-centered" }, [
+                _c(
+                  "div",
+                  {
+                    staticClass: "column reveal",
+                    attrs: { id: "masonContainer" }
+                  },
+                  _vm._l(_vm.articles.slice(0, 2), function(article) {
+                    return _c(
+                      "div",
+                      { key: article.id, staticClass: "card" },
+                      [
+                        _c(
+                          "router-link",
+                          {
+                            attrs: {
+                              to: {
+                                name: "article",
+                                params: { header: article.header }
+                              }
+                            }
+                          },
+                          [
+                            _c("img", {
                               attrs: {
-                                to: {
-                                  name: "article",
-                                  params: { header: article.header }
+                                src: "/" + article.header_image,
+                                alt: "artikel"
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("h2", { staticClass: "title" }, [
+                              _vm._v(_vm._s(article.header))
+                            ]),
+                            _vm._v(" "),
+                            _c("p", { staticClass: "subtitle" }, [
+                              _vm._v(_vm._s(_vm.formatDate(article.created_at)))
+                            ]),
+                            _vm._v(" "),
+                            _c("p", {
+                              staticClass: "content",
+                              domProps: {
+                                innerHTML: _vm._s(
+                                  article.content.slice(0, 180) + "..."
+                                )
+                              }
+                            })
+                          ]
+                        )
+                      ],
+                      1
+                    )
+                  }),
+                  0
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "column reveal",
+                    attrs: { id: "secondColumn" }
+                  },
+                  _vm._l(_vm.articles.slice(2, 3), function(article) {
+                    return _c(
+                      "div",
+                      { key: article.id, staticClass: "card" },
+                      [
+                        _c(
+                          "router-link",
+                          {
+                            attrs: {
+                              to: {
+                                name: "article",
+                                params: {
+                                  header: article.header,
+                                  user: _vm.user
                                 }
                               }
-                            },
-                            [
-                              _c("img", {
-                                attrs: {
-                                  src: "/" + article.header_image,
-                                  alt: "artikel"
-                                }
-                              }),
-                              _vm._v(" "),
-                              _c("h2", { staticClass: "title" }, [
-                                _vm._v(_vm._s(article.header))
-                              ]),
-                              _vm._v(" "),
-                              _c("p", { staticClass: "subtitle" }, [
-                                _vm._v(
-                                  _vm._s(_vm.formatDate(article.created_at))
-                                )
-                              ]),
-                              _vm._v(" "),
-                              _c("p", {
-                                staticClass: "content",
-                                domProps: {
-                                  innerHTML: _vm._s(
-                                    article.content.slice(0, 180) + "..."
-                                  )
-                                }
-                              })
-                            ]
-                          )
-                        ],
-                        1
-                      )
-                    }),
-                    0
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      staticClass: "column reveal",
-                      attrs: { id: "secondColumn" }
-                    },
-                    _vm._l(_vm.articles.slice(2, 3), function(article) {
-                      return _c(
-                        "div",
-                        { key: article.id, staticClass: "card" },
-                        [
-                          _c(
-                            "router-link",
-                            {
+                            }
+                          },
+                          [
+                            _c("img", {
                               attrs: {
-                                to: {
-                                  name: "article",
-                                  params: {
-                                    header: article.header,
-                                    user: _vm.user
-                                  }
-                                }
+                                src: "/" + article.header_image,
+                                alt: "artikel"
                               }
-                            },
-                            [
-                              _c("img", {
-                                attrs: {
-                                  src: "/" + article.header_image,
-                                  alt: "artikel"
-                                }
-                              }),
-                              _vm._v(" "),
-                              _c("h2", { staticClass: "title" }, [
-                                _vm._v(_vm._s(article.header))
-                              ]),
-                              _vm._v(" "),
-                              _c("p", { staticClass: "subtitle" }, [
-                                _vm._v(
-                                  _vm._s(_vm.formatDate(article.created_at))
+                            }),
+                            _vm._v(" "),
+                            _c("h2", { staticClass: "title" }, [
+                              _vm._v(_vm._s(article.header))
+                            ]),
+                            _vm._v(" "),
+                            _c("p", { staticClass: "subtitle" }, [
+                              _vm._v(_vm._s(_vm.formatDate(article.created_at)))
+                            ]),
+                            _vm._v(" "),
+                            _c("p", {
+                              staticClass: "content",
+                              domProps: {
+                                innerHTML: _vm._s(
+                                  article.content.slice(0, 180) + "..."
                                 )
-                              ]),
-                              _vm._v(" "),
-                              _c("p", {
-                                staticClass: "content",
-                                domProps: {
-                                  innerHTML: _vm._s(
-                                    article.content.slice(0, 180) + "..."
-                                  )
-                                }
-                              })
-                            ]
-                          )
-                        ],
-                        1
-                      )
-                    }),
-                    0
-                  )
-                ]
-              )
+                              }
+                            })
+                          ]
+                        )
+                      ],
+                      1
+                    )
+                  }),
+                  0
+                )
+              ])
             ])
           ])
         ])
@@ -27109,132 +27101,124 @@ var render = function() {
         _c("div", { staticClass: "container" }, [
           _c("div", { staticClass: "columns is-centered" }, [
             _c("div", { staticClass: "column is-8" }, [
-              _c(
-                "div",
-                { staticClass: "columns is-centered is-8 is-variable" },
-                [
-                  _c(
-                    "div",
-                    {
-                      staticClass: "column reveal",
-                      attrs: { id: "secondColumn" }
-                    },
-                    _vm._l(_vm.articles.slice(3, 4), function(article) {
-                      return _c(
-                        "div",
-                        { key: article.id, staticClass: "card" },
-                        [
-                          _c(
-                            "router-link",
-                            {
-                              attrs: {
-                                to: {
-                                  name: "article",
-                                  params: {
-                                    header: article.header,
-                                    user: _vm.user
-                                  }
+              _c("div", { staticClass: "columns is-centered" }, [
+                _c(
+                  "div",
+                  {
+                    staticClass: "column reveal",
+                    attrs: { id: "secondColumn" }
+                  },
+                  _vm._l(_vm.articles.slice(3, 4), function(article) {
+                    return _c(
+                      "div",
+                      { key: article.id, staticClass: "card" },
+                      [
+                        _c(
+                          "router-link",
+                          {
+                            attrs: {
+                              to: {
+                                name: "article",
+                                params: {
+                                  header: article.header,
+                                  user: _vm.user
                                 }
                               }
-                            },
-                            [
-                              _c("img", {
-                                attrs: {
-                                  src: "/" + article.header_image,
-                                  alt: "artikel"
-                                }
-                              }),
-                              _vm._v(" "),
-                              _c("h2", { staticClass: "title" }, [
-                                _vm._v(_vm._s(article.header))
-                              ]),
-                              _vm._v(" "),
-                              _c("p", { staticClass: "subtitle" }, [
-                                _vm._v(
-                                  _vm._s(_vm.formatDate(article.created_at))
-                                )
-                              ]),
-                              _vm._v(" "),
-                              _c("p", {
-                                staticClass: "content",
-                                domProps: {
-                                  innerHTML: _vm._s(
-                                    article.content.slice(0, 180) + "..."
-                                  )
-                                }
-                              })
-                            ]
-                          )
-                        ],
-                        1
-                      )
-                    }),
-                    0
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticClass: "column reveal" },
-                    _vm._l(_vm.articles.slice(4, 6), function(article) {
-                      return _c(
-                        "div",
-                        { key: article.id, staticClass: "card" },
-                        [
-                          _c(
-                            "router-link",
-                            {
+                            }
+                          },
+                          [
+                            _c("img", {
                               attrs: {
-                                to: {
-                                  name: "article",
-                                  params: {
-                                    header: article.header,
-                                    user: _vm.user
-                                  }
+                                src: "/" + article.header_image,
+                                alt: "artikel"
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("h2", { staticClass: "title" }, [
+                              _vm._v(_vm._s(article.header))
+                            ]),
+                            _vm._v(" "),
+                            _c("p", { staticClass: "subtitle" }, [
+                              _vm._v(_vm._s(_vm.formatDate(article.created_at)))
+                            ]),
+                            _vm._v(" "),
+                            _c("p", {
+                              staticClass: "content",
+                              domProps: {
+                                innerHTML: _vm._s(
+                                  article.content.slice(0, 180) + "..."
+                                )
+                              }
+                            })
+                          ]
+                        )
+                      ],
+                      1
+                    )
+                  }),
+                  0
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "column reveal" },
+                  _vm._l(_vm.articles.slice(4, 6), function(article) {
+                    return _c(
+                      "div",
+                      { key: article.id, staticClass: "card" },
+                      [
+                        _c(
+                          "router-link",
+                          {
+                            attrs: {
+                              to: {
+                                name: "article",
+                                params: {
+                                  header: article.header,
+                                  user: _vm.user
                                 }
                               }
-                            },
-                            [
-                              _c("img", {
-                                attrs: {
-                                  src: "/" + article.header_image,
-                                  alt: "artikel"
-                                }
-                              }),
-                              _vm._v(" "),
-                              _c("h2", { staticClass: "title" }, [
-                                _vm._v(_vm._s(article.header))
-                              ]),
-                              _vm._v(" "),
-                              _c("p", { staticClass: "subtitle" }, [
-                                _vm._v(
-                                  _vm._s(_vm.formatDate(article.created_at))
+                            }
+                          },
+                          [
+                            _c("img", {
+                              attrs: {
+                                src: "/" + article.header_image,
+                                alt: "artikel"
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("h2", { staticClass: "title" }, [
+                              _vm._v(_vm._s(article.header))
+                            ]),
+                            _vm._v(" "),
+                            _c("p", { staticClass: "subtitle" }, [
+                              _vm._v(_vm._s(_vm.formatDate(article.created_at)))
+                            ]),
+                            _vm._v(" "),
+                            _c("p", {
+                              staticClass: "content",
+                              domProps: {
+                                innerHTML: _vm._s(
+                                  article.content.slice(0, 180) + "..."
                                 )
-                              ]),
-                              _vm._v(" "),
-                              _c("p", {
-                                staticClass: "content",
-                                domProps: {
-                                  innerHTML: _vm._s(
-                                    article.content.slice(0, 180) + "..."
-                                  )
-                                }
-                              })
-                            ]
-                          )
-                        ],
-                        1
-                      )
-                    }),
-                    0
-                  )
-                ]
-              )
+                              }
+                            })
+                          ]
+                        )
+                      ],
+                      1
+                    )
+                  }),
+                  0
+                )
+              ])
             ])
           ])
         ])
       ]),
       _vm._v(" "),
-      _c("InstagramGrid")
+      _c("InstagramGrid", { staticClass: "reveal" })
     ],
     1
   )

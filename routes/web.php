@@ -36,7 +36,7 @@ Route::get('/articles/getfpArticles', 'HomeController@getfpArticles');
 Route::post('/articles/getarticle', 'HomeController@getArticle');
 Route::get('/article/getAllArticles', 'HomeController@getAllArticles');
 Route::post('/article/uploadArticle', 'AdminController@uploadArticle')->middleware('auth');
-Route::post("/addons/deleteArticle", "AdminController@deleteArticle")->middleware('auth');
+Route::post("/article/deleteArticle", "AdminController@deleteArticle")->middleware('auth');
 Route::post('/article/editArticle', 'AdminController@editArticle')->middleware('auth');
 Route::get('/article/getTags', 'HomeController@getTags');
 Route::post('/article/getArticleTags', 'AdminController@getArticleTags')->middleware('auth');

@@ -165,7 +165,7 @@ components: {
             })
                 .then(response => {
                     console.log(response.data.tags);
-                response.data.tags.forEach(element => {
+                    response.data.tags.forEach(element => {
                     this.articleTags.push(element.name);
                 });
                 })

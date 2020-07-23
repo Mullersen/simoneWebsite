@@ -27,7 +27,7 @@ class AdminController extends Controller
 
             $article->save();
 
-            $article->tag('artikel'); //always have this tag for articles - so that the front page article view works.
+            // $article->tag('artikel'); //always have this tag for articles - so that the front page article view works.
 
             $article->tag($request->tags); // potentially use the function setTag instead.
             return response()->json(['the new article' => $article]);

@@ -71,6 +71,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
 
@@ -94,7 +100,8 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
     return {
       article: [],
       comment: "",
-      comments: []
+      comments: [],
+      tags: []
     };
   },
   methods: {
@@ -113,7 +120,9 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
         console.log(response.data);
 
         if (response.data.comments.length >= 1) {
-          _this.comments.push(response.data.comments[0]);
+          response.data.comments.forEach(function (element) {
+            _this.comments.push(element);
+          });
         }
       })["catch"](function (error) {
         console.log(error.message); // change to error message on screen
@@ -129,6 +138,8 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
       }).then(function (response) {
         console.log(response.data);
         _this2.comment = "";
+
+        _this2.comments.push(response.data.comment);
       })["catch"](function (error) {
         console.log(error.message); // change to error message on screen
       });
@@ -154,8 +165,9 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
       axios.post("/articles/getarticle", {
         header: this.header
       }).then(function (response) {
-        console.log(response.data.article[0]);
-        _this4.article = response.data.article[0];
+        console.log(response.data.tags);
+        _this4.article = response.data.article;
+        _this4.tags = response.data.tags;
       })["catch"](function (error) {
         console.log(error.message); // change to error message on screen
       });
@@ -181,7 +193,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.cName[data-v-4240eaca]{\n    border-bottom: 1px black solid;\n}\n#heroBackgroundImage[data-v-4240eaca]{\n    background-position: center;\n    background-repeat: no-repeat;\n    background-size: cover;\n}\n", ""]);
+exports.push([module.i, "\n.content[data-v-4240eaca] {\n  margin-bottom: 1.5rem;\n}\n#heroBackgroundImage[data-v-4240eaca] {\n  background-position: center;\n  background-repeat: no-repeat;\n  background-size: cover;\n}\n.button[data-v-4240eaca] {\n  border: none !important;\n}\n", ""]);
 
 // exports
 
@@ -266,8 +278,22 @@ var render = function() {
     _c("section", { staticClass: "section" }, [
       _c("div", { staticClass: "columns is-centered" }, [
         _c("div", { staticClass: "column is-7" }, [
+          _c(
+            "div",
+            { staticClass: "container has-text-centered" },
+            _vm._l(_vm.tags, function(tag) {
+              return _c(
+                "span",
+                { key: tag.id, staticClass: "tag is-medium is-white" },
+                [_vm._v(_vm._s(tag.name))]
+              )
+            }),
+            0
+          ),
+          _vm._v(" "),
           _c("div", {
             staticClass: "container",
+            staticStyle: { "margin-top": "3rem" },
             domProps: { innerHTML: _vm._s(_vm.article.content) }
           })
         ])
@@ -285,32 +311,31 @@ var render = function() {
                 { staticClass: "column is-half" },
                 _vm._l(_vm.comments, function(comment, index) {
                   return _c("div", { key: index }, [
-                    _c("p", [_vm._v(_vm._s(comment.content))]),
-                    _vm._v(" "),
-                    _c("h6", { staticClass: "cName" }, [
-                      _vm._v(_vm._s(comment.user.name))
-                    ]),
-                    _vm._v(" "),
-                    comment.user.name === _vm.user
-                      ? _c("div", [
-                          _c(
+                    _c("span", [
+                      _c("h6", { staticStyle: { display: "inline" } }, [
+                        _vm._v(_vm._s(comment.user.name))
+                      ]),
+                      _vm._v(" "),
+                      comment.user.name === _vm.user
+                        ? _c(
                             "button",
                             {
                               staticClass: "button is-small",
+                              staticStyle: { float: "right" },
                               on: {
                                 "~click": function($event) {
                                   return _vm.deleteComment(comment.id)
                                 }
                               }
                             },
-                            [
-                              _vm._v(
-                                "\n                    Slet\n                "
-                              )
-                            ]
+                            [_vm._v("Slet")]
                           )
-                        ])
-                      : _vm._e()
+                        : _vm._e()
+                    ]),
+                    _vm._v(" "),
+                    _c("p", { staticClass: "content" }, [
+                      _vm._v(_vm._s(comment.content))
+                    ])
                   ])
                 }),
                 0
@@ -354,7 +379,7 @@ var render = function() {
                 _c(
                   "button",
                   {
-                    staticClass: "button is-link",
+                    staticClass: "button subtitle",
                     on: {
                       "~click": function($event) {
                         return _vm.sendComment($event)

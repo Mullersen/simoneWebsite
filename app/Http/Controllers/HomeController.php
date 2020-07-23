@@ -42,8 +42,10 @@ class HomeController extends Controller
         return response()->json(['fparticles' => $fparticles]);
     }
     public function getArticle(Request $request){
-        $article = \App\Article::where('header', '=', $request->header)->get();
-        return response()->json(['article' => $article]);
+        $myarticleID = \App\Article::where('header', $request->header)->value('id');
+        $tagsarticle = \App\Article::find($myarticleID);
+        $mytags = $tagsarticle->tags;
+        return response()->json(['article' => $tagsarticle, 'tags' => $mytags]);
     }
     public function getTags(){
         $tags = \App\Article::allTags()->get();
@@ -58,7 +60,7 @@ class HomeController extends Controller
             $comment->content = $request->content;
             $comment->save();
 
-            return response()->json(['comment' => 'uploaded']);
+            return response()->json(['comment' => $comment]);
         } else {
             return response()->json(['comment' => 'du har ikke adgang til dette']);
         }
