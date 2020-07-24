@@ -58,11 +58,11 @@
                                     {{ __('Login') }}
                                 </button>
 
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="/password.request">
+                                {{-- @if (Route::has('password.request'))
+                                    <a class="btn btn-link" href="/password/reset">
                                         {{ __('Glemt Kodeord?') }}
                                     </a>
-                                @endif
+                                @endif --}}
                             </div>
                         </div>
                     </form>

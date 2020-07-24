@@ -3303,6 +3303,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
 
@@ -3438,7 +3439,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.myTitle[data-v-1ae8ae93] {\n  font-size: 4rem !important;\n  font-family: \"Playfair Display\", serif;\n}\n.has-bg-img[data-v-1ae8ae93] {\n  background: url(\"/images/sky1.jpg\") center center;\n  background-size: cover;\n}\n.card[data-v-1ae8ae93] {\n  box-shadow: none;\n  padding: 1rem;\n  margin-top: 3rem;\n  margin-bottom: 3rem;\n}\n#secondColumn[data-v-1ae8ae93] {\n  margin-top: 15rem;\n}\n.title[data-v-1ae8ae93]{\n    margin-top:none;\n}\n\n/* a.router-link-exact-active{\n    color:black;\n} */\n", ""]);
+exports.push([module.i, "\n.myTitle[data-v-1ae8ae93] {\n  font-size: 4rem !important;\n  font-family: \"Playfair Display\", serif;\n}\n.has-bg-img[data-v-1ae8ae93] {\n  background: url(\"/images/sky1.jpg\") center center;\n  background-size: cover;\n}\n.card[data-v-1ae8ae93] {\n  box-shadow: none;\n  padding: 1rem;\n  margin-top: 3rem;\n  margin-bottom: 3rem;\n}\n#secondColumn[data-v-1ae8ae93] {\n  margin-top: 15rem;\n}\n.title[data-v-1ae8ae93]{\n    margin-top:none;\n}\n.arrow[data-v-1ae8ae93]\n{\n  position: relative;\n  bottom: -2rem;\n  left: 50%;\n  margin-left:-20px;\n  width: 40px;\n  height: 40px;\n\n  /**\n   * Dark Arrow Down\n   */\n  background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjwhRE9DVFlQRSBzdmcgIFBVQkxJQyAnLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4nICAnaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkJz48c3ZnIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDMyIDMyIiBoZWlnaHQ9IjMycHgiIGlkPSLQodC70L7QuV8xIiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCAzMiAzMiIgd2lkdGg9IjMycHgiIHhtbDpzcGFjZT0icHJlc2VydmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPjxwYXRoIGQ9Ik0yNC4yODUsMTEuMjg0TDE2LDE5LjU3MWwtOC4yODUtOC4yODhjLTAuMzk1LTAuMzk1LTEuMDM0LTAuMzk1LTEuNDI5LDAgIGMtMC4zOTQsMC4zOTUtMC4zOTQsMS4wMzUsMCwxLjQzbDguOTk5LDkuMDAybDAsMGwwLDBjMC4zOTQsMC4zOTUsMS4wMzQsMC4zOTUsMS40MjgsMGw4Ljk5OS05LjAwMiAgYzAuMzk0LTAuMzk1LDAuMzk0LTEuMDM2LDAtMS40MzFDMjUuMzE5LDEwLjg4OSwyNC42NzksMTAuODg5LDI0LjI4NSwxMS4yODR6IiBmaWxsPSIjMTIxMzEzIiBpZD0iRXhwYW5kX01vcmUiLz48Zy8+PGcvPjxnLz48Zy8+PGcvPjxnLz48L3N2Zz4=);\n  background-size: contain;\n}\n.bounce[data-v-1ae8ae93] {\n  -webkit-animation: bounce-data-v-1ae8ae93 2s infinite;\n          animation: bounce-data-v-1ae8ae93 2s infinite;\n}\n@-webkit-keyframes bounce-data-v-1ae8ae93 {\n0%, 20%, 50%, 80%, 100% {\n    transform: translateY(0);\n}\n40% {\n    transform: translateY(-30px);\n}\n60% {\n    transform: translateY(-15px);\n}\n}\n@keyframes bounce-data-v-1ae8ae93 {\n0%, 20%, 50%, 80%, 100% {\n    transform: translateY(0);\n}\n40% {\n    transform: translateY(-30px);\n}\n60% {\n    transform: translateY(-15px);\n}\n}\n", ""]);
 
 // exports
 
@@ -27239,7 +27240,12 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "hero-body" }, [
       _c("div", { staticClass: "container has-text-centered" }, [
-        _c("h1", { staticClass: "myTitle" })
+        _c("h1", { staticClass: "myTitle" }),
+        _vm._v(" "),
+        _c("div", {
+          staticClass: "arrow bounce",
+          staticStyle: { "margin-top": "60vh" }
+        })
       ])
     ])
   },
