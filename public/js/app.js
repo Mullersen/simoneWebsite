@@ -2593,13 +2593,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "AdminArticle",
   components: {
-    'editor': _tinymce_tinymce_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+    editor: _tinymce_tinymce_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   data: function data() {
     return {
@@ -2662,19 +2671,19 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
         _this2.articleTags = [];
       })["catch"](function (error) {
         console.log(error.message);
-        document.getElementById('hidden').classList.add('visible');
+        document.getElementById("hidden").classList.add("visible");
 
         if (_this2.user == "") {
-          document.getElementById('errorTitle').innerHTML = 'You session has run out';
-          document.getElementById('errorText').innerHTML = 'Try logging in again. Refresh to go to login page';
+          document.getElementById("errorTitle").innerHTML = "You session has run out";
+          document.getElementById("errorText").innerHTML = "Try logging in again. Refresh to go to login page";
         } else {
-          document.getElementById('errorTitle').innerHTML = 'There is something wrong with the article you are trying to upload';
-          document.getElementById('errorText').innerHTML = 'Check if the image is a jpeg, png, jpg, at a maxium size of 7MB. Check and see if you added a title, and the according tags';
+          document.getElementById("errorTitle").innerHTML = "There is something wrong with the article you are trying to upload";
+          document.getElementById("errorText").innerHTML = "Check if the image is a jpeg, png, jpg, at a maxium size of 7MB. Check and see if you added a title, and the according tags";
         }
       });
     },
     closeError: function closeError() {
-      document.getElementById('hidden').classList.remove('visible');
+      document.getElementById("hidden").classList.remove("visible");
     }
   },
   mounted: function mounted() {
@@ -3353,7 +3362,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n#hidden[data-v-4312b9dc]{\n    display:none;\n}\n.visible[data-v-4312b9dc]{\n    display:block !important;\n    position: fixed;\n    width: 50vw;\n    height: 30vh;\n    top: 25vh;\n    left: 25vw;\n    background-color: grey;\n    z-index: 10000;\n}\n", ""]);
+exports.push([module.i, "\n#hidden[data-v-4312b9dc] {\n  display: none;\n}\n.visible[data-v-4312b9dc] {\n  display: block !important;\n  position: fixed;\n  width: 50vw;\n  height: 30vh;\n  top: 25vh;\n  left: 25vw;\n  background-color: grey;\n  z-index: 10000;\n}\n", ""]);
 
 // exports
 
@@ -26167,7 +26176,7 @@ var render = function() {
               "div",
               _vm._l(_vm.articleTags, function(articleTag, index) {
                 return _c("span", { key: index, staticClass: "content" }, [
-                  _vm._v(_vm._s(articleTag) + " "),
+                  _vm._v("\n          " + _vm._s(articleTag) + "\n          "),
                   _c("a", {
                     staticClass: "delete",
                     on: {

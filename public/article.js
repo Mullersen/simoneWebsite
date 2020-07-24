@@ -77,6 +77,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
 
@@ -105,6 +117,9 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
     };
   },
   methods: {
+    closeError: function closeError() {
+      document.getElementById("hidden").classList.remove("visible");
+    },
     formatDate: function formatDate(value) {
       if (value) {
         moment__WEBPACK_IMPORTED_MODULE_1___default.a.locale("da");
@@ -131,18 +146,34 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
     sendComment: function sendComment() {
       var _this2 = this;
 
+      //diable comment button
+      document.getElementById("commentButton").disabled = true; //send the comment, and retrieve it for insertion
+
       axios.post("/comment/sendcomment", {
         content: this.comment,
         user: this.user,
         header: this.header
       }).then(function (response) {
-        console.log(response.data);
+        console.log(response.data.comment[0]);
         _this2.comment = "";
 
-        _this2.comments.push(response.data.comment);
+        _this2.comments.push(response.data.comment[0]);
       })["catch"](function (error) {
-        console.log(error.message); // change to error message on screen
-      });
+        console.log(error.message);
+        document.getElementById("hidden").classList.add("visible");
+
+        if (_this2.user == "") {
+          document.getElementById("errorTitle").innerHTML = "Du er blevet logget ud";
+          document.getElementById("errorText").innerHTML = "Prøv at logge ind igen.";
+        } else {
+          document.getElementById("errorTitle").innerHTML = "Der gik noget galt";
+          document.getElementById("errorText").innerHTML = "Prøv at logge ind igen for at sende en kommentar";
+        }
+      }); //enable button again
+
+      setTimeout(function () {
+        document.getElementById("commentButton").disabled = false;
+      }, 3000);
     },
     deleteComment: function deleteComment(comment_id) {
       var _this3 = this;
@@ -302,47 +333,56 @@ var render = function() {
     _vm._v(" "),
     _c("section", { staticClass: "section is-small" }, [
       this.comments.length >= 1
-        ? _c("div", { staticClass: "container" }, [
-            _c("p", { staticClass: "subtitle" }, [_vm._v("Kommentarer")]),
-            _vm._v(" "),
-            _c("div", { staticClass: "columns" }, [
-              _c(
-                "div",
-                { staticClass: "column is-half" },
-                _vm._l(_vm.comments, function(comment, index) {
-                  return _c("div", { key: index }, [
-                    _c("span", [
-                      _c("h6", { staticStyle: { display: "inline" } }, [
-                        _vm._v(_vm._s(comment.user.name))
-                      ]),
-                      _vm._v(" "),
-                      comment.user.name === _vm.user
-                        ? _c(
-                            "button",
-                            {
-                              staticClass: "button is-small",
-                              staticStyle: { float: "right" },
-                              on: {
-                                "~click": function($event) {
-                                  return _vm.deleteComment(comment.id)
-                                }
-                              }
-                            },
-                            [_vm._v("Slet")]
-                          )
-                        : _vm._e()
-                    ]),
-                    _vm._v(" "),
-                    _c("p", { staticClass: "content" }, [
-                      _vm._v(_vm._s(comment.content))
-                    ])
-                  ])
-                }),
-                0
-              )
-            ])
+        ? _c("div", { staticClass: "container has-text-centered" }, [
+            _c(
+              "p",
+              {
+                staticClass: "subtitle",
+                staticStyle: { "margin-bottom": "3.5rem" }
+              },
+              [_vm._v("Kommentarer")]
+            )
           ])
-        : _vm._e()
+        : _vm._e(),
+      _vm._v(" "),
+      _c("div", { staticClass: "container" }, [
+        _c("div", { staticClass: "columns" }, [
+          _c(
+            "div",
+            { staticClass: "column is-half" },
+            _vm._l(_vm.comments, function(comment, index) {
+              return _c("div", { key: index }, [
+                _c("span", [
+                  _c("h6", { staticStyle: { display: "inline" } }, [
+                    _vm._v(_vm._s(comment.user.name))
+                  ]),
+                  _vm._v(" "),
+                  comment.user.name === _vm.user
+                    ? _c(
+                        "button",
+                        {
+                          staticClass: "button is-small",
+                          staticStyle: { float: "right" },
+                          on: {
+                            "~click": function($event) {
+                              return _vm.deleteComment(comment.id)
+                            }
+                          }
+                        },
+                        [_vm._v("Slet")]
+                      )
+                    : _vm._e()
+                ]),
+                _vm._v(" "),
+                _c("p", { staticClass: "content" }, [
+                  _vm._v(_vm._s(comment.content))
+                ])
+              ])
+            }),
+            0
+          )
+        ])
+      ])
     ]),
     _vm._v(" "),
     _vm.user.length > 1
@@ -380,11 +420,8 @@ var render = function() {
                   "button",
                   {
                     staticClass: "button subtitle",
-                    on: {
-                      "~click": function($event) {
-                        return _vm.sendComment($event)
-                      }
-                    }
+                    attrs: { id: "commentButton" },
+                    on: { click: _vm.sendComment }
                   },
                   [_vm._v("Kommenter")]
                 )
@@ -392,10 +429,39 @@ var render = function() {
             ])
           ])
         ])
-      : _vm._e()
+      : _c("section", [_vm._m(0)]),
+    _vm._v(" "),
+    _c("div", { staticClass: "box", attrs: { id: "hidden" } }, [
+      _c("p", { staticClass: "subtitle", attrs: { id: "errorTitle" } }),
+      _vm._v(" "),
+      _c("p", { staticClass: "content", attrs: { id: "errorText" } }),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          on: {
+            click: function($event) {
+              return _vm.closeError()
+            }
+          }
+        },
+        [_vm._v("Close")]
+      )
+    ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "box" }, [
+      _c("p", { staticClass: "subtitle" }, [
+        _vm._v("Log ind for at kommentere")
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 

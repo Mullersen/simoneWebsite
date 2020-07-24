@@ -59,10 +59,12 @@ class HomeController extends Controller
             $comment->user_id = Auth::user()->id;
             $comment->content = $request->content;
             $comment->save();
+            $commentid = $comment->id;
+            $commentAndUser = \App\Comment::where('id', $commentid)->with('user')->get();
 
-            return response()->json(['comment' => $comment]);
+            return response()->json(['comment' => $commentAndUser]);
         } else {
-            return response()->json(['comment' => 'du har ikke adgang til dette']);
+            return response()->json(['comment' => 'no access']);
         }
     }
     public function getComments(Request $request){

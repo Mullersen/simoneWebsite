@@ -18,16 +18,18 @@
     <section class="section">
       <div class="columns is-centered">
         <div class="column is-7">
-            <div class="container has-text-centered">
-                <span class="tag is-medium is-white" v-for="tag in tags" :key="tag.id">{{tag.name}}</span>
-            </div>
+          <div class="container has-text-centered">
+            <span class="tag is-medium is-white" v-for="tag in tags" :key="tag.id">{{tag.name}}</span>
+          </div>
           <div class="container" v-html="article.content" style="margin-top: 3rem;"></div>
         </div>
       </div>
     </section>
     <section class="section is-small">
-      <div class="container" v-if="this.comments.length >=1">
-        <p class="subtitle">Kommentarer</p>
+      <div class="container has-text-centered" v-if="this.comments.length >=1">
+        <p class="subtitle" style="margin-bottom:3.5rem;">Kommentarer</p>
+      </div>
+      <div class="container">
         <div class="columns">
           <div class="column is-half">
             <div v-for="(comment, index) in comments" :key="index">
@@ -55,11 +57,21 @@
         </div>
         <div>
           <div class="control">
-            <button class="button subtitle" @click.once="sendComment">Kommenter</button>
+            <button id="commentButton" class="button subtitle" @click="sendComment">Kommenter</button>
           </div>
         </div>
       </div>
     </section>
+    <section v-else>
+      <div class="box">
+        <p class="subtitle">Log ind for at kommentere</p>
+      </div>
+    </section>
+    <div id="hidden" class="box">
+      <p id="errorTitle" class="subtitle"></p>
+      <p id="errorText" class="content"></p>
+      <button @click="closeError()">Close</button>
+    </div>
   </div>
 </template>
 
@@ -92,6 +104,9 @@ export default {
     };
   },
   methods: {
+    closeError: function () {
+      document.getElementById("hidden").classList.remove("visible");
+    },
     formatDate: function (value) {
       if (value) {
         moment.locale("da");
@@ -116,6 +131,10 @@ export default {
         });
     },
     sendComment: function () {
+      //diable comment button
+      document.getElementById("commentButton").disabled = true;
+
+      //send the comment, and retrieve it for insertion
       axios
         .post("/comment/sendcomment", {
           content: this.comment,
@@ -123,13 +142,30 @@ export default {
           header: this.header,
         })
         .then((response) => {
-          console.log(response.data);
+          console.log(response.data.comment[0]);
           this.comment = "";
-          this.comments.push(response.data.comment);
+          this.comments.push(response.data.comment[0]);
         })
         .catch((error) => {
-          console.log(error.message); // change to error message on screen
+          console.log(error.message);
+          document.getElementById("hidden").classList.add("visible");
+          if (this.user == "") {
+            document.getElementById("errorTitle").innerHTML =
+              "Du er blevet logget ud";
+            document.getElementById("errorText").innerHTML =
+              "Prøv at logge ind igen.";
+          } else {
+            document.getElementById("errorTitle").innerHTML =
+              "Der gik noget galt";
+            document.getElementById("errorText").innerHTML =
+              "Prøv at logge ind igen for at sende en kommentar";
+          }
         });
+
+      //enable button again
+      setTimeout(function () {
+        document.getElementById("commentButton").disabled = false;
+      }, 3000);
     },
     deleteComment: function (comment_id) {
       axios
