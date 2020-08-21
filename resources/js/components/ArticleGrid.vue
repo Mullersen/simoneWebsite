@@ -44,6 +44,7 @@ export default {
         return{
             articles: [],
             paginationCollection: {},
+            tagSelection: [],
         }
     },
     computed: {
@@ -58,9 +59,18 @@ export default {
                 return moment(value).format('L');
             }
         },
+        fillTagSelection: function(){
+            if (this.subject == "BALANCE" || this.subject == "STRESS" || this.subject == "LIVET EFTER STRESS"){
+                this.tagSelection = this.subjectPage.subject_tags;
+                this.getArticles(1);
+            } else {
+                this.tagSelection = this.subject;
+                this.getArticles(1);
+            }
+        },
         getArticles: function(index){
             axios.post("/article/getarticles/?page="+ index, {
-                    tagselection: this.subjectPage.subject_tags,
+                    tagselection: this.tagSelection,
             })
                 .then(response => {
                     console.log(response.data.articles.data);
@@ -107,7 +117,7 @@ export default {
         }
     },
     beforeMount(){
-        this.getArticles(1);
+        this.fillTagSelection();
     },
 }
 </script>
