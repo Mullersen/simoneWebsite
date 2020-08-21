@@ -54,14 +54,14 @@ class AdminController extends Controller
             $article = \App\Article::find($request->id);
             $article->header = $request->title;
             $article->content = $request->description;
-            if (is_string($request->header_image) == 1){
+            if (is_string($request->header_image) == true){
                 $article->header_image = $request->header_image;
-            } else{
+            } else {
                 $article->header_image = $request->file('header_image')->store('images');
             }
 
             $article->save();
-
+            $article->untag();
             $article->tag($request->tags);
             return response()->json(['article edited' => $article]);
         }

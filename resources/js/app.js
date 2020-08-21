@@ -42,7 +42,10 @@ const router = new VueRouter({
             component: () =>
                 import ( /* webpackChunkName: "article" */ './views/MyArticle.vue')
         },
-    ]
+    ],
+    scrollBehavior(to, from, savedPosition) {
+        return { x: 0, y: 0 };
+    }
 })
 
 

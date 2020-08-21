@@ -58,6 +58,15 @@ var Macy = __webpack_require__(/*! macy */ "./node_modules/macy/dist/macy.js");
       paginationCollection: {}
     };
   },
+  computed: {
+    subjectPage: function subjectPage() {
+      var _this = this;
+
+      return _subhome_js__WEBPACK_IMPORTED_MODULE_0__["default"].pages.find(function (element) {
+        return element.name === _this.subject;
+      });
+    }
+  },
   methods: {
     formatDate: function formatDate(value) {
       if (value) {
@@ -66,18 +75,18 @@ var Macy = __webpack_require__(/*! macy */ "./node_modules/macy/dist/macy.js");
       }
     },
     getArticles: function getArticles(index) {
-      var _this = this;
+      var _this2 = this;
 
       axios.post("/article/getarticles/?page=" + index, {
-        tagselection: this.subject
+        tagselection: this.subjectPage.subject_tags
       }).then(function (response) {
         console.log(response.data.articles.data);
-        _this.paginationCollection = response.data;
+        _this2.paginationCollection = response.data;
         response.data.articles.data.forEach(function (element) {
-          _this.articles.push(element);
+          _this2.articles.push(element);
         });
 
-        _this.buildMasonry();
+        _this2.buildMasonry();
       })["catch"](function (error) {
         console.log(error.message); // change to error message on screen
         //this.loading = false;
@@ -121,9 +130,17 @@ var Macy = __webpack_require__(/*! macy */ "./node_modules/macy/dist/macy.js");
   !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ArticleGrid.vue?vue&type=style&index=0&id=000b637e&scoped=true&lang=css& ***!
   \*****************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-throw new Error("Module build failed (from ./node_modules/postcss-loader/src/index.js):\nSyntaxError\n\n(117:19) Unknown word\n\n \u001b[90m 115 | \u001b[39m\u001b[33m}\u001b[39m\n \u001b[90m 116 | \u001b[39m\u001b[33m.hidden\u001b[39m\u001b[33m{\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 117 | \u001b[39m    display\u001b[33m:\u001b[39mnone\u001b[33m;\u001b[39m !important\u001b[33m;\u001b[39m\n \u001b[90m     | \u001b[39m                  \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 118 | \u001b[39m\u001b[33m}\u001b[39m\n \u001b[90m 119 | \u001b[39m\u001b[33m.button\u001b[39m\u001b[33m{\u001b[39m\n");
+exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.card[data-v-000b637e]{\n    word-break: break-all;\n    padding: 1rem;\n    box-shadow: none !important;\n}\n.hidden[data-v-000b637e]{\n    visibility:hidden;\n}\n.button[data-v-000b637e]{\n    border: none !important;\n}\n", ""]);
+
+// exports
+
 
 /***/ }),
 

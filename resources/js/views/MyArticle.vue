@@ -1,8 +1,7 @@
 <template>
   <div>
     <section
-      class="hero is-medium"
-      id="heroBackgroundImage"
+      class="hero is-medium heroBackgroundImage"
       v-bind:style="{ backgroundImage: 'url(/' + article.header_image +')'}"
     >
       <div class="hero-head">
@@ -208,12 +207,11 @@ export default {
 .content {
   margin-bottom: 1.5rem;
 }
-#heroBackgroundImage {
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
+
 .button {
   border: none !important;
+}
+#hidden {
+  display: none;
 }
 </style>

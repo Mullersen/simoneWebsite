@@ -94,4 +94,9 @@ opacity: 0;
   -o-transform: none;
   transform: none;
 }
+.heroBackgroundImage {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 </style>

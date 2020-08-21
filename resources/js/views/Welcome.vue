@@ -13,8 +13,8 @@
     </div>
     <section class="section is-small">
       <div class="container">
-        <p
-          class="reveal title citat is-italic has-text-weight-bold has-text-centered"
+        <p v-scrollanimation
+          class=" title citat is-italic has-text-weight-bold has-text-centered"
         >Tag en dyb indånding.</p>
       </div>
     </section>
@@ -23,7 +23,7 @@
         <div class="columns is-centered">
           <div class="column is-8">
             <div class="columns is-centered">
-              <div class="column reveal" id="masonContainer">
+              <div v-scrollanimation class="column" id="masonContainer">
                 <div class="card" v-for="article in articles.slice(0,2)" :key="article.id">
                   <router-link :to="{ name: 'article', params:{header:article.header} }">
                     <img :src=" '/'+article.header_image" alt="artikel" />
@@ -33,7 +33,7 @@
                   </router-link>
                 </div>
               </div>
-              <div class="column reveal" id="secondColumn">
+              <div v-scrollanimation class="column" id="secondColumn">
                 <div class="card" v-for="article in articles.slice(2,3)" :key="article.id">
                   <router-link :to="{ name: 'article', params:{header:article.header, user:user} }">
                     <img :src=" '/'+article.header_image" alt="artikel" />
@@ -51,7 +51,8 @@
     <section class="section is-small">
       <div class="container">
         <p
-          class="reveal title citat is-italic has-text-weight-bold has-text-centered"
+        v-scrollanimation
+          class=" title citat is-italic has-text-weight-bold has-text-centered"
         >Bliv bevidst om dine behov, vælg det til som giver værdi og vær tålmodig med processen.</p>
       </div>
     </section>
@@ -60,7 +61,7 @@
         <div class="columns is-centered">
           <div class="column is-8">
             <div class="columns is-centered">
-              <div class="column reveal" id="secondColumn">
+              <div v-scrollanimation class="column" id="secondColumn">
                 <div class="card" v-for="article in articles.slice(3,4)" :key="article.id">
                   <router-link :to="{ name: 'article', params:{header:article.header, user:user} }">
                     <img :src=" '/'+article.header_image" alt="artikel" />
@@ -70,7 +71,7 @@
                   </router-link>
                 </div>
               </div>
-              <div class="column reveal">
+              <div v-scrollanimation class="column">
                 <div class="card" v-for="article in articles.slice(4,6)" :key="article.id">
                   <router-link :to="{ name: 'article', params:{header:article.header, user:user} }">
                     <img :src=" '/'+article.header_image" alt="artikel" />
@@ -85,7 +86,7 @@
         </div>
       </div>
     </section>
-    <InstagramGrid class="reveal"/>
+    <InstagramGrid v-scrollanimation/>
   </div>
 </template>
 
@@ -143,7 +144,7 @@ export default {
   font-family: "Playfair Display", serif;
 }
 .has-bg-img {
-  background: url("/images/sky1.jpg") center center;
+  background: url("/images/jungle.jpg") center center;
   background-size: cover;
 }
 .card {

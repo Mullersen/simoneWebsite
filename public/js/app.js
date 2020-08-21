@@ -43,7 +43,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "" + ({"article":"article","vendors~search~subhome":"vendors~search~subhome","search":"search","subhome":"subhome"}[chunkId]||chunkId) + ".js"
+/******/ 		return __webpack_require__.p + "" + ({"article":"article","vendors~search~subhome":"vendors~search~subhome","search~subhome":"search~subhome","search":"search","subhome":"subhome"}[chunkId]||chunkId) + ".js"
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -2645,7 +2645,8 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
     },
     addNewTag: function addNewTag() {
       var str = this.NewArticleTags.replace(/\s+/g, "");
-      var tagsArray = str.split(",");
+      var res = str.toLowerCase();
+      var tagsArray = res.split(",");
       var finalTags = this.articleTags.concat(tagsArray);
       this.articleTags = finalTags;
       console.log(this.articleTags);
@@ -2943,10 +2944,10 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
       var formData = new FormData();
 
-      if (this.firstFile == !"") {
-        formData.append("header_image", this.firstFile);
-      } else {
+      if (this.firstFile == "") {
         formData.append("header_image", this.chosenArticle.header_image);
+      } else {
+        formData.append("header_image", this.firstFile);
       }
 
       formData.append("title", this.chosenArticle.header);
@@ -2964,6 +2965,8 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
         _this2.chosenArticle.content = "";
         _this2.articleTags = [];
         document.getElementById('editButton').disabled = true;
+
+        _this2.$emit('promptGetArticles');
       })["catch"](function (error) {
         console.log(error.message);
       });
@@ -2974,7 +2977,8 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
     },
     addNewTag: function addNewTag() {
       var str = this.NewArticleTags.replace(/\s+/g, "");
-      var tagsArray = str.split(",");
+      var res = str.toLowerCase();
+      var tagsArray = res.split(",");
       var finalTags = this.articleTags.concat(tagsArray);
       this.articleTags = finalTags;
       console.log(this.articleTags);
@@ -3304,6 +3308,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
 
@@ -3420,7 +3425,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\na {\n  color: black;\n}\na:hover {\n  color: #d3bfa8;\n}\n.reveal {\n  opacity: 0;\n  transform: translateY(60px);\n  transition: all 1s ease-in-out;\n}\n.reveal.visible {\n  opacity: 1;\n  transform: none;\n}\n.fade-enter-active,\n.fade-leave-active {\n  transition: opacity 0.8s;\n}\n.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {\n  opacity: 0;\n}\n#footer {\n  background-color: #e0d7c8;\n}\n.footerContent {\n  color: #36453b;\n}\n.citat {\n  color: #955748;\n  font-size: 2.5rem;\n}\n.before-enter{\nopacity: 0;\n  transform: translateY(60px);\n  transition: all 1s ease-in-out;\n}\n.enter{\n opacity: 1;\n  transform: none;\n}\n", ""]);
+exports.push([module.i, "\na {\n  color: black;\n}\na:hover {\n  color: #d3bfa8;\n}\n.reveal {\n  opacity: 0;\n  transform: translateY(60px);\n  transition: all 1s ease-in-out;\n}\n.reveal.visible {\n  opacity: 1;\n  transform: none;\n}\n.fade-enter-active,\n.fade-leave-active {\n  transition: opacity 0.8s;\n}\n.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {\n  opacity: 0;\n}\n#footer {\n  background-color: #e0d7c8;\n}\n.footerContent {\n  color: #36453b;\n}\n.citat {\n  color: #955748;\n  font-size: 2.5rem;\n}\n.before-enter{\nopacity: 0;\n  transform: translateY(60px);\n  transition: all 1s ease-in-out;\n}\n.enter{\n opacity: 1;\n  transform: none;\n}\n.heroBackgroundImage {\n  background-position: center;\n  background-repeat: no-repeat;\n  background-size: cover;\n}\n", ""]);
 
 // exports
 
@@ -3439,7 +3444,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.myTitle[data-v-1ae8ae93] {\n  font-size: 4rem !important;\n  font-family: \"Playfair Display\", serif;\n}\n.has-bg-img[data-v-1ae8ae93] {\n  background: url(\"/images/sky1.jpg\") center center;\n  background-size: cover;\n}\n.card[data-v-1ae8ae93] {\n  box-shadow: none;\n  padding: 1rem;\n  margin-top: 3rem;\n  margin-bottom: 3rem;\n}\n#secondColumn[data-v-1ae8ae93] {\n  margin-top: 15rem;\n}\n.title[data-v-1ae8ae93]{\n    margin-top:none;\n}\n.arrow[data-v-1ae8ae93]\n{\n  position: relative;\n  bottom: -2rem;\n  left: 50%;\n  margin-left:-20px;\n  width: 40px;\n  height: 40px;\n\n  /**\n   * Dark Arrow Down\n   */\n  background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjwhRE9DVFlQRSBzdmcgIFBVQkxJQyAnLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4nICAnaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkJz48c3ZnIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDMyIDMyIiBoZWlnaHQ9IjMycHgiIGlkPSLQodC70L7QuV8xIiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCAzMiAzMiIgd2lkdGg9IjMycHgiIHhtbDpzcGFjZT0icHJlc2VydmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPjxwYXRoIGQ9Ik0yNC4yODUsMTEuMjg0TDE2LDE5LjU3MWwtOC4yODUtOC4yODhjLTAuMzk1LTAuMzk1LTEuMDM0LTAuMzk1LTEuNDI5LDAgIGMtMC4zOTQsMC4zOTUtMC4zOTQsMS4wMzUsMCwxLjQzbDguOTk5LDkuMDAybDAsMGwwLDBjMC4zOTQsMC4zOTUsMS4wMzQsMC4zOTUsMS40MjgsMGw4Ljk5OS05LjAwMiAgYzAuMzk0LTAuMzk1LDAuMzk0LTEuMDM2LDAtMS40MzFDMjUuMzE5LDEwLjg4OSwyNC42NzksMTAuODg5LDI0LjI4NSwxMS4yODR6IiBmaWxsPSIjMTIxMzEzIiBpZD0iRXhwYW5kX01vcmUiLz48Zy8+PGcvPjxnLz48Zy8+PGcvPjxnLz48L3N2Zz4=);\n  background-size: contain;\n}\n.bounce[data-v-1ae8ae93] {\n  -webkit-animation: bounce-data-v-1ae8ae93 2s infinite;\n          animation: bounce-data-v-1ae8ae93 2s infinite;\n}\n@-webkit-keyframes bounce-data-v-1ae8ae93 {\n0%, 20%, 50%, 80%, 100% {\n    transform: translateY(0);\n}\n40% {\n    transform: translateY(-30px);\n}\n60% {\n    transform: translateY(-15px);\n}\n}\n@keyframes bounce-data-v-1ae8ae93 {\n0%, 20%, 50%, 80%, 100% {\n    transform: translateY(0);\n}\n40% {\n    transform: translateY(-30px);\n}\n60% {\n    transform: translateY(-15px);\n}\n}\n", ""]);
+exports.push([module.i, "\n.myTitle[data-v-1ae8ae93] {\n  font-size: 4rem !important;\n  font-family: \"Playfair Display\", serif;\n}\n.has-bg-img[data-v-1ae8ae93] {\n  background: url(\"/images/jungle.jpg\") center center;\n  background-size: cover;\n}\n.card[data-v-1ae8ae93] {\n  box-shadow: none;\n  padding: 1rem;\n  margin-top: 3rem;\n  margin-bottom: 3rem;\n}\n#secondColumn[data-v-1ae8ae93] {\n  margin-top: 15rem;\n}\n.title[data-v-1ae8ae93]{\n    margin-top:none;\n}\n.arrow[data-v-1ae8ae93]\n{\n  position: relative;\n  bottom: -2rem;\n  left: 50%;\n  margin-left:-20px;\n  width: 40px;\n  height: 40px;\n\n  /**\n   * Dark Arrow Down\n   */\n  background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjwhRE9DVFlQRSBzdmcgIFBVQkxJQyAnLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4nICAnaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkJz48c3ZnIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDMyIDMyIiBoZWlnaHQ9IjMycHgiIGlkPSLQodC70L7QuV8xIiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCAzMiAzMiIgd2lkdGg9IjMycHgiIHhtbDpzcGFjZT0icHJlc2VydmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPjxwYXRoIGQ9Ik0yNC4yODUsMTEuMjg0TDE2LDE5LjU3MWwtOC4yODUtOC4yODhjLTAuMzk1LTAuMzk1LTEuMDM0LTAuMzk1LTEuNDI5LDAgIGMtMC4zOTQsMC4zOTUtMC4zOTQsMS4wMzUsMCwxLjQzbDguOTk5LDkuMDAybDAsMGwwLDBjMC4zOTQsMC4zOTUsMS4wMzQsMC4zOTUsMS40MjgsMGw4Ljk5OS05LjAwMiAgYzAuMzk0LTAuMzk1LDAuMzk0LTEuMDM2LDAtMS40MzFDMjUuMzE5LDEwLjg4OSwyNC42NzksMTAuODg5LDI0LjI4NSwxMS4yODR6IiBmaWxsPSIjMTIxMzEzIiBpZD0iRXhwYW5kX01vcmUiLz48Zy8+PGcvPjxnLz48Zy8+PGcvPjxnLz48L3N2Zz4=);\n  background-size: contain;\n}\n.bounce[data-v-1ae8ae93] {\n  -webkit-animation: bounce-data-v-1ae8ae93 2s infinite;\n          animation: bounce-data-v-1ae8ae93 2s infinite;\n}\n@-webkit-keyframes bounce-data-v-1ae8ae93 {\n0%, 20%, 50%, 80%, 100% {\n    transform: translateY(0);\n}\n40% {\n    transform: translateY(-30px);\n}\n60% {\n    transform: translateY(-15px);\n}\n}\n@keyframes bounce-data-v-1ae8ae93 {\n0%, 20%, 50%, 80%, 100% {\n    transform: translateY(0);\n}\n40% {\n    transform: translateY(-30px);\n}\n60% {\n    transform: translateY(-15px);\n}\n}\n", ""]);
 
 // exports
 
@@ -26261,7 +26266,8 @@ var render = function() {
           [
             _c("AdminEditArticle", {
               key: _vm.rerenderKey,
-              attrs: { chosenArticle: this.chosenArticle }
+              attrs: { chosenArticle: this.chosenArticle },
+              on: { promptGetArticles: _vm.getArticles }
             })
           ],
           1
@@ -26270,7 +26276,11 @@ var render = function() {
     _vm._v(" "),
     _c(
       "section",
-      { staticClass: "columns is-multiline", attrs: { id: "articles" } },
+      {
+        staticClass: "columns is-multiline",
+        staticStyle: { "margin-top": "10vh" },
+        attrs: { id: "articles" }
+      },
       _vm._l(this.articles, function(article, index) {
         return _c(
           "div",
@@ -26316,7 +26326,7 @@ var render = function() {
                         }
                       }
                     },
-                    [_vm._v("Slet artikel")]
+                    [_vm._v("Slet")]
                   ),
                   _vm._v(" "),
                   _c(
@@ -26329,7 +26339,7 @@ var render = function() {
                         }
                       }
                     },
-                    [_vm._v("Rediger artikel")]
+                    [_vm._v("Rediger")]
                   )
                 ])
               ]
@@ -26982,7 +26992,21 @@ var render = function() {
         _vm._m(0)
       ]),
       _vm._v(" "),
-      _vm._m(1),
+      _c("section", { staticClass: "section is-small" }, [
+        _c("div", { staticClass: "container" }, [
+          _c(
+            "p",
+            {
+              directives: [
+                { name: "scrollanimation", rawName: "v-scrollanimation" }
+              ],
+              staticClass:
+                " title citat is-italic has-text-weight-bold has-text-centered"
+            },
+            [_vm._v("Tag en dyb indånding.")]
+          )
+        ])
+      ]),
       _vm._v(" "),
       _c("section", { staticClass: "section" }, [
         _c("div", { staticClass: "container" }, [
@@ -26992,7 +27016,10 @@ var render = function() {
                 _c(
                   "div",
                   {
-                    staticClass: "column reveal",
+                    directives: [
+                      { name: "scrollanimation", rawName: "v-scrollanimation" }
+                    ],
+                    staticClass: "column",
                     attrs: { id: "masonContainer" }
                   },
                   _vm._l(_vm.articles.slice(0, 2), function(article) {
@@ -27046,7 +27073,10 @@ var render = function() {
                 _c(
                   "div",
                   {
-                    staticClass: "column reveal",
+                    directives: [
+                      { name: "scrollanimation", rawName: "v-scrollanimation" }
+                    ],
+                    staticClass: "column",
                     attrs: { id: "secondColumn" }
                   },
                   _vm._l(_vm.articles.slice(2, 3), function(article) {
@@ -27105,7 +27135,25 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _vm._m(2),
+      _c("section", { staticClass: "section is-small" }, [
+        _c("div", { staticClass: "container" }, [
+          _c(
+            "p",
+            {
+              directives: [
+                { name: "scrollanimation", rawName: "v-scrollanimation" }
+              ],
+              staticClass:
+                " title citat is-italic has-text-weight-bold has-text-centered"
+            },
+            [
+              _vm._v(
+                "Bliv bevidst om dine behov, vælg det til som giver værdi og vær tålmodig med processen."
+              )
+            ]
+          )
+        ])
+      ]),
       _vm._v(" "),
       _c("section", { staticClass: "section" }, [
         _c("div", { staticClass: "container" }, [
@@ -27115,7 +27163,10 @@ var render = function() {
                 _c(
                   "div",
                   {
-                    staticClass: "column reveal",
+                    directives: [
+                      { name: "scrollanimation", rawName: "v-scrollanimation" }
+                    ],
+                    staticClass: "column",
                     attrs: { id: "secondColumn" }
                   },
                   _vm._l(_vm.articles.slice(3, 4), function(article) {
@@ -27171,7 +27222,12 @@ var render = function() {
                 _vm._v(" "),
                 _c(
                   "div",
-                  { staticClass: "column reveal" },
+                  {
+                    directives: [
+                      { name: "scrollanimation", rawName: "v-scrollanimation" }
+                    ],
+                    staticClass: "column"
+                  },
                   _vm._l(_vm.articles.slice(4, 6), function(article) {
                     return _c(
                       "div",
@@ -27228,7 +27284,9 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _c("InstagramGrid", { staticClass: "reveal" })
+      _c("InstagramGrid", {
+        directives: [{ name: "scrollanimation", rawName: "v-scrollanimation" }]
+      })
     ],
     1
   )
@@ -27246,44 +27304,6 @@ var staticRenderFns = [
           staticClass: "arrow bounce",
           staticStyle: { "margin-top": "60vh" }
         })
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("section", { staticClass: "section is-small" }, [
-      _c("div", { staticClass: "container" }, [
-        _c(
-          "p",
-          {
-            staticClass:
-              "reveal title citat is-italic has-text-weight-bold has-text-centered"
-          },
-          [_vm._v("Tag en dyb indånding.")]
-        )
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("section", { staticClass: "section is-small" }, [
-      _c("div", { staticClass: "container" }, [
-        _c(
-          "p",
-          {
-            staticClass:
-              "reveal title citat is-italic has-text-weight-bold has-text-centered"
-          },
-          [
-            _vm._v(
-              "Bliv bevidst om dine behov, vælg det til som giver værdi og vær tålmodig med processen."
-            )
-          ]
-        )
       ])
     ])
   }
@@ -42510,13 +42530,13 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
     name: 'subHome',
     props: true,
     component: function component() {
-      return Promise.all(/*! import() | subhome */[__webpack_require__.e("vendors~search~subhome"), __webpack_require__.e("subhome")]).then(__webpack_require__.bind(null, /*! ./views/SubHome.vue */ "./resources/js/views/SubHome.vue"));
+      return Promise.all(/*! import() | subhome */[__webpack_require__.e("vendors~search~subhome"), __webpack_require__.e("search~subhome"), __webpack_require__.e("subhome")]).then(__webpack_require__.bind(null, /*! ./views/SubHome.vue */ "./resources/js/views/SubHome.vue"));
     }
   }, {
     path: '/home/search',
     name: 'search',
     component: function component() {
-      return Promise.all(/*! import() | search */[__webpack_require__.e("vendors~search~subhome"), __webpack_require__.e("search")]).then(__webpack_require__.bind(null, /*! ./views/Search.vue */ "./resources/js/views/Search.vue"));
+      return Promise.all(/*! import() | search */[__webpack_require__.e("vendors~search~subhome"), __webpack_require__.e("search~subhome"), __webpack_require__.e("search")]).then(__webpack_require__.bind(null, /*! ./views/Search.vue */ "./resources/js/views/Search.vue"));
     }
   }, {
     path: '/home/article/:header',
@@ -42525,7 +42545,13 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
     component: function component() {
       return __webpack_require__.e(/*! import() | article */ "article").then(__webpack_require__.bind(null, /*! ./views/MyArticle.vue */ "./resources/js/views/MyArticle.vue"));
     }
-  }]
+  }],
+  scrollBehavior: function scrollBehavior(to, from, savedPosition) {
+    return {
+      x: 0,
+      y: 0
+    };
+  }
 }); //window.Vue = require('vue');
 
 /**
@@ -43076,7 +43102,8 @@ __webpack_require__.r(__webpack_exports__);
     citation: "Lad stress være årsagen til, at dit liv blev bedre. "
   }, {
     name: "OM",
-    image: "/images/om.jpg"
+    image: "/images/om.jpg",
+    citation: "Hvad er essou?"
   }]
 });
 

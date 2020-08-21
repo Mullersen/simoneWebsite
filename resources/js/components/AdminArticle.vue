@@ -134,7 +134,8 @@ export default {
     },
     addNewTag: function () {
       var str = this.NewArticleTags.replace(/\s+/g, "");
-      var tagsArray = str.split(",");
+      var res = str.toLowerCase();
+      var tagsArray = res.split(",");
       var finalTags = this.articleTags.concat(tagsArray);
       this.articleTags = finalTags;
       console.log(this.articleTags);

@@ -46,6 +46,11 @@ export default {
             paginationCollection: {},
         }
     },
+    computed: {
+        subjectPage: function() {
+      return subhomeDoc.pages.find(element => element.name === this.subject);
+    }
+    },
     methods:{
         formatDate: function(value){
             if(value){
@@ -55,7 +60,7 @@ export default {
         },
         getArticles: function(index){
             axios.post("/article/getarticles/?page="+ index, {
-                    tagselection: this.subject,
+                    tagselection: this.subjectPage.subject_tags,
             })
                 .then(response => {
                     console.log(response.data.articles.data);

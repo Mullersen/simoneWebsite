@@ -20,6 +20,7 @@ export default {
         {
             name: "OM",
             image: "/images/om.jpg",
+            citation: "Hvad er essou?"
         },
 
     ]

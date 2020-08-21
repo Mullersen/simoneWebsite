@@ -1,9 +1,9 @@
 <template>
 <div>
     <section v-if="rerenderKey >= 1">
-            <AdminEditArticle v-bind:chosenArticle="this.chosenArticle" :key="rerenderKey"/>
+            <AdminEditArticle @promptGetArticles='getArticles' v-bind:chosenArticle="this.chosenArticle" :key="rerenderKey"/>
     </section>
-    <section id="articles" class="columns is-multiline">
+    <section id="articles" class="columns is-multiline" style="margin-top:10vh;">
       <div
         id="cardContainer"
         class="column is-one-quarter"
@@ -20,8 +20,8 @@
           <div class="card-content">
             <p class="title is-4 has-text-dark">{{article.header}}</p>
             <!-- <p class="content">{{description}}</p> -->
-            <button @click="promptQuestion(index)" class="button is-primary">Slet artikel</button>
-            <button @click="sendArticleToCorrect(index)" class="button is-primary">Rediger artikel</button>
+            <button @click="promptQuestion(index)" class="button is-primary">Slet</button>
+            <button @click="sendArticleToCorrect(index)" class="button is-primary">Rediger</button>
           </div>
         </div>
       </div>

@@ -120,16 +120,18 @@ components: {
     },
     editArticle: function(){
         let formData = new FormData();
-        if(this.firstFile == !""){
-            formData.append("header_image", this.firstFile);
+
+        if(this.firstFile == ""){
+            formData.append("header_image", this.chosenArticle.header_image);
         } else {
-            formData.append("header_image", this.chosenArticle.header_image)
+            formData.append("header_image", this.firstFile);
         }
 
       formData.append("title", this.chosenArticle.header);
       formData.append("description", this.chosenArticle.content);
       formData.append("tags", this.articleTags);
       formData.append("id", this.chosenArticle.id);
+
         axios
         .post("/article/editArticle", formData, {
              headers: {
@@ -143,6 +145,7 @@ components: {
           this.chosenArticle.content = "";
           this.articleTags = [];
           document.getElementById('editButton').disabled = true;
+          this.$emit('promptGetArticles');
         })
         .catch(error => {
           console.log(error.message);
@@ -154,7 +157,8 @@ components: {
     },
     addNewTag: function() {
       var str = this.NewArticleTags.replace(/\s+/g, "");
-      var tagsArray = str.split(",");
+      var res = str.toLowerCase();
+      var tagsArray = res.split(",");
       var finalTags = this.articleTags.concat(tagsArray);
       this.articleTags = finalTags;
       console.log(this.articleTags);

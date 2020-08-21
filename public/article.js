@@ -88,7 +88,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
 
@@ -224,7 +223,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.content[data-v-4240eaca] {\n  margin-bottom: 1.5rem;\n}\n#heroBackgroundImage[data-v-4240eaca] {\n  background-position: center;\n  background-repeat: no-repeat;\n  background-size: cover;\n}\n.button[data-v-4240eaca] {\n  border: none !important;\n}\n", ""]);
+exports.push([module.i, "\n.content[data-v-4240eaca] {\n  margin-bottom: 1.5rem;\n}\n.button[data-v-4240eaca] {\n  border: none !important;\n}\n#hidden[data-v-4240eaca] {\n  display: none;\n}\n", ""]);
 
 // exports
 
@@ -280,9 +279,8 @@ var render = function() {
     _c(
       "section",
       {
-        staticClass: "hero is-medium",
-        style: { backgroundImage: "url(/" + _vm.article.header_image + ")" },
-        attrs: { id: "heroBackgroundImage" }
+        staticClass: "hero is-medium heroBackgroundImage",
+        style: { backgroundImage: "url(/" + _vm.article.header_image + ")" }
       },
       [
         _c(
