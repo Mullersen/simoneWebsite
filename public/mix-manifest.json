@@ -3,7 +3,5 @@
     "/css/app.css": "/css/app.css",
     "/article.js": "/article.js",
     "/search.js": "/search.js",
-    "/search~subhome.js": "/search~subhome.js",
-    "/subhome.js": "/subhome.js",
-    "/vendors~search~subhome.js": "/vendors~search~subhome.js"
+    "/subhome.js": "/subhome.js"
 }

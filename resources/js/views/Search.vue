@@ -60,7 +60,7 @@ export default {
 
 <style scoped>
 .has-bg-img {
-  background: url("/images/jungle.jpg") center center;
+  background: url("/images/home.jpg") center center;
   background-size: cover;
 }
 </style>

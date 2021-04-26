@@ -2,15 +2,10 @@
   <section class="section is-medium">
     <div class="container has-text-centered">
       <div class="columns is-centered">
-        <div class="column is-8">
+        <div class="column is-8 is-centered">
           <h2 class="title">FØLG OS PÅ INSTAGRAM</h2>
-          <iframe
-            src="https://cdn.lightwidget.com/widgets/a2d486596df851d494a1a556d237fe94.html"
-            scrolling="no"
-            allowtransparency="true"
-            class="lightwidget-widget"
-            style="width:100%;border:0;overflow:hidden;"
-          ></iframe>
+
+            <div class="elfsight-app-51e9d45c-9e78-4442-a811-e44743303ef7" style="margin:auto;"></div>
         </div>
       </div>
     </div>
@@ -24,4 +19,5 @@ export default {
 </script>
 
 <style>
+
 </style>
