@@ -28,7 +28,7 @@
         "@tinymce/tinymce-vue": "^3.2.2",
         "bulma": "^0.8.2",
         "macy": "^2.5.1",
-        "moment": "^2.27.0",
+        "moment": "^2.29.2",
         "vue-router": "^3.3.2",
         "yargs-parser": "^18.1.3"
     }
